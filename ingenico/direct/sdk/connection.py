@@ -1,4 +1,5 @@
 from abc import abstractmethod
+
 from ingenico.direct.sdk.log.logging_capable import LoggingCapable
 
 

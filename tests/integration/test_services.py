@@ -5,7 +5,7 @@ from tests.integration.init_utils import MERCHANT_ID
 
 
 class ServicesTest(unittest.TestCase):
-    def test_token(self):
+    def test_services(self):
 
         with init_utils.create_client() as client:
             response = client.merchant(MERCHANT_ID).services().test_connection()

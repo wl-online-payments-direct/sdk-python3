@@ -3,6 +3,7 @@
 # https://support.direct.ingenico.com/documentation/api/reference/index.html/
 #
 from abc import ABC, abstractmethod
+
 from ingenico.direct.sdk.call_context import CallContext
 from ingenico.direct.sdk.domain.cancel_payment_response import CancelPaymentResponse
 from ingenico.direct.sdk.domain.capture_payment_request import CapturePaymentRequest

@@ -5,7 +5,9 @@
 from ingenico.direct.sdk.api_resource import ApiResource
 from ingenico.direct.sdk.merchant.i_merchant_client import IMerchantClient
 from ingenico.direct.sdk.merchant.hostedcheckout.hosted_checkout_client import HostedCheckoutClient
+from ingenico.direct.sdk.merchant.hostedtokenization.hosted_tokenization_client import HostedTokenizationClient
 from ingenico.direct.sdk.merchant.payments.payments_client import PaymentsClient
+from ingenico.direct.sdk.merchant.payouts.payouts_client import PayoutsClient
 from ingenico.direct.sdk.merchant.productgroups.product_groups_client import ProductGroupsClient
 from ingenico.direct.sdk.merchant.products.products_client import ProductsClient
 from ingenico.direct.sdk.merchant.services.services_client import ServicesClient
@@ -41,6 +43,14 @@ class MerchantClient(ApiResource, IMerchantClient):
         """
         return SessionsClient(self, None)
 
+    def payouts(self) -> PayoutsClient:
+        """
+        Resource /v2/{merchantId}/payouts
+
+        :return: :class:`ingenico.direct.sdk.merchant.payouts.i_payouts_client.IPayoutsClient`
+        """
+        return PayoutsClient(self, None)
+
     def payments(self) -> PaymentsClient:
         """
         Resource /v2/{merchantId}/payments
@@ -64,6 +74,14 @@ class MerchantClient(ApiResource, IMerchantClient):
         :return: :class:`ingenico.direct.sdk.merchant.productgroups.i_product_groups_client.IProductGroupsClient`
         """
         return ProductGroupsClient(self, None)
+
+    def hosted_tokenization(self) -> HostedTokenizationClient:
+        """
+        Resource /v2/{merchantId}/hostedtokenizations
+
+        :return: :class:`ingenico.direct.sdk.merchant.hostedtokenization.i_hosted_tokenization_client.IHostedTokenizationClient`
+        """
+        return HostedTokenizationClient(self, None)
 
     def tokens(self) -> TokensClient:
         """

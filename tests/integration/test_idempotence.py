@@ -15,6 +15,7 @@ from tests.integration.init_utils import MERCHANT_ID
 
 class IdempotenceTest(unittest.TestCase):
     """Test that the client can successfully detect that an idempotent request is sent twice"""
+
     def test_idempotence(self):
         """Test that the client can successfully detect that an idempotent request is sent twice"""
 

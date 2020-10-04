@@ -112,12 +112,9 @@ class DefaultConnectionIdempotenceTest(unittest.TestCase):
         request = create_payment_request()
         # relative url through which the request should be sent
         test_path = "/v2/1/payments"
-        additional_headers \
-            = (("Content-Type", "application/json"),
-               ("X-GCS-Idempotence-Request-Timestamp", idempotence_timestamp))
-        handler = \
-            self.create_handler(response_code=402, body=response_body,
-                                additional_headers=additional_headers)
+        additional_headers = (("Content-Type", "application/json"),
+                              ("X-GCS-Idempotence-Request-Timestamp", idempotence_timestamp))
+        handler = self.create_handler(response_code=402, body=response_body, additional_headers=additional_headers)
         with create_server_listening(handler) as address:
             with create_client(address) as client:
                 with self.assertRaises(DeclinedPaymentException) as exc:

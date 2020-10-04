@@ -32,7 +32,6 @@ class WebhooksHelperTest(unittest.TestCase):
         event = WebhooksEvent()
         event.api_version = "v0"
         body = self.__read_resource("valid-body")
-        # raise Exception(event)
         when(marshaller).unmarshal(body.decode('utf-8'), WebhooksEvent).thenReturn(event)
         helper = self.__create_helper(marshaller)
         InMemorySecretKeyStore.INSTANCE().store_secret_key(self.__KEY_ID, self.__SECRET_KEY)

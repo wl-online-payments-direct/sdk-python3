@@ -21,7 +21,7 @@ class Communicator(LoggingCapable):
     and a HTTP response to a response object.
     """
 
-    def __init__(self, api_endpoint, authenticator, meta_data_provider, connection=DefaultConnection(), marshaller=DefaultMarshaller.INSTANCE()):
+    def __init__(self, api_endpoint, authenticator, meta_data_provider, connection=DefaultConnection(), marshaller=DefaultMarshaller.INSTANCE()) -> None:
         if api_endpoint is None:
             raise ValueError("api_endpoint is required")
         if isinstance(api_endpoint, str):

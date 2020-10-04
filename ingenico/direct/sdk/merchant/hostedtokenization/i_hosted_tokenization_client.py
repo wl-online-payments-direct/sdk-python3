@@ -5,26 +5,26 @@
 from abc import ABC, abstractmethod
 
 from ingenico.direct.sdk.call_context import CallContext
-from ingenico.direct.sdk.domain.create_hosted_checkout_request import CreateHostedCheckoutRequest
-from ingenico.direct.sdk.domain.create_hosted_checkout_response import CreateHostedCheckoutResponse
-from ingenico.direct.sdk.domain.get_hosted_checkout_response import GetHostedCheckoutResponse
+from ingenico.direct.sdk.domain.create_hosted_tokenization_request import CreateHostedTokenizationRequest
+from ingenico.direct.sdk.domain.create_hosted_tokenization_response import CreateHostedTokenizationResponse
+from ingenico.direct.sdk.domain.get_hosted_tokenization_response import GetHostedTokenizationResponse
 
 
-class IHostedCheckoutClient(ABC):
+class IHostedTokenizationClient(ABC):
     """
-    HostedCheckout client interface. Thread-safe.
+    HostedTokenization client interface. Thread-safe.
     """
 
     @abstractmethod
-    def create_hosted_checkout(self, body: CreateHostedCheckoutRequest, context: CallContext = None) -> CreateHostedCheckoutResponse:
+    def create_hosted_tokenization(self, body: CreateHostedTokenizationRequest, context: CallContext = None) -> CreateHostedTokenizationResponse:
         """
-        Resource /v2/{merchantId}/hostedcheckouts - Create hosted checkout
+        Resource /v2/{merchantId}/hostedtokenizations - Create hosted tokenization session
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/CreateHostedCheckoutApi
+        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/CreateHostedTokenizationApi
 
-        :param body: :class:`ingenico.direct.sdk.domain.create_hosted_checkout_request.CreateHostedCheckoutRequest`
+        :param body: :class:`ingenico.direct.sdk.domain.create_hosted_tokenization_request.CreateHostedTokenizationRequest`
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
-        :return: :class:`ingenico.direct.sdk.domain.create_hosted_checkout_response.CreateHostedCheckoutResponse`
+        :return: :class:`ingenico.direct.sdk.domain.create_hosted_tokenization_response.CreateHostedTokenizationResponse`
         :raise: ValidationException if the request was not correct and couldn't be processed (HTTP status code 400)
         :raise: AuthorizationException if the request was not allowed (HTTP status code 403)
         :raise: ReferenceException if an object was attempted to be referenced that doesn't exist or has been removed,
@@ -36,15 +36,15 @@ class IHostedCheckoutClient(ABC):
         """
 
     @abstractmethod
-    def get_hosted_checkout(self, hosted_checkout_id: str, context: CallContext = None) -> GetHostedCheckoutResponse:
+    def get_hosted_tokenization(self, hosted_tokenization_id: str, context: CallContext = None) -> GetHostedTokenizationResponse:
         """
-        Resource /v2/{merchantId}/hostedcheckouts/{hostedCheckoutId} - Get hosted checkout status
+        Resource /v2/{merchantId}/hostedtokenizations/{hostedTokenizationId} - Get hosted tokenization session
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetHostedCheckoutApi
+        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetHostedTokenizationApi
 
-        :param hosted_checkout_id: str
+        :param hosted_tokenization_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
-        :return: :class:`ingenico.direct.sdk.domain.get_hosted_checkout_response.GetHostedCheckoutResponse`
+        :return: :class:`ingenico.direct.sdk.domain.get_hosted_tokenization_response.GetHostedTokenizationResponse`
         :raise: ValidationException if the request was not correct and couldn't be processed (HTTP status code 400)
         :raise: AuthorizationException if the request was not allowed (HTTP status code 403)
         :raise: ReferenceException if an object was attempted to be referenced that doesn't exist or has been removed,

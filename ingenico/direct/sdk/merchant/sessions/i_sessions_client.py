@@ -3,6 +3,7 @@
 # https://support.direct.ingenico.com/documentation/api/reference/index.html/
 #
 from abc import ABC, abstractmethod
+
 from ingenico.direct.sdk.call_context import CallContext
 from ingenico.direct.sdk.domain.session_request import SessionRequest
 from ingenico.direct.sdk.domain.session_response import SessionResponse

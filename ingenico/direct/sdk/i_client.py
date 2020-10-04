@@ -3,6 +3,7 @@
 # https://support.direct.ingenico.com/documentation/api/reference/index.html/
 #
 from abc import abstractmethod
+
 from ingenico.direct.sdk.log.logging_capable import LoggingCapable
 from ingenico.direct.sdk.merchant.merchant_client import MerchantClient
 

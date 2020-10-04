@@ -22,7 +22,6 @@ Copyright (c) 2020 Global Collect Services B.V.
  OTHER DEALINGS IN THE SOFTWARE.
 
 
-*** Notices for Tool Belt - Copyright 2014 Ian Cordasco, Cory Benfield &
 *** Notices for Requests - Copyright 2019 Kenneth Reitz
 
 Licensed under the Apache License, Version 2.0 (the "License");

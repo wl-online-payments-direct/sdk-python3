@@ -92,7 +92,7 @@ class TokensClient(ApiResource, ITokensClient):
             error_object = self._communicator.marshaller.unmarshal(e.body, error_type)
             raise self._create_exception(e.status_code, e.body, error_object, context)
 
-    def delete_token(self, token_id: str, context: CallContext = None) -> TokenResponse:
+    def delete_token(self, token_id: str, context: CallContext = None) -> None:
         """
         Resource /v2/{merchantId}/tokens/{tokenId} - Delete token
 
@@ -100,7 +100,7 @@ class TokensClient(ApiResource, ITokensClient):
 
         :param token_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
-        :return: :class:`ingenico.direct.sdk.domain.token_response.TokenResponse`
+        :return: None
         :raise: ValidationException if the request was not correct and couldn't be processed (HTTP status code 400)
         :raise: AuthorizationException if the request was not allowed (HTTP status code 403)
         :raise: ReferenceException if an object was attempted to be referenced that doesn't exist or has been removed,
@@ -119,7 +119,7 @@ class TokensClient(ApiResource, ITokensClient):
                     uri,
                     self._client_headers,
                     None,
-                    TokenResponse,
+                    None,
                     context)
 
         except ResponseException as e:

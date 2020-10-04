@@ -7,8 +7,7 @@ class Authenticator(ABC):
     """
 
     @abstractmethod
-    def create_simple_authentication_signature(self, http_method, resource_uri,
-                                               request_headers):
+    def create_simple_authentication_signature(self, http_method, resource_uri, request_headers):
         """
         Creates a signature for the simple security model.
 

@@ -3,6 +3,7 @@
 # https://support.direct.ingenico.com/documentation/api/reference/index.html/
 #
 from base64 import b64encode
+
 from ingenico.direct.sdk.api_resource import ApiResource
 from ingenico.direct.sdk.i_client import IClient
 from ingenico.direct.sdk.merchant.merchant_client import MerchantClient

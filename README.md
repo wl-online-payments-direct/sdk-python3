@@ -53,7 +53,7 @@ After the Python SDK has been installed, it can be uninstalled using the followi
 
     pip uninstall direct-sdk-python3
 
-The required packages can be uninstalled in the same way.
+The required package can be uninstalled in the same way.
 
 ## Running tests 
 
@@ -63,9 +63,7 @@ First, some environment variables need to be set:
 * `direct.api.secretApiKey` for the secret API key to use.
 * `direct.api.merchantId` for your merchant ID.
 
-In addition, to run the proxy integration tests, the proxy URI, username and password should be set in the `tests/resources/configuration.proxy.ini` file.
-
-In order to run the unit and integration tests, the [mock](https://pypi.python.org/pypi/mock) backport and [mockito](https://pypi.python.org/pypi/mockito) are required. This can be installed using the following command:
+In order to run the unit and integration tests, the [mock](https://pypi.python.org/pypi/mock) backport and [mockito](https://pypi.python.org/pypi/mockito) packages are required. These can be installed using the following command:
 
     pip install mock mockito
 

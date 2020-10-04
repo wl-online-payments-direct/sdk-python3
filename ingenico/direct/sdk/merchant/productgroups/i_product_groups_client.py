@@ -3,6 +3,7 @@
 # https://support.direct.ingenico.com/documentation/api/reference/index.html/
 #
 from abc import ABC, abstractmethod
+
 from ingenico.direct.sdk.call_context import CallContext
 from ingenico.direct.sdk.domain.get_payment_product_groups_response import GetPaymentProductGroupsResponse
 from ingenico.direct.sdk.domain.payment_product_group import PaymentProductGroup

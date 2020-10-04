@@ -40,8 +40,7 @@ class WebhooksHelper:
         """
         Validates the given body using the given request headers.
 
-        :raise: SignatureValidationException: If the body could not be validated
-         successfully.
+        :raise: SignatureValidationException: If the body could not be validated successfully.
         """
         self.__validate_body(param, request_headers)
 

@@ -4,6 +4,7 @@
 # https://support.direct.ingenico.com/documentation/api/reference/index.html/
 #
 from typing import List
+
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.api_error import APIError
 from ingenico.direct.sdk.domain.create_payment_response import CreatePaymentResponse

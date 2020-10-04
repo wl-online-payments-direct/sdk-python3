@@ -40,8 +40,6 @@ def create_communicator_configuration(properties_url=PROPERTIES_URL, max_connect
     return configuration
 
 
-
-
 def create_client(max_connections=False):
     configuration = create_communicator_configuration(max_connections=max_connections)
     return Factory.create_client_from_configuration(configuration).with_client_meta_info('{"test":"test"}')

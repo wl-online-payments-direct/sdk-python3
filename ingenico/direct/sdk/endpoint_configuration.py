@@ -1,4 +1,3 @@
-from configparser import NoOptionError
 from urllib.parse import urlparse
 
 from ingenico.direct.sdk.domain.shopping_cart_extension import ShoppingCartExtension

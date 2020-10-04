@@ -3,9 +3,10 @@ from configparser import ConfigParser
 from ingenico.direct.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
 from ingenico.direct.sdk.defaultimpl.default_connection import DefaultConnection
 from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
+from .client import Client
 from .communicator import Communicator
 from .communicator_configuration import CommunicatorConfiguration
-from .client import Client
+from .i_client import IClient
 from .meta_data_provider import MetaDataProvider
 
 
@@ -15,7 +16,7 @@ class Factory:
     """
 
     @staticmethod
-    def create_configuration(configuration_file_name, api_key_id, secret_api_key):
+    def create_configuration(configuration_file_name, api_key_id, secret_api_key) -> CommunicatorConfiguration:
         """
         Creates a CommunicatorConfiguration based on the configuration
         values in configuration_file_name, api_key_id and secret_api_key.
@@ -37,7 +38,7 @@ class Factory:
                                                meta_data_provider=None,
                                                connection=None,
                                                authenticator=None,
-                                               marshaller=DefaultMarshaller.INSTANCE()):
+                                               marshaller=DefaultMarshaller.INSTANCE()) -> Communicator:
         """
         Creates a Communicator based on the configuration stored in the CommunicatorConfiguration argument
         """
@@ -72,7 +73,7 @@ class Factory:
                                       meta_data_provider=None,
                                       connection=None,
                                       authenticator=None,
-                                      marshaller=DefaultMarshaller.INSTANCE()):
+                                      marshaller=DefaultMarshaller.INSTANCE()) -> Communicator:
         """
         Creates a Communicator based on the configuration values in configuration_file_name, api_id_key and secret_api_key.
         """
@@ -80,7 +81,7 @@ class Factory:
         return Factory.create_communicator_from_configuration(configuration, meta_data_provider, connection, authenticator, marshaller)
 
     @staticmethod
-    def create_client_from_configuration(communicator_configuration):
+    def create_client_from_configuration(communicator_configuration) -> IClient:
         """
         Create a Client based on the configuration stored in the CommunicatorConfiguration argument
         """
@@ -88,7 +89,7 @@ class Factory:
         return Client(communicator)
 
     @staticmethod
-    def create_client_from_communicator(communicator):
+    def create_client_from_communicator(communicator) -> IClient:
         """
         Create a Client based on the settings stored in the Communicator argument
         """
@@ -101,7 +102,7 @@ class Factory:
                                 meta_data_provider=None,
                                 connection=None,
                                 authenticator=None,
-                                marshaller=DefaultMarshaller.INSTANCE()):
+                                marshaller=DefaultMarshaller.INSTANCE()) -> IClient:
         """
         Creates a Client based on the configuration values in configuration_file_name, api_key_id and secret_api_key.
         """

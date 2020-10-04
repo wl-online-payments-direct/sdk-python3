@@ -5,26 +5,25 @@
 from abc import ABC, abstractmethod
 
 from ingenico.direct.sdk.call_context import CallContext
-from ingenico.direct.sdk.domain.create_hosted_checkout_request import CreateHostedCheckoutRequest
-from ingenico.direct.sdk.domain.create_hosted_checkout_response import CreateHostedCheckoutResponse
-from ingenico.direct.sdk.domain.get_hosted_checkout_response import GetHostedCheckoutResponse
+from ingenico.direct.sdk.domain.create_payout_request import CreatePayoutRequest
+from ingenico.direct.sdk.domain.payout_response import PayoutResponse
 
 
-class IHostedCheckoutClient(ABC):
+class IPayoutsClient(ABC):
     """
-    HostedCheckout client interface. Thread-safe.
+    Payouts client interface. Thread-safe.
     """
 
     @abstractmethod
-    def create_hosted_checkout(self, body: CreateHostedCheckoutRequest, context: CallContext = None) -> CreateHostedCheckoutResponse:
+    def create_payout(self, body: CreatePayoutRequest, context: CallContext = None) -> PayoutResponse:
         """
-        Resource /v2/{merchantId}/hostedcheckouts - Create hosted checkout
+        Resource /v2/{merchantId}/payouts - Create payout
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/CreateHostedCheckoutApi
+        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/CreatePayoutApi
 
-        :param body: :class:`ingenico.direct.sdk.domain.create_hosted_checkout_request.CreateHostedCheckoutRequest`
+        :param body: :class:`ingenico.direct.sdk.domain.create_payout_request.CreatePayoutRequest`
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
-        :return: :class:`ingenico.direct.sdk.domain.create_hosted_checkout_response.CreateHostedCheckoutResponse`
+        :return: :class:`ingenico.direct.sdk.domain.payout_response.PayoutResponse`
         :raise: ValidationException if the request was not correct and couldn't be processed (HTTP status code 400)
         :raise: AuthorizationException if the request was not allowed (HTTP status code 403)
         :raise: ReferenceException if an object was attempted to be referenced that doesn't exist or has been removed,
@@ -36,15 +35,15 @@ class IHostedCheckoutClient(ABC):
         """
 
     @abstractmethod
-    def get_hosted_checkout(self, hosted_checkout_id: str, context: CallContext = None) -> GetHostedCheckoutResponse:
+    def get_payout(self, payout_id: str, context: CallContext = None) -> PayoutResponse:
         """
-        Resource /v2/{merchantId}/hostedcheckouts/{hostedCheckoutId} - Get hosted checkout status
+        Resource /v2/{merchantId}/payouts/{payoutId} - Get payout
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetHostedCheckoutApi
+        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetPayoutApi
 
-        :param hosted_checkout_id: str
+        :param payout_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
-        :return: :class:`ingenico.direct.sdk.domain.get_hosted_checkout_response.GetHostedCheckoutResponse`
+        :return: :class:`ingenico.direct.sdk.domain.payout_response.PayoutResponse`
         :raise: ValidationException if the request was not correct and couldn't be processed (HTTP status code 400)
         :raise: AuthorizationException if the request was not allowed (HTTP status code 403)
         :raise: ReferenceException if an object was attempted to be referenced that doesn't exist or has been removed,

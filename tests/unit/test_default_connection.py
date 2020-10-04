@@ -143,7 +143,7 @@ class DefaultConnectionTest(unittest.TestCase):
             if isinstance(e, AssertionError):
                 raise e
             else:
-                print("Could not access max_connections attribute in libary for validation")
+                print("Could not access max_connections attribute in library for validation")
 
         # proxy settings are deeply embedded in requests, we don't check them here
 

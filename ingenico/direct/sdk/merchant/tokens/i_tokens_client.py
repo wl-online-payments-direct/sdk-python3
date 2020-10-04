@@ -3,6 +3,7 @@
 # https://support.direct.ingenico.com/documentation/api/reference/index.html/
 #
 from abc import ABC, abstractmethod
+
 from ingenico.direct.sdk.call_context import CallContext
 from ingenico.direct.sdk.domain.create_token_request import CreateTokenRequest
 from ingenico.direct.sdk.domain.created_token_response import CreatedTokenResponse
@@ -55,7 +56,7 @@ class ITokensClient(ABC):
         """
 
     @abstractmethod
-    def delete_token(self, token_id: str, context: CallContext = None) -> TokenResponse:
+    def delete_token(self, token_id: str, context: CallContext = None) -> None:
         """
         Resource /v2/{merchantId}/tokens/{tokenId} - Delete token
 
@@ -63,7 +64,7 @@ class ITokensClient(ABC):
 
         :param token_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
-        :return: :class:`ingenico.direct.sdk.domain.token_response.TokenResponse`
+        :return: None
         :raise: ValidationException if the request was not correct and couldn't be processed (HTTP status code 400)
         :raise: AuthorizationException if the request was not allowed (HTTP status code 403)
         :raise: ReferenceException if an object was attempted to be referenced that doesn't exist or has been removed,
