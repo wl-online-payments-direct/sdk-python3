@@ -1,5 +1,6 @@
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.payment_response import PaymentResponse
+from ingenico.direct.sdk.domain.payout_response import PayoutResponse
 from ingenico.direct.sdk.domain.refund_response import RefundResponse
 from ingenico.direct.sdk.domain.token_response import TokenResponse
 
@@ -11,6 +12,7 @@ class WebhooksEvent(DataObject):
     __merchant_id = None
     __type = None
     __payment = None
+    __payout = None
     __refund = None
     __token = None
 
@@ -63,6 +65,14 @@ class WebhooksEvent(DataObject):
         self.__payment = payment
 
     @property
+    def payout(self) -> PayoutResponse:
+        return self.__payout
+
+    @payout.setter
+    def payout(self, payout: PayoutResponse):
+        self.__payout = payout
+
+    @property
     def refund(self) -> RefundResponse:
         return self.__refund
 
@@ -92,6 +102,8 @@ class WebhooksEvent(DataObject):
             dictionary['type'] = self.__type
         if self.__payment is not None:
             dictionary['payment'] = self.__payment
+        if self.__payout is not None:
+            dictionary['payout'] = self.__payout
         if self.__refund is not None:
             dictionary['refund'] = self.__refund
         if self.__token is not None:
@@ -115,6 +127,11 @@ class WebhooksEvent(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['payment']))
             value = PaymentResponse()
             self.__payment = value.from_dictionary(dictionary['payment'])
+        if 'payout' in dictionary:
+            if not isinstance(dictionary['payout'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['payout']))
+            value = PayoutResponse()
+            self.__payout = value.from_dictionary(dictionary['payout'])
         if 'refund' in dictionary:
             if not isinstance(dictionary['refund'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['refund']))

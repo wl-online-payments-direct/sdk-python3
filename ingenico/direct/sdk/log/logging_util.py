@@ -1,6 +1,8 @@
 import codecs
 import re
 
+from typing import List
+
 
 class LoggingUtil:
     """
@@ -12,21 +14,17 @@ class LoggingUtil:
         __obfuscators = None
         __obfuscator_keys = None
 
-        def __init__(self, obfuscators, case_insensitive, fixed_length=None,
-                     keep_start_count=None, keep_end_count=None, full=None):
+        def __init__(self, case_insensitive, values: List[str] = None, sensitive_values: List[str] = None):
+            obfuscators = {}
             self.case_insensitive = case_insensitive
-            if fixed_length:
-                for name, count in list(fixed_length.items()):
-                    obfuscators[name] = self.ValueObfuscator(count, 0, 0)
-            if keep_start_count:
-                for name, count in list(keep_start_count.items()):
-                    obfuscators[name] = self.ValueObfuscator(0, count, 0)
-            if keep_end_count:
-                for name, count in list(keep_end_count.items()):
-                    obfuscators[name] = self.ValueObfuscator(0, 0, count)
-            if full:
-                for name in full:
-                    obfuscators[name] = self.ValueObfuscator(0, 0, 0)
+            if values:
+                obfuscator = self.ValueObfuscator()
+                for value in values:
+                    obfuscators[value] = obfuscator
+            if sensitive_values:
+                value_obfuscator = self.SensitiveValueObfuscator()
+                for value in sensitive_values:
+                    obfuscators[value] = value_obfuscator
             self.__obfuscators = tuple(obfuscators.items())
             self.__obfuscator_keys = tuple(obfuscators)
 
@@ -48,30 +46,12 @@ class LoggingUtil:
             return None
 
         class ValueObfuscator:
-            __mask_character = None
-            __fixed_length = None
-            __keep_start_count = None
-            __keep_end_count = None
-
-            def __init__(self, fixed_length, keep_start_count, keep_end_count):
-                self.__mask_character = '*'
-                self.__fixed_length = fixed_length
-                self.__keep_start_count = keep_start_count
-                self.__keep_end_count = keep_end_count
-
             def obfuscate_value(self, value):
-                if not value:
-                    return value
-                if self.__fixed_length > 0:
-                    return self.__mask_character * self.__fixed_length
-                if self.__keep_start_count == 0 and self.__keep_end_count == 0:
-                    return self.__mask_character * len(value)
-                if len(value) < self.__keep_start_count + self.__keep_end_count:
-                    return value
-                start = self.__keep_start_count
-                end = len(value) - self.__keep_end_count
-                value_between = self.__mask_character * (end - start)
-                return value[:start] + value_between + value[end:]
+                return '*' + str(len(value)) if value else value
+
+        class SensitiveValueObfuscator:
+            def obfuscate_value(self, value):
+                return '***' if value else value
 
         def build_property_pattern(self, property_names):
             if not property_names:
@@ -105,29 +85,44 @@ class LoggingUtil:
                 index = value_end
             return s_obfuscate + body[index:]
 
-    __fixed = dict([("keyId", 8),
-                    ("secretKey", 8),
-                    ("publicKey", 8),
-                    ("userAuthenticationToken", 8),
-                    ("encryptedPayload", 8),
-                    ("decryptedPayload", 8),
-                    ("encryptedCustomerInput", 8)])
-    __start = dict([("bin", 6)])
-    __end = dict([("cardNumber", 4),
-                  ("expiryDate", 2),
-                  ("iban", 4),
-                  ("accountNumber", 4),
-                  ("reformattedAccountNumber", 4)])
-    __all = ["value", "cvv"]
-    __property_obfuscator = Obfuscator({}, False, __fixed, __start, __end, __all)
+    __properties = ["accountNumber",
+                    "additionalInfo",
+                    "bin",
+                    "cardNumber",
+                    "cardholderName",
+                    "cvv",
+                    "dateOfBirth",
+                    "emailAddress",
+                    "expiryDate",
+                    "faxNumber",
+                    "firstName",
+                    "houseNumber",
+                    "iban",
+                    "mobilePhoneNumber",
+                    "passengerName",
+                    "phoneNumber",
+                    "reformattedAccountNumber",
+                    "street",
+                    "surname",
+                    "value",
+                    "workPhoneNumber",
+                    "zip"]
+    __sensitive_properties = ["decryptedPayload",
+                              "encryptedCustomerInput",
+                              "encryptedPayload",
+                              "keyId",
+                              "publicKey",
+                              "secretKey",
+                              "userAuthenticationToken"]
+    __property_obfuscator = Obfuscator(False, __properties, __sensitive_properties)
 
-    __fixed_length = dict([("Authorization", 8),
-                           ("WWW-Authenticate", 8),
-                           ("Proxy-Authenticate", 8),
-                           ("Proxy-Authorization", 8),
-                           ("X-GCS-Authentication-Token", 8),
-                           ("X-GCS-CallerPassword", 8)])
-    __header_obfuscator = Obfuscator({}, True, __fixed_length)
+    __sensitive_headers = ["Authorization",
+                           "Proxy-Authenticate",
+                           "Proxy-Authorization",
+                           "X-GCS-Authentication-Token",
+                           "WWW-Authenticate",
+                           "X-GCS-CallerPassword"]
+    __header_obfuscator = Obfuscator(True, sensitive_values=__sensitive_headers)
 
     @staticmethod
     def obfuscate_body(body, charset=None):

@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 
 
 class AccountOnFileAttribute(DataObject):
+    """
+    | Array containing the details of the stored token
+    """
 
     __key = None
     __must_write_reason = None
@@ -16,6 +19,8 @@ class AccountOnFileAttribute(DataObject):
     @property
     def key(self) -> str:
         """
+        | Name of the key or property
+
         Type: str
         """
         return self.__key
@@ -27,6 +32,8 @@ class AccountOnFileAttribute(DataObject):
     @property
     def must_write_reason(self) -> str:
         """
+        | The reason why the status is MUST_WRITE. Currently only "IN_THE_PAST" is possible as value (for expiry date), but this can be extended with new values in the future.
+
         Type: str
         """
         return self.__must_write_reason
@@ -38,6 +45,12 @@ class AccountOnFileAttribute(DataObject):
     @property
     def status(self) -> str:
         """
+        | Possible values:
+        | * READ_ONLY - attribute cannot be updated and should be presented in that way to the user
+        | * CAN_WRITE - attribute can be updated and should be presented as an editable field, for example an expiration date that will expire very soon
+        | * MUST_WRITE - attribute should be updated and must be presented as an editable field, for example an expiration date that has already expired
+        | Any updated values that are entered for CAN_WRITE or MUST_WRITE will be used to update the values stored in the token.
+
         Type: str
         """
         return self.__status
@@ -49,6 +62,8 @@ class AccountOnFileAttribute(DataObject):
     @property
     def value(self) -> str:
         """
+        | Value of the key or property
+
         Type: str
         """
         return self.__value

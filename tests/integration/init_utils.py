@@ -35,7 +35,7 @@ def create_communicator_configuration(properties_url=PROPERTIES_URL, max_connect
     host = os.getenv("direct.api.endpoint.host")
     if host is not None:
         scheme = os.getenv("direct.api.endpoint.scheme", "https")
-        port = int(os.getenv("direct.api.endpoint.port", -1))
+        port = int(os.getenv("direct.api.endpoint.port", 443))
         configuration.api_endpoint = "{2}://{0}:{1}".format(host, port, scheme)
     return configuration
 

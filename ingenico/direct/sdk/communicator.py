@@ -1,7 +1,11 @@
 from datetime import datetime
-from urllib.parse import quote
-from urllib.parse import urlparse
+from typing import Union, cast
+from urllib.parse import ParseResult, ParseResultBytes, quote, urlparse
 
+from direct.sdk.authenticator import Authenticator
+from direct.sdk.connection import Connection
+from direct.sdk.marshaller import Marshaller
+from direct.sdk.meta_data_provider import MetaDataProvider
 from ingenico.direct.sdk.defaultimpl.default_connection import DefaultConnection
 from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
 from ingenico.direct.sdk.log.logging_capable import LoggingCapable
@@ -21,13 +25,18 @@ class Communicator(LoggingCapable):
     and a HTTP response to a response object.
     """
 
-    def __init__(self, api_endpoint, authenticator, meta_data_provider, connection=DefaultConnection(), marshaller=DefaultMarshaller.INSTANCE()) -> None:
+    def __init__(self,
+                 api_endpoint: Union[str, ParseResult, ParseResultBytes],
+                 authenticator: Authenticator,
+                 meta_data_provider: MetaDataProvider,
+                 connection: Connection = DefaultConnection(),
+                 marshaller: Marshaller = DefaultMarshaller.INSTANCE()) -> None:
         if api_endpoint is None:
             raise ValueError("api_endpoint is required")
         if isinstance(api_endpoint, str):
             api_endpoint = urlparse(api_endpoint)
         if not api_endpoint.scheme.lower() in ["http", "https"] or not api_endpoint.netloc:
-            raise ValueError("invalid api_endpoint: " + api_endpoint)
+            raise ValueError("invalid api_endpoint: " + str(api_endpoint))
         if api_endpoint.path:
             raise ValueError("api_endpoint should not contain a path")
         if api_endpoint.username is not None or api_endpoint.query or api_endpoint.fragment:
@@ -179,27 +188,27 @@ class Communicator(LoggingCapable):
         return self._process_response(status, chunks, headers, relative_path, response_type, context)
 
     @property
-    def api_endpoint(self):
+    def api_endpoint(self) -> Union[ParseResult, ParseResultBytes]:
         """:return: The Ingenico ePayments platform API endpoint URI. This URI's path will be None or empty."""
         return self.__api_endpoint
 
     @property
-    def authenticator(self):
+    def authenticator(self) -> Authenticator:
         """:return: The Authenticator object associated with this session. Never None."""
         return self.__authenticator
 
     @property
-    def connection(self):
+    def connection(self) -> Connection:
         """:return: The Connection object associated with this session. Never None."""
         return self.__connection
 
     @property
-    def marshaller(self):
+    def marshaller(self) -> Marshaller:
         """:return: The Marshaller object associated with this communicator. Never None."""
         return self.__marshaller
 
     @property
-    def meta_data_provider(self):
+    def meta_data_provider(self) -> MetaDataProvider:
         """:return: The MetaDataProvider object associated with this session. Never None."""
         return self.__meta_data_provider
 
@@ -311,7 +320,7 @@ class Communicator(LoggingCapable):
         :param idle_time: a datetime.timedelta object indicating the idle time
         """
         if isinstance(self.connection, PooledConnection):
-            self.connection.close_idle_connections(idle_time)
+            cast(PooledConnection, self.connection).close_idle_connections(idle_time)
 
     def close_expired_connections(self):
         """
@@ -319,7 +328,7 @@ class Communicator(LoggingCapable):
         if that's an instanceof PooledConnection. If not this method does nothing.
         """
         if isinstance(self.connection, PooledConnection):
-            self.connection.close_expired_connections()
+            cast(PooledConnection, self.connection).close_expired_connections()
 
     def enable_logging(self, communicator_logger):
         # delegate to the connection

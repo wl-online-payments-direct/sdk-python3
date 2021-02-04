@@ -1,16 +1,31 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 
 
 class CreateHostedTokenizationRequest(DataObject):
 
+    __ask_consumer_consent = None
     __locale = None
     __tokens = None
     __variant = None
+
+    @property
+    def ask_consumer_consent(self) -> bool:
+        """
+        | Indicate if the tokenization form should contain a prompt asking the user to give consent for storing their information for future payments.
+        | If this parameter is false, you should ask the user yourself and provide the answer when submitting the Tokenizer in your javascript code.
+
+        Type: bool
+        """
+        return self.__ask_consumer_consent
+
+    @ask_consumer_consent.setter
+    def ask_consumer_consent(self, value: bool):
+        self.__ask_consumer_consent = value
 
     @property
     def locale(self) -> str:
@@ -53,6 +68,8 @@ class CreateHostedTokenizationRequest(DataObject):
 
     def to_dictionary(self):
         dictionary = super(CreateHostedTokenizationRequest, self).to_dictionary()
+        if self.ask_consumer_consent is not None:
+            dictionary['askConsumerConsent'] = self.ask_consumer_consent
         if self.locale is not None:
             dictionary['locale'] = self.locale
         if self.tokens is not None:
@@ -63,6 +80,8 @@ class CreateHostedTokenizationRequest(DataObject):
 
     def from_dictionary(self, dictionary):
         super(CreateHostedTokenizationRequest, self).from_dictionary(dictionary)
+        if 'askConsumerConsent' in dictionary:
+            self.ask_consumer_consent = dictionary['askConsumerConsent']
         if 'locale' in dictionary:
             self.locale = dictionary['locale']
         if 'tokens' in dictionary:

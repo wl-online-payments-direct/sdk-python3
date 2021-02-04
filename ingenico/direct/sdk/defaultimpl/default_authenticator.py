@@ -14,7 +14,7 @@ class DefaultAuthenticator(Authenticator):
     Default Authenticator implementation.
     """
 
-    def __init__(self, api_key_id, secret_api_key, authorization_type=AuthorizationType.V1HMAC):
+    def __init__(self, api_key_id: str, secret_api_key: str, authorization_type: str = AuthorizationType.V1HMAC):
         """
         :param authorization_type: Based on this value both the Ingenico ePayments
          platform and the merchant know which security implementation is used.
@@ -38,17 +38,15 @@ class DefaultAuthenticator(Authenticator):
             raise ValueError("authorization_type is required")
         self.__api_id_key = api_key_id
         self.__secret_api_key = secret_api_key
-        self.__authorization_type = authorization_type
+        self.__authorization_type = AuthorizationType.get_authorization(authorization_type)
 
-    def create_simple_authentication_signature(self, http_method, resource_uri,
-                                               http_headers):
+    def create_simple_authentication_signature(self, http_method: str, resource_uri, http_headers):
         """Returns a v1HMAC authentication signature header"""
         if http_method is None or not http_method.strip():
             raise ValueError("http_method is required")
         if resource_uri is None:
             raise ValueError("resource_uri is required")
-        data_to_sign = self.to_data_to_sign(http_method, resource_uri,
-                                            http_headers)
+        data_to_sign = self.to_data_to_sign(http_method, resource_uri, http_headers)
         return "GCS " + self.__authorization_type + ":" + self.__api_id_key + \
                ":" + self.create_authentication_signature(data_to_sign)
 

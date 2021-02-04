@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
+from typing import List
 from ingenico.direct.sdk.data_object import DataObject
+from ingenico.direct.sdk.domain.account_on_file import AccountOnFile
 from ingenico.direct.sdk.domain.payment_product_display_hints import PaymentProductDisplayHints
+from ingenico.direct.sdk.domain.payment_product_field import PaymentProductField
 
 
 class PaymentProduct(DataObject):
@@ -12,15 +15,28 @@ class PaymentProduct(DataObject):
     | Payment product
     """
 
+    __accounts_on_file = None
     __allows_recurring = None
     __allows_tokenization = None
     __display_hints = None
+    __fields = None
     __id = None
-    __max_amount = None
-    __min_amount = None
     __payment_method = None
     __payment_product_group = None
     __uses_redirection_to3rd_party = None
+
+    @property
+    def accounts_on_file(self) -> List[AccountOnFile]:
+        """
+        | List of tokens for that payment product
+
+        Type: list[:class:`ingenico.direct.sdk.domain.account_on_file.AccountOnFile`]
+        """
+        return self.__accounts_on_file
+
+    @accounts_on_file.setter
+    def accounts_on_file(self, value: List[AccountOnFile]):
+        self.__accounts_on_file = value
 
     @property
     def allows_recurring(self) -> bool:
@@ -66,6 +82,19 @@ class PaymentProduct(DataObject):
         self.__display_hints = value
 
     @property
+    def fields(self) -> List[PaymentProductField]:
+        """
+        | Object containing all the fields and their details that are associated with this payment product. If you are not interested in the data on the fields you should have us filter them our (using filter=fields in the query-string)
+
+        Type: list[:class:`ingenico.direct.sdk.domain.payment_product_field.PaymentProductField`]
+        """
+        return self.__fields
+
+    @fields.setter
+    def fields(self, value: List[PaymentProductField]):
+        self.__fields = value
+
+    @property
     def id(self) -> int:
         """
         | The ID of the payment product in our system
@@ -77,32 +106,6 @@ class PaymentProduct(DataObject):
     @id.setter
     def id(self, value: int):
         self.__id = value
-
-    @property
-    def max_amount(self) -> int:
-        """
-        | Maximum amount in EUR cents (using 2 decimals, so 1 EUR becomes 100 cents) for transactions done with this payment product
-
-        Type: int
-        """
-        return self.__max_amount
-
-    @max_amount.setter
-    def max_amount(self, value: int):
-        self.__max_amount = value
-
-    @property
-    def min_amount(self) -> int:
-        """
-        | Minimum amount in EUR cents (using 2 decimals, so 1 EUR becomes 100 cents) for transactions done with this payment product
-
-        Type: int
-        """
-        return self.__min_amount
-
-    @min_amount.setter
-    def min_amount(self, value: int):
-        self.__min_amount = value
 
     @property
     def payment_method(self) -> str:
@@ -148,18 +151,24 @@ class PaymentProduct(DataObject):
 
     def to_dictionary(self):
         dictionary = super(PaymentProduct, self).to_dictionary()
+        if self.accounts_on_file is not None:
+            dictionary['accountsOnFile'] = []
+            for element in self.accounts_on_file:
+                if element is not None:
+                    dictionary['accountsOnFile'].append(element.to_dictionary())
         if self.allows_recurring is not None:
             dictionary['allowsRecurring'] = self.allows_recurring
         if self.allows_tokenization is not None:
             dictionary['allowsTokenization'] = self.allows_tokenization
         if self.display_hints is not None:
             dictionary['displayHints'] = self.display_hints.to_dictionary()
+        if self.fields is not None:
+            dictionary['fields'] = []
+            for element in self.fields:
+                if element is not None:
+                    dictionary['fields'].append(element.to_dictionary())
         if self.id is not None:
             dictionary['id'] = self.id
-        if self.max_amount is not None:
-            dictionary['maxAmount'] = self.max_amount
-        if self.min_amount is not None:
-            dictionary['minAmount'] = self.min_amount
         if self.payment_method is not None:
             dictionary['paymentMethod'] = self.payment_method
         if self.payment_product_group is not None:
@@ -170,6 +179,13 @@ class PaymentProduct(DataObject):
 
     def from_dictionary(self, dictionary):
         super(PaymentProduct, self).from_dictionary(dictionary)
+        if 'accountsOnFile' in dictionary:
+            if not isinstance(dictionary['accountsOnFile'], list):
+                raise TypeError('value \'{}\' is not a list'.format(dictionary['accountsOnFile']))
+            self.accounts_on_file = []
+            for element in dictionary['accountsOnFile']:
+                value = AccountOnFile()
+                self.accounts_on_file.append(value.from_dictionary(element))
         if 'allowsRecurring' in dictionary:
             self.allows_recurring = dictionary['allowsRecurring']
         if 'allowsTokenization' in dictionary:
@@ -179,12 +195,15 @@ class PaymentProduct(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['displayHints']))
             value = PaymentProductDisplayHints()
             self.display_hints = value.from_dictionary(dictionary['displayHints'])
+        if 'fields' in dictionary:
+            if not isinstance(dictionary['fields'], list):
+                raise TypeError('value \'{}\' is not a list'.format(dictionary['fields']))
+            self.fields = []
+            for element in dictionary['fields']:
+                value = PaymentProductField()
+                self.fields.append(value.from_dictionary(element))
         if 'id' in dictionary:
             self.id = dictionary['id']
-        if 'maxAmount' in dictionary:
-            self.max_amount = dictionary['maxAmount']
-        if 'minAmount' in dictionary:
-            self.min_amount = dictionary['minAmount']
         if 'paymentMethod' in dictionary:
             self.payment_method = dictionary['paymentMethod']
         if 'paymentProductGroup' in dictionary:

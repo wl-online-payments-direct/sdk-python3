@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.decrypted_payment_data import DecryptedPaymentData
+from ingenico.direct.sdk.domain.mobile_payment_product320_specific_input import MobilePaymentProduct320SpecificInput
 
 
 class MobilePaymentMethodSpecificInput(DataObject):
@@ -16,6 +17,7 @@ class MobilePaymentMethodSpecificInput(DataObject):
     __decrypted_payment_data = None
     __encrypted_payment_data = None
     __ephemeral_key = None
+    __payment_product320_specific_input = None
     __payment_product_id = None
     __public_key_hash = None
     __requires_approval = None
@@ -80,6 +82,19 @@ class MobilePaymentMethodSpecificInput(DataObject):
         self.__ephemeral_key = value
 
     @property
+    def payment_product320_specific_input(self) -> MobilePaymentProduct320SpecificInput:
+        """
+        | Object containing information specific to Google Pay. Required for payments with product 320.
+
+        Type: :class:`ingenico.direct.sdk.domain.mobile_payment_product320_specific_input.MobilePaymentProduct320SpecificInput`
+        """
+        return self.__payment_product320_specific_input
+
+    @payment_product320_specific_input.setter
+    def payment_product320_specific_input(self, value: MobilePaymentProduct320SpecificInput):
+        self.__payment_product320_specific_input = value
+
+    @property
     def payment_product_id(self) -> int:
         """
         | Payment product identifier - Please see [payment products](https://support.direct.ingenico.com/documentation/api/reference/index.html#tag/Products) for a full overview of possible values.
@@ -130,6 +145,8 @@ class MobilePaymentMethodSpecificInput(DataObject):
             dictionary['encryptedPaymentData'] = self.encrypted_payment_data
         if self.ephemeral_key is not None:
             dictionary['ephemeralKey'] = self.ephemeral_key
+        if self.payment_product320_specific_input is not None:
+            dictionary['paymentProduct320SpecificInput'] = self.payment_product320_specific_input.to_dictionary()
         if self.payment_product_id is not None:
             dictionary['paymentProductId'] = self.payment_product_id
         if self.public_key_hash is not None:
@@ -151,6 +168,11 @@ class MobilePaymentMethodSpecificInput(DataObject):
             self.encrypted_payment_data = dictionary['encryptedPaymentData']
         if 'ephemeralKey' in dictionary:
             self.ephemeral_key = dictionary['ephemeralKey']
+        if 'paymentProduct320SpecificInput' in dictionary:
+            if not isinstance(dictionary['paymentProduct320SpecificInput'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct320SpecificInput']))
+            value = MobilePaymentProduct320SpecificInput()
+            self.payment_product320_specific_input = value.from_dictionary(dictionary['paymentProduct320SpecificInput'])
         if 'paymentProductId' in dictionary:
             self.payment_product_id = dictionary['paymentProductId']
         if 'publicKeyHash' in dictionary:

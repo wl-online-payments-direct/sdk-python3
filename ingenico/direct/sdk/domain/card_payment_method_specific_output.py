@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.card_essentials import CardEssentials
@@ -18,6 +18,7 @@ class CardPaymentMethodSpecificOutput(DataObject):
     __card = None
     __fraud_results = None
     __initial_scheme_transaction_id = None
+    __payment_option = None
     __payment_product_id = None
     __three_d_secure_results = None
     __token = None
@@ -75,6 +76,19 @@ class CardPaymentMethodSpecificOutput(DataObject):
         self.__initial_scheme_transaction_id = value
 
     @property
+    def payment_option(self) -> str:
+        """
+        | The specific payment option for the payment. To be used as a complement of the more generic paymentProductId (oney, banquecasino, cofidis), which allows to define a variation of the selected paymentProductId (ex: facilypay3x, banquecasino4x, cofidis3x-sansfrais, ...). List of modalities included in the payment product page.
+
+        Type: str
+        """
+        return self.__payment_option
+
+    @payment_option.setter
+    def payment_option(self, value: str):
+        self.__payment_option = value
+
+    @property
     def payment_product_id(self) -> int:
         """
         | Payment product identifier - Please see [payment products](https://support.direct.ingenico.com/documentation/api/reference/index.html#tag/Products) for a full overview of possible values.
@@ -123,6 +137,8 @@ class CardPaymentMethodSpecificOutput(DataObject):
             dictionary['fraudResults'] = self.fraud_results.to_dictionary()
         if self.initial_scheme_transaction_id is not None:
             dictionary['initialSchemeTransactionId'] = self.initial_scheme_transaction_id
+        if self.payment_option is not None:
+            dictionary['paymentOption'] = self.payment_option
         if self.payment_product_id is not None:
             dictionary['paymentProductId'] = self.payment_product_id
         if self.three_d_secure_results is not None:
@@ -147,6 +163,8 @@ class CardPaymentMethodSpecificOutput(DataObject):
             self.fraud_results = value.from_dictionary(dictionary['fraudResults'])
         if 'initialSchemeTransactionId' in dictionary:
             self.initial_scheme_transaction_id = dictionary['initialSchemeTransactionId']
+        if 'paymentOption' in dictionary:
+            self.payment_option = dictionary['paymentOption']
         if 'paymentProductId' in dictionary:
             self.payment_product_id = dictionary['paymentProductId']
         if 'threeDSecureResults' in dictionary:

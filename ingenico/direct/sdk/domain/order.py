@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.additional_order_input import AdditionalOrderInput

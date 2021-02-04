@@ -80,6 +80,7 @@ class WebhooksHelperTest(unittest.TestCase):
         self.assertEqual("1", event.merchant_id)
         self.assertEqual("payment.paid", event.type)
 
+        self.assertIsNone(event.payout)
         self.assertIsNone(event.refund)
         self.assertIsNone(event.token)
 

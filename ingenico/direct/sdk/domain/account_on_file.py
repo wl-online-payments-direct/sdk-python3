@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from typing import List
-
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.account_on_file_attribute import AccountOnFileAttribute
 from ingenico.direct.sdk.domain.account_on_file_display_hints import AccountOnFileDisplayHints
@@ -31,6 +30,8 @@ class AccountOnFile(DataObject):
     @property
     def display_hints(self) -> AccountOnFileDisplayHints:
         """
+        | Object containing information for the client on how best to display this field
+
         Type: :class:`ingenico.direct.sdk.domain.account_on_file_display_hints.AccountOnFileDisplayHints`
         """
         return self.__display_hints

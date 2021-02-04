@@ -57,7 +57,7 @@ def create_server_listening(call_able):
 
 def create_client(http_host, connect_timeout=0.500, socket_timeout=0.500, max_connections=EndpointConfiguration.DEFAULT_MAX_CONNECTIONS):
     connection = DefaultConnection(connect_timeout, socket_timeout, max_connections)
-    authenticator = DefaultAuthenticator(AuthorizationType.V1HMAC, "apiKey", "secret")
+    authenticator = DefaultAuthenticator("apiKey", "secret")
     meta_data_provider = MetaDataProvider("Ingenico")
     communicator = Communicator(
         api_endpoint=http_host,

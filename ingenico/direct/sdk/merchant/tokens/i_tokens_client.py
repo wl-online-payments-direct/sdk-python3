@@ -1,9 +1,8 @@
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from abc import ABC, abstractmethod
-
 from ingenico.direct.sdk.call_context import CallContext
 from ingenico.direct.sdk.domain.create_token_request import CreateTokenRequest
 from ingenico.direct.sdk.domain.created_token_response import CreatedTokenResponse
@@ -20,7 +19,7 @@ class ITokensClient(ABC):
         """
         Resource /v2/{merchantId}/tokens - Create token
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/CreateTokenApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/CreateTokenApi
 
         :param body: :class:`ingenico.direct.sdk.domain.create_token_request.CreateTokenRequest`
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
@@ -40,7 +39,7 @@ class ITokensClient(ABC):
         """
         Resource /v2/{merchantId}/tokens/{tokenId} - Get token
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetTokenApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetTokenApi
 
         :param token_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
@@ -60,7 +59,7 @@ class ITokensClient(ABC):
         """
         Resource /v2/{merchantId}/tokens/{tokenId} - Delete token
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/DeleteTokenApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/DeleteTokenApi
 
         :param token_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`

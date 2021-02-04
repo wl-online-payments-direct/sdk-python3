@@ -1,9 +1,8 @@
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from abc import ABC, abstractmethod
-
 from ingenico.direct.sdk.call_context import CallContext
 from ingenico.direct.sdk.domain.get_payment_products_response import GetPaymentProductsResponse
 from ingenico.direct.sdk.domain.payment_product import PaymentProduct
@@ -25,7 +24,7 @@ class IProductsClient(ABC):
         """
         Resource /v2/{merchantId}/products - Get payment products
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetPaymentProducts
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetPaymentProducts
 
         :param query: :class:`ingenico.direct.sdk.merchant.products.get_payment_products_params.GetPaymentProductsParams`
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
@@ -45,7 +44,7 @@ class IProductsClient(ABC):
         """
         Resource /v2/{merchantId}/products/{paymentProductId} - Get payment product
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetPaymentProduct
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetPaymentProduct
 
         :param payment_product_id: int
         :param query: :class:`ingenico.direct.sdk.merchant.products.get_payment_product_params.GetPaymentProductParams`
@@ -66,7 +65,7 @@ class IProductsClient(ABC):
         """
         Resource /v2/{merchantId}/products/{paymentProductId}/directory - Get payment product directory
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetProductDirectoryApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetProductDirectoryApi
 
         :param payment_product_id: int
         :param query: :class:`ingenico.direct.sdk.merchant.products.get_product_directory_params.GetProductDirectoryParams`
@@ -87,7 +86,7 @@ class IProductsClient(ABC):
         """
         Resource /v2/{merchantId}/products/{paymentProductId}/networks - Get payment product networks
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetPaymentProductNetworks
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetPaymentProductNetworks
 
         :param payment_product_id: int
         :param query: :class:`ingenico.direct.sdk.merchant.products.get_payment_product_networks_params.GetPaymentProductNetworksParams`

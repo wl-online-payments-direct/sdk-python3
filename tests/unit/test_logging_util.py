@@ -23,9 +23,14 @@ class LoggingUtilTest(unittest.TestCase):
         self.assertEqual("", obfuscated_body)
 
     def test_obfuscate_body_card(self):
-        """Tests that the obfuscate_body correctly obfuscates a json containing payment card card data"""
+        """Tests that the obfuscate_body correctly obfuscates a json containing payment card data"""
         self.obfuscate_body_match("bodyWithCardOriginal.json",
                                   "bodyWithCardObfuscated.json")
+
+    def test_obfuscate_body_gdpr(self):
+        """Tests that the obfuscate_body correctly obfuscates a json containing personal information that should be protected by the GDPR"""
+        self.obfuscate_body_match("bodyWithGDPRDataOriginal.json",
+                                  "bodyWithGDPRDataObfuscated.json")
 
     def test_obfuscate_body_iban(self):
         """Tests that the obfuscate_body correctly obfuscates a json containing an iban number"""
@@ -54,9 +59,7 @@ class LoggingUtilTest(unittest.TestCase):
         """
         body = _read_resource(original_resource)
         expected = _read_resource(obfuscated_resource)
-
         obfuscated_body = LoggingUtil.obfuscate_body(body)
-
         self.assertEqual(expected, obfuscated_body)
 
     def obfuscate_body_no_match(self, resource):
@@ -68,36 +71,23 @@ class LoggingUtilTest(unittest.TestCase):
 
     def test_obfuscate_header(self):
         """Tests that any authorization headers get obfuscated, while others do not"""
-        self.obfuscate_header_match("Authorization",
-                                    "Basic QWxhZGRpbjpPcGVuU2VzYW1l",
-                                    "********")
-        self.obfuscate_header_match("authorization",
-                                    "Basic QWxhZGRpbjpPcGVuU2VzYW1l",
-                                    "********")
-        self.obfuscate_header_match("AUTHORIZATION",
-                                    "Basic QWxhZGRpbjpPcGVuU2VzYW1l",
-                                    "********")
+        self.obfuscate_header_match("Authorization", "Basic QWxhZGRpbjpPcGVuU2VzYW1l", "***")
+        self.obfuscate_header_match("authorization", "Basic QWxhZGRpbjpPcGVuU2VzYW1l", "***")
+        self.obfuscate_header_match("AUTHORIZATION", "Basic QWxhZGRpbjpPcGVuU2VzYW1l", "***")
 
-        self.obfuscate_header_match("X-GCS-Authentication-Token", "foobar",
-                                    "********")
-        self.obfuscate_header_match("x-gcs-authentication-token", "foobar",
-                                    "********")
-        self.obfuscate_header_match("X-GCS-AUTHENTICATION-TOKEN", "foobar",
-                                    "********")
+        self.obfuscate_header_match("X-GCS-Authentication-Token", "foobar", "***")
+        self.obfuscate_header_match("x-gcs-authentication-token", "foobar", "***")
+        self.obfuscate_header_match("X-GCS-AUTHENTICATION-TOKEN", "foobar", "***")
 
-        self.obfuscate_header_match("X-GCS-Callerpassword", "foobar",
-                                    "********")
-        self.obfuscate_header_match("x-gcs-callerpassword", "foobar",
-                                    "********")
-        self.obfuscate_header_match("X-GCS-CALLERPASSWORD", "foobar",
-                                    "********")
+        self.obfuscate_header_match("X-GCS-Callerpassword", "foobar", "***")
+        self.obfuscate_header_match("x-gcs-callerpassword", "foobar", "***")
+        self.obfuscate_header_match("X-GCS-CALLERPASSWORD", "foobar", "***")
 
         self.obfuscate_header_no_match("Content-Type", "application/json")
         self.obfuscate_header_no_match("content-type", "application/json")
         self.obfuscate_header_no_match("CONTENT-TYPE", "application/json")
 
-    def obfuscate_header_match(self, name, original_value,
-                               expected_obfuscated_value):
+    def obfuscate_header_match(self, name, original_value, expected_obfuscated_value):
         """Tests that the obfuscator obfuscates the original_value to produce the expected_obfuscated_value"""
         obfuscated_value = LoggingUtil.obfuscate_header(name, original_value)
         self.assertEqual(expected_obfuscated_value, obfuscated_value)

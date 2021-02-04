@@ -1,6 +1,6 @@
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.api_resource import ApiResource
 from ingenico.direct.sdk.call_context import CallContext
@@ -28,7 +28,7 @@ class HostedCheckoutClient(ApiResource, IHostedCheckoutClient):
         """
         Resource /v2/{merchantId}/hostedcheckouts - Create hosted checkout
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/CreateHostedCheckoutApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/CreateHostedCheckoutApi
 
         :param body: :class:`ingenico.direct.sdk.domain.create_hosted_checkout_request.CreateHostedCheckoutRequest`
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
@@ -61,7 +61,7 @@ class HostedCheckoutClient(ApiResource, IHostedCheckoutClient):
         """
         Resource /v2/{merchantId}/hostedcheckouts/{hostedCheckoutId} - Get hosted checkout status
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetHostedCheckoutApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetHostedCheckoutApi
 
         :param hosted_checkout_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`

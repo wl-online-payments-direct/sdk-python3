@@ -1,3 +1,5 @@
+from typing import Any, Dict, Optional, Tuple
+
 from .response_header import get_header, get_header_value
 
 
@@ -7,41 +9,41 @@ class ResponseException(RuntimeError):
     indicates an error.
     """
 
-    def __init__(self, status, body, headers):
+    def __init__(self, status_code: int, body: Optional[str], headers: Dict[str, str]):
         super(ResponseException, self).__init__("the Ingenico ePayments platform returned an error response")
-        self.__status_code = status
+        self.__status_code = status_code
         self.__headers = headers if headers is not None else {}
         self.__body = body
 
     @property
-    def status_code(self):
+    def status_code(self) -> int:
         """
         :return: The HTTP status code that was returned by the Ingenico ePayments platform.
         """
         return self.__status_code
 
     @property
-    def body(self):
+    def body(self) -> Optional[str]:
         """
         :return: The raw response body that was returned by the Ingenico ePayments platform.
         """
         return self.__body
 
     @property
-    def headers(self):
+    def headers(self) -> Dict[str, str]:
         """
         :return: The headers that were returned by the Ingenico ePayments platform.
          Never None.
         """
         return self.__headers
 
-    def get_header(self, header_name):
+    def get_header(self, header_name) -> Optional[Tuple[str, Any]]:
         """
         :return: The header with the given name, or None if there was no such header.
         """
         return get_header(self.__headers, header_name)
 
-    def get_header_value(self, header_name):
+    def get_header_value(self, header_name) -> str:
         """
         :return: The value header with the given name, or None if there was no such header.
         """

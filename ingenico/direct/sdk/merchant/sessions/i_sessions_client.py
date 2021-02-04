@@ -1,9 +1,8 @@
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from abc import ABC, abstractmethod
-
 from ingenico.direct.sdk.call_context import CallContext
 from ingenico.direct.sdk.domain.session_request import SessionRequest
 from ingenico.direct.sdk.domain.session_response import SessionResponse
@@ -19,7 +18,7 @@ class ISessionsClient(ABC):
         """
         Resource /v2/{merchantId}/sessions - Create session
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/CreateSessionApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/CreateSessionApi
 
         :param body: :class:`ingenico.direct.sdk.domain.session_request.SessionRequest`
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`

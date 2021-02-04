@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 
 
 class LabelTemplateElement(DataObject):
+    """
+    | Array of attribute keys and their mask
+    """
 
     __attribute_key = None
     __mask = None
@@ -14,6 +17,8 @@ class LabelTemplateElement(DataObject):
     @property
     def attribute_key(self) -> str:
         """
+        | Name of the attribute that is shown to the customer on selection pages or screens
+
         Type: str
         """
         return self.__attribute_key
@@ -25,6 +30,9 @@ class LabelTemplateElement(DataObject):
     @property
     def mask(self) -> str:
         """
+        | Regular mask for the attributeKey
+        | Note: The mask is optional as not every field has a mask
+
         Type: str
         """
         return self.__mask

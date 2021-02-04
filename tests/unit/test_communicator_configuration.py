@@ -21,7 +21,7 @@ class CommunicatorConfigurationTest(unittest.TestCase):
     def assertDefaults(self, communicator_config):
         """Tests commonly used settings for testing url, authorization type, timeouts and max_connections"""
         self.assertEqual("https://payment.preprod.direct.ingenico.com", communicator_config.api_endpoint.geturl())
-        self.assertEqual(AuthorizationType.get_authorization("v1HMAC"), communicator_config.authorization_type)
+        self.assertEqual(AuthorizationType.V1HMAC, communicator_config.authorization_type)
         self.assertEqual(CommunicatorConfiguration().DEFAULT_CONNECT_TIMEOUT, communicator_config.connect_timeout)
         self.assertEqual(CommunicatorConfiguration().DEFAULT_SOCKET_TIMEOUT, communicator_config.socket_timeout)
         self.assertEqual(CommunicatorConfiguration().DEFAULT_MAX_CONNECTIONS, communicator_config.max_connections)
@@ -82,7 +82,7 @@ class CommunicatorConfigurationTest(unittest.TestCase):
 
         communicator_config = CommunicatorConfiguration(self.config)
         self.assertEqual("https://payment.preprod.direct.ingenico.com", communicator_config.api_endpoint.geturl())
-        self.assertEqual(AuthorizationType.get_authorization("v1HMAC"), communicator_config.authorization_type)
+        self.assertEqual(AuthorizationType.V1HMAC, communicator_config.authorization_type)
         self.assertEqual(100, communicator_config.connect_timeout)
         self.assertEqual(200, communicator_config.socket_timeout)
         self.assertEqual(300, communicator_config.max_connections)
@@ -136,6 +136,26 @@ class CommunicatorConfigurationTest(unittest.TestCase):
         self.assertEqual("Ingenico.ShoppingCarts", communicator_config.shopping_cart_extension.name)
         self.assertEqual("1.0", communicator_config.shopping_cart_extension.version)
         self.assertEqual("ExtensionId", communicator_config.shopping_cart_extension.extension_id)
+
+    def test_accept_lowercased_authorization_type_in_config(self):
+        """Tests if the default authenticator accepts authorization types with different casing in config."""
+        self.config.set("DirectSDK", "direct.api.authorizationType", "v1hmac")
+        communicator_config = CommunicatorConfiguration(self.config)
+        self.assertEqual(AuthorizationType.V1HMAC, communicator_config.authorization_type)
+
+    def test_accept_uppercased_authorization_type_in_param(self):
+        """Tests if the default authenticator accepts authorization types with different casing as parameter."""
+        communicator_config = CommunicatorConfiguration(self.config, authorization_type="V1HMAC")
+        self.assertEqual(AuthorizationType.V1HMAC, communicator_config.authorization_type)
+
+    def test_reject_unknown_authorization_type_in_config(self):
+        """Tests if the default authenticator throws an exception if an invalid authorization type is provided."""
+        self.config.set("DirectSDK", "direct.api.authorizationType", "invalidAuthorizationType")
+        self.assertRaises(RuntimeError, CommunicatorConfiguration, self.config)
+
+    def test_reject_unknown_authorization_type_in_param(self):
+        """Tests if the default authenticator throws an exception if an invalid authorization type is provided."""
+        self.assertRaises(RuntimeError, CommunicatorConfiguration, self.config, authorization_type="invalidAuthorizationType")
 
 
 if __name__ == '__main__':

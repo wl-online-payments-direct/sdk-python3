@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.fraud_results import FraudResults
+from ingenico.direct.sdk.domain.payment_product5402_specific_output import PaymentProduct5402SpecificOutput
+from ingenico.direct.sdk.domain.payment_product5500_specific_output import PaymentProduct5500SpecificOutput
 from ingenico.direct.sdk.domain.payment_product840_specific_output import PaymentProduct840SpecificOutput
 
 
@@ -14,6 +16,9 @@ class RedirectPaymentMethodSpecificOutput(DataObject):
     """
 
     __fraud_results = None
+    __payment_option = None
+    __payment_product5402_specific_output = None
+    __payment_product5500_specific_output = None
     __payment_product840_specific_output = None
     __payment_product_id = None
     __token = None
@@ -30,6 +35,45 @@ class RedirectPaymentMethodSpecificOutput(DataObject):
     @fraud_results.setter
     def fraud_results(self, value: FraudResults):
         self.__fraud_results = value
+
+    @property
+    def payment_option(self) -> str:
+        """
+        | The specific payment option for the payment. To be used as a complement of the more generic paymentProductId (oney, banquecasino, cofidis), which allows to define a variation of the selected paymentProductId (ex: facilypay3x, banquecasino4x, cofidis3x-sansfrais, ...). List of modalities included in the payment product page.
+
+        Type: str
+        """
+        return self.__payment_option
+
+    @payment_option.setter
+    def payment_option(self, value: str):
+        self.__payment_option = value
+
+    @property
+    def payment_product5402_specific_output(self) -> PaymentProduct5402SpecificOutput:
+        """
+        | Meal vouchers (payment product 5402) specific details
+
+        Type: :class:`ingenico.direct.sdk.domain.payment_product5402_specific_output.PaymentProduct5402SpecificOutput`
+        """
+        return self.__payment_product5402_specific_output
+
+    @payment_product5402_specific_output.setter
+    def payment_product5402_specific_output(self, value: PaymentProduct5402SpecificOutput):
+        self.__payment_product5402_specific_output = value
+
+    @property
+    def payment_product5500_specific_output(self) -> PaymentProduct5500SpecificOutput:
+        """
+        | Multibanco (payment product 5500) specific details
+
+        Type: :class:`ingenico.direct.sdk.domain.payment_product5500_specific_output.PaymentProduct5500SpecificOutput`
+        """
+        return self.__payment_product5500_specific_output
+
+    @payment_product5500_specific_output.setter
+    def payment_product5500_specific_output(self, value: PaymentProduct5500SpecificOutput):
+        self.__payment_product5500_specific_output = value
 
     @property
     def payment_product840_specific_output(self) -> PaymentProduct840SpecificOutput:
@@ -74,6 +118,12 @@ class RedirectPaymentMethodSpecificOutput(DataObject):
         dictionary = super(RedirectPaymentMethodSpecificOutput, self).to_dictionary()
         if self.fraud_results is not None:
             dictionary['fraudResults'] = self.fraud_results.to_dictionary()
+        if self.payment_option is not None:
+            dictionary['paymentOption'] = self.payment_option
+        if self.payment_product5402_specific_output is not None:
+            dictionary['paymentProduct5402SpecificOutput'] = self.payment_product5402_specific_output.to_dictionary()
+        if self.payment_product5500_specific_output is not None:
+            dictionary['paymentProduct5500SpecificOutput'] = self.payment_product5500_specific_output.to_dictionary()
         if self.payment_product840_specific_output is not None:
             dictionary['paymentProduct840SpecificOutput'] = self.payment_product840_specific_output.to_dictionary()
         if self.payment_product_id is not None:
@@ -89,6 +139,18 @@ class RedirectPaymentMethodSpecificOutput(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['fraudResults']))
             value = FraudResults()
             self.fraud_results = value.from_dictionary(dictionary['fraudResults'])
+        if 'paymentOption' in dictionary:
+            self.payment_option = dictionary['paymentOption']
+        if 'paymentProduct5402SpecificOutput' in dictionary:
+            if not isinstance(dictionary['paymentProduct5402SpecificOutput'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct5402SpecificOutput']))
+            value = PaymentProduct5402SpecificOutput()
+            self.payment_product5402_specific_output = value.from_dictionary(dictionary['paymentProduct5402SpecificOutput'])
+        if 'paymentProduct5500SpecificOutput' in dictionary:
+            if not isinstance(dictionary['paymentProduct5500SpecificOutput'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct5500SpecificOutput']))
+            value = PaymentProduct5500SpecificOutput()
+            self.payment_product5500_specific_output = value.from_dictionary(dictionary['paymentProduct5500SpecificOutput'])
         if 'paymentProduct840SpecificOutput' in dictionary:
             if not isinstance(dictionary['paymentProduct840SpecificOutput'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct840SpecificOutput']))

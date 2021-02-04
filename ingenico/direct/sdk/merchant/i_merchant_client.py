@@ -1,9 +1,8 @@
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from abc import ABC, abstractmethod
-
 from ingenico.direct.sdk.merchant.hostedcheckout.hosted_checkout_client import HostedCheckoutClient
 from ingenico.direct.sdk.merchant.hostedtokenization.hosted_tokenization_client import HostedTokenizationClient
 from ingenico.direct.sdk.merchant.payments.payments_client import PaymentsClient

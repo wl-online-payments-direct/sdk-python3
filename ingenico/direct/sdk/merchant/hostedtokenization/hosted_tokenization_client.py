@@ -1,6 +1,6 @@
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.api_resource import ApiResource
 from ingenico.direct.sdk.call_context import CallContext
@@ -28,7 +28,7 @@ class HostedTokenizationClient(ApiResource, IHostedTokenizationClient):
         """
         Resource /v2/{merchantId}/hostedtokenizations - Create hosted tokenization session
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/CreateHostedTokenizationApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/CreateHostedTokenizationApi
 
         :param body: :class:`ingenico.direct.sdk.domain.create_hosted_tokenization_request.CreateHostedTokenizationRequest`
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
@@ -61,7 +61,7 @@ class HostedTokenizationClient(ApiResource, IHostedTokenizationClient):
         """
         Resource /v2/{merchantId}/hostedtokenizations/{hostedTokenizationId} - Get hosted tokenization session
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetHostedTokenizationApi
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetHostedTokenizationApi
 
         :param hosted_tokenization_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`

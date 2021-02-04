@@ -1,6 +1,6 @@
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.api_resource import ApiResource
 from ingenico.direct.sdk.merchant.i_merchant_client import IMerchantClient

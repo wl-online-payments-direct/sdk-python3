@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.param_request import ParamRequest
 from ingenico.direct.sdk.request_param import RequestParam
@@ -11,7 +11,7 @@ class GetPaymentProductParams(ParamRequest):
     """
     Query parameters for Get payment product
 
-    See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetPaymentProduct
+    See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetPaymentProduct
     """
 
     __country_code = None

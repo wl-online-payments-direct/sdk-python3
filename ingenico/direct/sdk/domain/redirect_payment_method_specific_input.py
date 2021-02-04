@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.redirect_payment_product809_specific_input import RedirectPaymentProduct809SpecificInput
@@ -14,6 +14,7 @@ class RedirectPaymentMethodSpecificInput(DataObject):
     | Object containing the specific input details for payments that involve redirects to 3rd parties to complete, like iDeal and PayPal
     """
 
+    __payment_option = None
     __payment_product809_specific_input = None
     __payment_product840_specific_input = None
     __payment_product_id = None
@@ -21,6 +22,19 @@ class RedirectPaymentMethodSpecificInput(DataObject):
     __requires_approval = None
     __token = None
     __tokenize = None
+
+    @property
+    def payment_option(self) -> str:
+        """
+        | The specific payment option for the payment. To be used as a complement of the more generic paymentProductId (oney, banquecasino, cofidis), which allows to define a variation of the selected paymentProductId (ex: facilypay3x, banquecasino4x, cofidis3x-sansfrais, ...). List of modalities included in the payment product page.
+
+        Type: str
+        """
+        return self.__payment_option
+
+    @payment_option.setter
+    def payment_option(self, value: str):
+        self.__payment_option = value
 
     @property
     def payment_product809_specific_input(self) -> RedirectPaymentProduct809SpecificInput:
@@ -91,7 +105,7 @@ class RedirectPaymentMethodSpecificInput(DataObject):
     @property
     def token(self) -> str:
         """
-        | ID of the token. This property is populated when the payment was done with a token or when the payment was tokenized.
+        | ID of the token to use to create the payment.
 
         Type: str
         """
@@ -118,6 +132,8 @@ class RedirectPaymentMethodSpecificInput(DataObject):
 
     def to_dictionary(self):
         dictionary = super(RedirectPaymentMethodSpecificInput, self).to_dictionary()
+        if self.payment_option is not None:
+            dictionary['paymentOption'] = self.payment_option
         if self.payment_product809_specific_input is not None:
             dictionary['paymentProduct809SpecificInput'] = self.payment_product809_specific_input.to_dictionary()
         if self.payment_product840_specific_input is not None:
@@ -136,6 +152,8 @@ class RedirectPaymentMethodSpecificInput(DataObject):
 
     def from_dictionary(self, dictionary):
         super(RedirectPaymentMethodSpecificInput, self).from_dictionary(dictionary)
+        if 'paymentOption' in dictionary:
+            self.payment_option = dictionary['paymentOption']
         if 'paymentProduct809SpecificInput' in dictionary:
             if not isinstance(dictionary['paymentProduct809SpecificInput'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct809SpecificInput']))

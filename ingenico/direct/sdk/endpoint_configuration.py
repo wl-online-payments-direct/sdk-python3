@@ -1,4 +1,5 @@
-from urllib.parse import urlparse
+from typing import Union
+from urllib.parse import ParseResult, ParseResultBytes, urlparse
 
 from ingenico.direct.sdk.domain.shopping_cart_extension import ShoppingCartExtension
 from .proxy_configuration import ProxyConfiguration
@@ -59,10 +60,10 @@ class EndpointConfiguration:
             return ShoppingCartExtension(creator, name, version, extension_id)
 
     @property
-    def _endpoint(self):
+    def _endpoint(self) -> Union[ParseResult, ParseResultBytes]:
         return self.__endpoint
 
-    def _set_endpoint(self, endpoint):
+    def _set_endpoint(self, endpoint: Union[str, ParseResult, ParseResultBytes]):
         if isinstance(endpoint, str):
             endpoint = urlparse(str(endpoint))
         if endpoint is not None and endpoint.path:
@@ -75,51 +76,51 @@ class EndpointConfiguration:
         self.__endpoint = endpoint
 
     @property
-    def connect_timeout(self):
+    def connect_timeout(self) -> int:
         """Connection timeout for the underlying network communication in seconds"""
         return self.__connect_timeout
 
     @connect_timeout.setter
-    def connect_timeout(self, connect_timeout):
+    def connect_timeout(self, connect_timeout: int):
         self.__connect_timeout = connect_timeout
 
     @property
-    def socket_timeout(self):
+    def socket_timeout(self) -> int:
         """Socket timeout for the underlying network communication in seconds"""
         return self.__socket_timeout
 
     @socket_timeout.setter
-    def socket_timeout(self, socket_timeout):
+    def socket_timeout(self, socket_timeout: int):
         self.__socket_timeout = socket_timeout
 
     @property
-    def max_connections(self):
+    def max_connections(self) -> int:
         return self.__max_connections
 
     @max_connections.setter
-    def max_connections(self, max_connections):
+    def max_connections(self, max_connections: int):
         self.__max_connections = max_connections
 
     @property
-    def proxy_configuration(self):
+    def proxy_configuration(self) -> ProxyConfiguration:
         return self.__proxy_configuration
 
     @proxy_configuration.setter
-    def proxy_configuration(self, proxy_configuration):
+    def proxy_configuration(self, proxy_configuration: ProxyConfiguration):
         self.__proxy_configuration = proxy_configuration
 
     @property
-    def integrator(self):
+    def integrator(self) -> str:
         return self.__integrator
 
     @integrator.setter
-    def integrator(self, integrator):
+    def integrator(self, integrator: str):
         self.__integrator = integrator
 
     @property
-    def shopping_cart_extension(self):
+    def shopping_cart_extension(self) -> ShoppingCartExtension:
         return self.__shopping_cart_extension
 
     @shopping_cart_extension.setter
-    def shopping_cart_extension(self, shopping_cart_extension):
+    def shopping_cart_extension(self, shopping_cart_extension: ShoppingCartExtension):
         self.__shopping_cart_extension = shopping_cart_extension

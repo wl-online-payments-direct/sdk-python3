@@ -13,8 +13,9 @@
 	"cardPaymentMethodSpecificInput": {
 		"paymentProductId": 1,
 		"card": {
-			"cvv": "123",
+			"cardholderName": "Wile E. Coyote",
 			"cardNumber": "1234567890123456",
+			"cvv": "123",
 			"expiryDate": "1220"
 		}
 	}

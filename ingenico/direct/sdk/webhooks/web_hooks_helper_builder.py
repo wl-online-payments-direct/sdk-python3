@@ -1,3 +1,5 @@
+from direct.sdk.marshaller import Marshaller
+from direct.sdk.webhooks.secret_key_store import SecretKeyStore
 from .web_hooks_helper import WebhooksHelper
 
 
@@ -8,14 +10,14 @@ class WebhooksHelperBuilder:
     __marshaller = None
     __secret_key_store = None
 
-    def with_marshaller(self, marshaller):
+    def with_marshaller(self, marshaller: Marshaller):
         """
         Sets the Marshaller to use.
         """
         self.__marshaller = marshaller
         return self
 
-    def with_secret_key_store(self, secret_key_store):
+    def with_secret_key_store(self, secret_key_store: SecretKeyStore):
         """
         Sets the SecretKeyStore to use.
         """

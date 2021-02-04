@@ -35,7 +35,7 @@ class PaymentsClientTest(unittest.TestCase):
         self.mock_connection = MagicMock(spec=Connection(), autospec=True)
         self.communicator = Communicator(
             api_endpoint="http://localhost",
-            authenticator=DefaultAuthenticator(AuthorizationType.V1HMAC, "admin", "admin"),
+            authenticator=DefaultAuthenticator("admin", "admin"),
             meta_data_provider=MetaDataProvider("Ingenico"),
             connection=self.mock_connection)
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.card_recurrence_details import CardRecurrenceDetails
@@ -112,7 +112,7 @@ class CardPaymentMethodSpecificInputBase(DataObject):
     @property
     def token(self) -> str:
         """
-        | ID of the token. This property is populated when the payment was done with a token or when the payment was tokenized.
+        | ID of the token to use to create the payment.
 
         Type: str
         """

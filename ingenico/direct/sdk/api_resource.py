@@ -1,9 +1,14 @@
+from typing import Dict, Union
+
+from direct.sdk.communicator import Communicator
 from ingenico.direct.sdk.domain.error_response import ErrorResponse
 from ingenico.direct.sdk.domain.payment_error_response import PaymentErrorResponse
+from ingenico.direct.sdk.domain.payout_error_response import PayoutErrorResponse
 from ingenico.direct.sdk.domain.refund_error_response import RefundErrorResponse
 from .api_exception import ApiException
 from .authorization_exception import AuthorizationException
 from .declined_payment_exception import DeclinedPaymentException
+from .declined_payout_exception import DeclinedPayoutException
 from .declined_refund_exception import DeclinedRefundException
 from .direct_exception import DirectException
 from .idempotence_exception import IdempotenceException
@@ -17,7 +22,7 @@ class ApiResource:
     Base class of all Ingenico ePayments platform API resources.
     """
 
-    def __init__(self, arg, path_context, client_meta_info=None):
+    def __init__(self, arg: Union['ApiResource', Communicator], path_context: Dict[str, str], client_meta_info=None):
         """
         :param arg: communicator or parent
         """
@@ -26,13 +31,12 @@ class ApiResource:
         if isinstance(arg, ApiResource):
             self.__parent = arg
             self.__communicator = arg._communicator
-            self.__path_context = path_context
             self.__client_meta_info = arg._client_meta_info
         else:
             self.__parent = None
             self.__communicator = arg
-            self.__path_context = path_context
             self.__client_meta_info = client_meta_info
+        self.__path_context = path_context
 
     @property
     def _communicator(self):
@@ -55,7 +59,7 @@ class ApiResource:
         uri = self.__instantiate_uri(uri)
         return uri
 
-    def __instantiate_uri(self, uri):
+    def __instantiate_uri(self, uri: str):
         uri = self.__replace_all(uri, self.__path_context)
         if self.__parent is not None:
             uri = self.__parent.__instantiate_uri(uri)
@@ -70,10 +74,12 @@ class ApiResource:
     def _create_exception(self, status_code, body, error_object, context):
         """Return a raisable api-exception based on the error object given"""
         if isinstance(error_object, PaymentErrorResponse) and error_object.payment_result is not None:
-            return DeclinedPaymentException(status_code=status_code, response_body=body, errors=error_object)
+            return DeclinedPaymentException(status_code=status_code, response_body=body, error_response=error_object)
+        elif isinstance(error_object, PayoutErrorResponse) and error_object.payout_result is not None:
+            return DeclinedPayoutException(status_code=status_code, response_body=body, error_response=error_object)
         elif isinstance(error_object, RefundErrorResponse) and error_object.refund_result is not None:
-            return DeclinedRefundException(status_code=status_code, response_body=body, errors=error_object)
-        if not isinstance(error_object, (PaymentErrorResponse, RefundErrorResponse, ErrorResponse)):
+            return DeclinedRefundException(status_code=status_code, response_body=body, error_response=error_object)
+        if not isinstance(error_object, (PaymentErrorResponse, PayoutErrorResponse, RefundErrorResponse, ErrorResponse)):
             raise ValueError("Unsupported error object encountered: {}".format(error_object.__class__.__name__)) \
                 from error_object  # unsupported error object
         error_id = error_object.error_id

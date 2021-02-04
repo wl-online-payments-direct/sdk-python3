@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from typing import List
-
 from ingenico.direct.sdk.data_object import DataObject
 
 
@@ -30,7 +29,8 @@ class CreateHostedTokenizationResponse(DataObject):
     @property
     def invalid_tokens(self) -> List[str]:
         """
-        | Tokens that are submitted in the request are validated. In case any of the tokens can't be used anymore they are returned in this array. You should most likely remove those tokens from your system.
+        | Tokens that are submitted in the request are validated. Tokens that cannot be used in the current session are returned in this array. 
+        | These tokens might not be valid anymore. The validity of tokens can be verified using the [Get token](#operation/GetTokenApi) endpoint.
 
         Type: list[str]
         """

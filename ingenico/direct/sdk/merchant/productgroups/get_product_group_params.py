@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.param_request import ParamRequest
 from ingenico.direct.sdk.request_param import RequestParam
@@ -11,7 +11,7 @@ class GetProductGroupParams(ParamRequest):
     """
     Query parameters for Get product group
 
-    See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetProductGroup
+    See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetProductGroup
     """
 
     __country_code = None

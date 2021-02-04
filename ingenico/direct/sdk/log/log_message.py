@@ -49,28 +49,15 @@ class LogMessage(ABC):
             self.__header_list.append((name, "\"\""))
         self.__headers += "\""
 
-    def set_body(self, body, content_type, charset=False):
+    def set_body(self, body, content_type, charset=None):
         self.__content_type = content_type
-        if self.__is_binary(content_type):
-            self.__body = "<binary content>"
-        elif charset is False:
-            self.__body = LoggingUtil.obfuscate_body(body)
-        else:  # possible dead code
+        if charset is not None:
             self.__body = LoggingUtil.obfuscate_body(body, charset)
+        else:
+            self.__body = LoggingUtil.obfuscate_body(body)
 
-    def set_binary_body(self, content_type):
-        if not self.__is_binary(content_type):
-            raise ValueError("Not a binary content type: " + content_type)
-        self.__content_type = content_type
-        self.__body = "<binary content>"
-
-    def __is_binary(self, content_type):
-        if content_type is None:
-            return False
-        content_type = content_type.lower()
-        return not (content_type.startswith("text/") or "json" in content_type or "xml" in content_type)
-
-    def empty_if_none(self, value):
+    @staticmethod
+    def empty_if_none(value):
         if value is not None:
             return value
         return ""

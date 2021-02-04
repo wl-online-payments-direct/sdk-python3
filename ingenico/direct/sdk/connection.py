@@ -1,10 +1,10 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 from ingenico.direct.sdk.log.logging_capable import LoggingCapable
 
 
 # noinspection PyAbstractClass
-class Connection(LoggingCapable):
+class Connection(LoggingCapable, ABC):
     """
     Represents a connection to the Ingenico ePayments platform server.
     """
@@ -61,4 +61,10 @@ class Connection(LoggingCapable):
          the status code, headers and a generator of body chunks
         :raise: CommunicationException when an exception occurred communicating
          with the Ingenico ePayments platform
+        """
+
+    @abstractmethod
+    def close(self):
+        """
+        Close the connection
         """

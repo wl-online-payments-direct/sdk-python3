@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from typing import List
-
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.directory_entry import DirectoryEntry
 

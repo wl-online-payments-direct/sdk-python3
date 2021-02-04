@@ -1,7 +1,11 @@
 import hashlib
 import hmac
 from base64 import b64encode
+from typing import List
 
+from direct.sdk.marshaller import Marshaller
+from direct.sdk.request_header import RequestHeader
+from direct.sdk.webhooks.secret_key_store import SecretKeyStore
 from ingenico.direct.sdk.domain.web_hooks_event import WebhooksEvent
 from .api_version_mismatch_exception import ApiVersionMismatchException
 from .signature_validation_exception import SignatureValidationException
@@ -12,7 +16,7 @@ class WebhooksHelper:
     Ingenico ePayments platform webhooks helper.
     """
 
-    def __init__(self, marshaller, secret_key_store):
+    def __init__(self, marshaller: Marshaller, secret_key_store: SecretKeyStore):
         if marshaller is None:
             raise ValueError("marshaller is requried")
         if secret_key_store is None:
@@ -22,7 +26,7 @@ class WebhooksHelper:
 
     # body as InputStream
 
-    def unmarshal(self, body, request_headers):
+    def unmarshal(self, body, request_headers: List[RequestHeader]):
         """
         Unmarshals the given body, while also validating it using the given request headers.
 
@@ -36,13 +40,13 @@ class WebhooksHelper:
         self.__validate_api_version(event)
         return event
 
-    def _validate(self, param, request_headers):
+    def _validate(self, body, request_headers):
         """
         Validates the given body using the given request headers.
 
         :raise: SignatureValidationException: If the body could not be validated successfully.
         """
-        self.__validate_body(param, request_headers)
+        self.__validate_body(body, request_headers)
 
     # validation utility methods
 
@@ -90,11 +94,13 @@ class WebhooksHelper:
 
     # general utility methods
 
-    def __validate_api_version(self, event):
+    @staticmethod
+    def __validate_api_version(event):
         if not "v1" == event.api_version:
             raise ApiVersionMismatchException(event.api_version, "v1")
 
-    def __get_header_value(self, request_headers, header_name):
+    @staticmethod
+    def __get_header_value(request_headers, header_name: str):
         value = None
         for header in request_headers:
             if header_name.lower() == header.name.lower():
@@ -110,9 +116,9 @@ class WebhooksHelper:
 
     # Used for unit tests
     @property
-    def marshaller(self):
+    def marshaller(self) -> Marshaller:
         return self.__marshaller
 
     @property
-    def secret_key_store(self):
+    def secret_key_store(self) -> SecretKeyStore:
         return self.__secret_key_store

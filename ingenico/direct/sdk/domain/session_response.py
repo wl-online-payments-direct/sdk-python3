@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
+from typing import List
 from ingenico.direct.sdk.data_object import DataObject
 
 
@@ -12,6 +13,7 @@ class SessionResponse(DataObject):
     __client_api_url = None
     __client_session_id = None
     __customer_id = None
+    __invalid_tokens = None
 
     @property
     def asset_url(self) -> str:
@@ -65,6 +67,19 @@ class SessionResponse(DataObject):
     def customer_id(self, value: str):
         self.__customer_id = value
 
+    @property
+    def invalid_tokens(self) -> List[str]:
+        """
+        | Tokens that are submitted in the request are validated. In case any of the tokens can't be used anymore they are returned in this array. You should most likely remove those tokens from your system.
+
+        Type: list[str]
+        """
+        return self.__invalid_tokens
+
+    @invalid_tokens.setter
+    def invalid_tokens(self, value: List[str]):
+        self.__invalid_tokens = value
+
     def to_dictionary(self):
         dictionary = super(SessionResponse, self).to_dictionary()
         if self.asset_url is not None:
@@ -75,6 +90,11 @@ class SessionResponse(DataObject):
             dictionary['clientSessionId'] = self.client_session_id
         if self.customer_id is not None:
             dictionary['customerId'] = self.customer_id
+        if self.invalid_tokens is not None:
+            dictionary['invalidTokens'] = []
+            for element in self.invalid_tokens:
+                if element is not None:
+                    dictionary['invalidTokens'].append(element)
         return dictionary
 
     def from_dictionary(self, dictionary):
@@ -87,4 +107,10 @@ class SessionResponse(DataObject):
             self.client_session_id = dictionary['clientSessionId']
         if 'customerId' in dictionary:
             self.customer_id = dictionary['customerId']
+        if 'invalidTokens' in dictionary:
+            if not isinstance(dictionary['invalidTokens'], list):
+                raise TypeError('value \'{}\' is not a list'.format(dictionary['invalidTokens']))
+            self.invalid_tokens = []
+            for element in dictionary['invalidTokens']:
+                self.invalid_tokens.append(element)
         return self

@@ -7,12 +7,12 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.exceptions import RequestException, Timeout
 
+from direct.sdk.proxy_configuration import ProxyConfiguration
 from ingenico.direct.sdk.communication_exception import CommunicationException
 from ingenico.direct.sdk.endpoint_configuration import EndpointConfiguration
 from ingenico.direct.sdk.log.request_log_message import RequestLogMessage
 from ingenico.direct.sdk.log.response_log_message import ResponseLogMessage
 from ingenico.direct.sdk.pooled_connection import PooledConnection
-from ingenico.direct.sdk.response_header import get_header_value
 
 CHARSET = "UTF-8"
 
@@ -40,10 +40,10 @@ class DefaultConnection(PooledConnection):
     """
 
     def __init__(self,
-                 connect_timeout=EndpointConfiguration.DEFAULT_CONNECT_TIMEOUT,
-                 socket_timeout=EndpointConfiguration.DEFAULT_SOCKET_TIMEOUT,
-                 max_connections=EndpointConfiguration.DEFAULT_MAX_CONNECTIONS,
-                 proxy_configuration=None):
+                 connect_timeout: int = EndpointConfiguration.DEFAULT_CONNECT_TIMEOUT,
+                 socket_timeout: int = EndpointConfiguration.DEFAULT_SOCKET_TIMEOUT,
+                 max_connections: int = EndpointConfiguration.DEFAULT_MAX_CONNECTIONS,
+                 proxy_configuration: ProxyConfiguration = None):
         self.logger = None
         self.__requests_session = requests.session()
         self.__requests_session.mount("http://", HTTPAdapter(pool_maxsize=max_connections, pool_connections=1))
@@ -57,12 +57,12 @@ class DefaultConnection(PooledConnection):
             self.__requests_session.proxies = proxy
 
     @property
-    def connect_timeout(self):
+    def connect_timeout(self) -> int:
         """Connection timeout in seconds"""
         return self.__connect_timeout
 
     @property
-    def socket_timeout(self):
+    def socket_timeout(self) -> int:
         """Socket timeout in seconds"""
         return self.__socket_timeout
 
@@ -157,16 +157,13 @@ class DefaultConnection(PooledConnection):
                 requests_response.close()
 
         except Timeout as timeout:
-            self._log_error(prepped_request.id, timeout,
-                            prepped_request.timestamp)
+            self._log_error(prepped_request.id, timeout, prepped_request.timestamp)
             raise CommunicationException(timeout)
         except RequestException as exception:
-            self._log_error(prepped_request.id, exception,
-                            prepped_request.timestamp)
+            self._log_error(prepped_request.id, exception, prepped_request.timestamp)
             raise CommunicationException(exception)
         except RuntimeError as exception:
-            self._log_error(prepped_request.id, exception,
-                            prepped_request.timestamp)
+            self._log_error(prepped_request.id, exception, prepped_request.timestamp)
             raise
 
     def _log_request(self, request):
@@ -184,8 +181,7 @@ class DefaultConnection(PooledConnection):
         else:
             local_path = url.path
         try:
-            message = RequestLogMessage(request_id=request.id, method=method,
-                                        uri=local_path)
+            message = RequestLogMessage(request.id, method, local_path)
             for name in request.headers:
                 message.add_header(name, request.headers[name])
             body = request.body
@@ -210,18 +206,13 @@ class DefaultConnection(PooledConnection):
         duration = math.ceil((datetime.now() - request.timestamp).total_seconds() * 1000)
         status_code = response.status_code
         try:
-            message = ResponseLogMessage(request_id=_id,
-                                         status_code=status_code,
-                                         duration=duration)
+            message = ResponseLogMessage(_id, status_code, duration)
             for name in response.headers:
                 message.add_header(name, response.headers[name])
-            if self.__is_binary(response.headers):
-                body = "<binary content>"
-            else:
-                # The response is always encoded UTF8
-                # When this is not specified anywhere, the response body will be encoded in the wrong way
-                response.encoding = 'utf8'
-                body = response.text
+            # The response is always encoded UTF8
+            # When this is not specified anywhere, the response body will be encoded in the wrong way
+            response.encoding = 'utf8'
+            body = response.text
             if body:
                 content = response.headers['Content-Type']
                 message.set_body(body, content)
@@ -238,13 +229,6 @@ class DefaultConnection(PooledConnection):
             logger.log(
                 "Error occurred for outgoing request (requestId='{}', {} s)".format(
                     request_id, duration), error)
-
-    def __is_binary(self, headers):
-        content_type = get_header_value(headers, "Content-Type")
-        if content_type is None:
-            return False
-        content_type = content_type.lower()
-        return not (content_type.startswith("text/") or "json" in content_type or "xml" in content_type)
 
     def enable_logging(self, communicator_logger):
         self.logger = communicator_logger

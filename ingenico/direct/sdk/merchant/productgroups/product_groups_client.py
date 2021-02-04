@@ -1,6 +1,6 @@
 #
 # This class was auto-generated from the API references found at
-# https://support.direct.ingenico.com/documentation/api/reference/index.html/
+# https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.api_resource import ApiResource
 from ingenico.direct.sdk.call_context import CallContext
@@ -29,7 +29,7 @@ class ProductGroupsClient(ApiResource, IProductGroupsClient):
         """
         Resource /v2/{merchantId}/productgroups - Get product groups
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetProductGroups
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetProductGroups
 
         :param query: :class:`ingenico.direct.sdk.merchant.productgroups.get_product_groups_params.GetProductGroupsParams`
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
@@ -61,7 +61,7 @@ class ProductGroupsClient(ApiResource, IProductGroupsClient):
         """
         Resource /v2/{merchantId}/productgroups/{paymentProductGroupId} - Get product group
 
-        See also https://support.direct.ingenico.com/documentation/api/reference/index.html#operation/GetProductGroup
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetProductGroup
 
         :param payment_product_group_id: str
         :param query: :class:`ingenico.direct.sdk.merchant.productgroups.get_product_group_params.GetProductGroupParams`

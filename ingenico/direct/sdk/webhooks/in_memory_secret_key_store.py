@@ -15,7 +15,7 @@ class InMemorySecretKeyStore(SecretKeyStore):
 
     __store = {}
 
-    def get_secret_key(self, key_id):
+    def get_secret_key(self, key_id: str):
         try:
             secret_key = self.__store[key_id]
         except KeyError:
