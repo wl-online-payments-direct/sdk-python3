@@ -1,4 +1,4 @@
-from .api_exception import ApiException
+from ingenico.direct.sdk.api_exception import ApiException
 
 
 class DirectException(ApiException):

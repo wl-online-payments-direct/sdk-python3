@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from .connection import Connection
+from ingenico.direct.sdk.connection import Connection
 
 
 # noinspection PyAbstractClass

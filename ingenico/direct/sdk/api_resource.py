@@ -1,20 +1,20 @@
 from typing import Dict, Union
 
-from direct.sdk.communicator import Communicator
+from ingenico.direct.sdk.api_exception import ApiException
+from ingenico.direct.sdk.authorization_exception import AuthorizationException
+from ingenico.direct.sdk.communicator import Communicator
+from ingenico.direct.sdk.declined_payment_exception import DeclinedPaymentException
+from ingenico.direct.sdk.declined_payout_exception import DeclinedPayoutException
+from ingenico.direct.sdk.declined_refund_exception import DeclinedRefundException
+from ingenico.direct.sdk.direct_exception import DirectException
 from ingenico.direct.sdk.domain.error_response import ErrorResponse
 from ingenico.direct.sdk.domain.payment_error_response import PaymentErrorResponse
 from ingenico.direct.sdk.domain.payout_error_response import PayoutErrorResponse
 from ingenico.direct.sdk.domain.refund_error_response import RefundErrorResponse
-from .api_exception import ApiException
-from .authorization_exception import AuthorizationException
-from .declined_payment_exception import DeclinedPaymentException
-from .declined_payout_exception import DeclinedPayoutException
-from .declined_refund_exception import DeclinedRefundException
-from .direct_exception import DirectException
-from .idempotence_exception import IdempotenceException
-from .reference_exception import ReferenceException
-from .request_header import RequestHeader
-from .validation_exception import ValidationException
+from ingenico.direct.sdk.idempotence_exception import IdempotenceException
+from ingenico.direct.sdk.reference_exception import ReferenceException
+from ingenico.direct.sdk.request_header import RequestHeader
+from ingenico.direct.sdk.validation_exception import ValidationException
 
 
 class ApiResource:

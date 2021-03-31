@@ -1,8 +1,8 @@
 from typing import Optional
 
-from .declined_transaction_exception import DeclinedTransactionException
-from .domain.payout_error_response import PayoutErrorResponse
-from .domain.payout_result import PayoutResult
+from ingenico.direct.sdk.declined_transaction_exception import DeclinedTransactionException
+from ingenico.direct.sdk.domain.payout_error_response import PayoutErrorResponse
+from ingenico.direct.sdk.domain.payout_result import PayoutResult
 
 
 class DeclinedPayoutException(DeclinedTransactionException):

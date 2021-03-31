@@ -5,7 +5,7 @@ from base64 import b64encode
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
 from ingenico.direct.sdk.domain.shopping_cart_extension import ShoppingCartExtension
-from .request_header import RequestHeader
+from ingenico.direct.sdk.request_header import RequestHeader
 
 
 class IterProperty:
@@ -20,7 +20,7 @@ class MetaDataProvider:
     """
     Provides meta info about the server.
     """
-    __SDK_VERSION = "1.3.0"
+    __SDK_VERSION = "1.3.1"
     __SERVER_META_INFO_HEADER = "X-GCS-ServerMetaInfo"
     __prohibited_headers = [__SERVER_META_INFO_HEADER, "X-GCS-Idempotence-Key", "Date", "Content-Type", "Authorization"]
     __PROHIBITED_HEADERS = tuple(sorted(__prohibited_headers, key=str.lower))

@@ -2,19 +2,19 @@ from datetime import datetime
 from typing import Union, cast
 from urllib.parse import ParseResult, ParseResultBytes, quote, urlparse
 
-from direct.sdk.authenticator import Authenticator
-from direct.sdk.connection import Connection
-from direct.sdk.marshaller import Marshaller
-from direct.sdk.meta_data_provider import MetaDataProvider
+from ingenico.direct.sdk.authenticator import Authenticator
+from ingenico.direct.sdk.communication_exception import CommunicationException
+from ingenico.direct.sdk.connection import Connection
 from ingenico.direct.sdk.defaultimpl.default_connection import DefaultConnection
 from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
 from ingenico.direct.sdk.log.logging_capable import LoggingCapable
-from .communication_exception import CommunicationException
-from .not_found_exception import NotFoundException
-from .pooled_connection import PooledConnection
-from .request_header import RequestHeader
-from .response_exception import ResponseException
-from .response_header import get_header_value
+from ingenico.direct.sdk.marshaller import Marshaller
+from ingenico.direct.sdk.meta_data_provider import MetaDataProvider
+from ingenico.direct.sdk.not_found_exception import NotFoundException
+from ingenico.direct.sdk.pooled_connection import PooledConnection
+from ingenico.direct.sdk.request_header import RequestHeader
+from ingenico.direct.sdk.response_exception import ResponseException
+from ingenico.direct.sdk.response_header import get_header_value
 
 
 class Communicator(LoggingCapable):

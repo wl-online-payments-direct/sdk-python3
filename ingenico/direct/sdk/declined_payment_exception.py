@@ -1,8 +1,8 @@
 from typing import Optional
 
-from .declined_transaction_exception import DeclinedTransactionException
-from .domain.create_payment_response import CreatePaymentResponse
-from .domain.payment_error_response import PaymentErrorResponse
+from ingenico.direct.sdk.declined_transaction_exception import DeclinedTransactionException
+from ingenico.direct.sdk.domain.create_payment_response import CreatePaymentResponse
+from ingenico.direct.sdk.domain.payment_error_response import PaymentErrorResponse
 
 
 class DeclinedPaymentException(DeclinedTransactionException):

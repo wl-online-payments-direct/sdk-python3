@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from .logging_util import LoggingUtil
+from ingenico.direct.sdk.log.logging_util import LoggingUtil
 
 
 class LogMessage(ABC):

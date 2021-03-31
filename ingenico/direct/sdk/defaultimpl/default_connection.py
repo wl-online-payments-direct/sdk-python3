@@ -7,12 +7,12 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.exceptions import RequestException, Timeout
 
-from direct.sdk.proxy_configuration import ProxyConfiguration
 from ingenico.direct.sdk.communication_exception import CommunicationException
 from ingenico.direct.sdk.endpoint_configuration import EndpointConfiguration
 from ingenico.direct.sdk.log.request_log_message import RequestLogMessage
 from ingenico.direct.sdk.log.response_log_message import ResponseLogMessage
 from ingenico.direct.sdk.pooled_connection import PooledConnection
+from ingenico.direct.sdk.proxy_configuration import ProxyConfiguration
 
 CHARSET = "UTF-8"
 

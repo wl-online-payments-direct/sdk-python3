@@ -1,6 +1,6 @@
 from typing import Any, Dict, Optional, Tuple
 
-from .response_header import get_header, get_header_value
+from ingenico.direct.sdk.response_header import get_header, get_header_value
 
 
 class ResponseException(RuntimeError):

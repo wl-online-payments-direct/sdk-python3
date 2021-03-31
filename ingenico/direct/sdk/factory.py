@@ -1,13 +1,13 @@
 from configparser import ConfigParser
 
+from ingenico.direct.sdk.client import Client
+from ingenico.direct.sdk.communicator import Communicator
+from ingenico.direct.sdk.communicator_configuration import CommunicatorConfiguration
 from ingenico.direct.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
 from ingenico.direct.sdk.defaultimpl.default_connection import DefaultConnection
 from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
-from .client import Client
-from .communicator import Communicator
-from .communicator_configuration import CommunicatorConfiguration
-from .i_client import IClient
-from .meta_data_provider import MetaDataProvider
+from ingenico.direct.sdk.i_client import IClient
+from ingenico.direct.sdk.meta_data_provider import MetaDataProvider
 
 
 class Factory:

@@ -1,8 +1,8 @@
 from typing import Optional
 
-from .declined_transaction_exception import DeclinedTransactionException
-from .domain.refund_error_response import RefundErrorResponse
-from .domain.refund_response import RefundResponse
+from ingenico.direct.sdk.declined_transaction_exception import DeclinedTransactionException
+from ingenico.direct.sdk.domain.refund_error_response import RefundErrorResponse
+from ingenico.direct.sdk.domain.refund_response import RefundResponse
 
 
 class DeclinedRefundException(DeclinedTransactionException):

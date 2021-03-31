@@ -1,4 +1,4 @@
-from .signature_validation_exception import SignatureValidationException
+from ingenico.direct.sdk.webhooks.signature_validation_exception import SignatureValidationException
 
 
 class SecretKeyNotAvailableException(SignatureValidationException):

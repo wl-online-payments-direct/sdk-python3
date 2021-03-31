@@ -3,10 +3,10 @@ from urllib.parse import ParseResult, ParseResultBytes
 
 from ingenico.direct.sdk.defaultimpl.authorization_type import AuthorizationType
 from ingenico.direct.sdk.domain.shopping_cart_extension import ShoppingCartExtension
-from .endpoint_configuration import EndpointConfiguration
+from ingenico.direct.sdk.endpoint_configuration import EndpointConfiguration
 # pylint: disable=too-many-instance-attributes
 # Necessary to load information from config
-from .proxy_configuration import ProxyConfiguration
+from ingenico.direct.sdk.proxy_configuration import ProxyConfiguration
 
 
 class CommunicatorConfiguration(EndpointConfiguration):

@@ -2,7 +2,7 @@ from typing import Union
 from urllib.parse import ParseResult, ParseResultBytes, urlparse
 
 from ingenico.direct.sdk.domain.shopping_cart_extension import ShoppingCartExtension
-from .proxy_configuration import ProxyConfiguration
+from ingenico.direct.sdk.proxy_configuration import ProxyConfiguration
 
 
 class EndpointConfiguration:

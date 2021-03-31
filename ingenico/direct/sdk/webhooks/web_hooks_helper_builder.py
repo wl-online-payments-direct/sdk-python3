@@ -1,6 +1,6 @@
-from direct.sdk.marshaller import Marshaller
-from direct.sdk.webhooks.secret_key_store import SecretKeyStore
-from .web_hooks_helper import WebhooksHelper
+from ingenico.direct.sdk.marshaller import Marshaller
+from ingenico.direct.sdk.webhooks.secret_key_store import SecretKeyStore
+from ingenico.direct.sdk.webhooks.web_hooks_helper import WebhooksHelper
 
 
 class WebhooksHelperBuilder:

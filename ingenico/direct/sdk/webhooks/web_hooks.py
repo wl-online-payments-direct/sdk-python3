@@ -1,5 +1,5 @@
 from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
-from .web_hooks_helper_builder import WebhooksHelperBuilder
+from ingenico.direct.sdk.webhooks.web_hooks_helper_builder import WebhooksHelperBuilder
 
 
 class Webhooks:

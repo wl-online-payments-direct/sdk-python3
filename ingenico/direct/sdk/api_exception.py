@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from direct.sdk.domain.api_error import APIError
+from ingenico.direct.sdk.domain.api_error import APIError
 
 
 class ApiException(RuntimeError):

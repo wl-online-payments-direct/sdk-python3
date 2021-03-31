@@ -3,12 +3,12 @@ import hmac
 from base64 import b64encode
 from typing import List
 
-from direct.sdk.marshaller import Marshaller
-from direct.sdk.request_header import RequestHeader
-from direct.sdk.webhooks.secret_key_store import SecretKeyStore
 from ingenico.direct.sdk.domain.web_hooks_event import WebhooksEvent
-from .api_version_mismatch_exception import ApiVersionMismatchException
-from .signature_validation_exception import SignatureValidationException
+from ingenico.direct.sdk.marshaller import Marshaller
+from ingenico.direct.sdk.request_header import RequestHeader
+from ingenico.direct.sdk.webhooks.api_version_mismatch_exception import ApiVersionMismatchException
+from ingenico.direct.sdk.webhooks.secret_key_store import SecretKeyStore
+from ingenico.direct.sdk.webhooks.signature_validation_exception import SignatureValidationException
 
 
 class WebhooksHelper:

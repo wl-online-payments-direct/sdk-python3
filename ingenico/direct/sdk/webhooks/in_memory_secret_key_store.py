@@ -1,5 +1,5 @@
-from .secret_key_not_available_exception import SecretKeyNotAvailableException
-from .secret_key_store import SecretKeyStore
+from ingenico.direct.sdk.webhooks.secret_key_not_available_exception import SecretKeyNotAvailableException
+from ingenico.direct.sdk.webhooks.secret_key_store import SecretKeyStore
 
 
 class InMemorySecretKeyStore(SecretKeyStore):
