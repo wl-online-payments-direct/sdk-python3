@@ -17,6 +17,8 @@ class Shipping(DataObject):
     __email_address = None
     __first_usage_date = None
     __is_first_usage = None
+    __shipping_cost = None
+    __shipping_cost_tax = None
     __type = None
 
     @property
@@ -96,6 +98,32 @@ class Shipping(DataObject):
         self.__is_first_usage = value
 
     @property
+    def shipping_cost(self) -> int:
+        """
+        | Cost associated with the shipping of the order.
+
+        Type: int
+        """
+        return self.__shipping_cost
+
+    @shipping_cost.setter
+    def shipping_cost(self, value: int):
+        self.__shipping_cost = value
+
+    @property
+    def shipping_cost_tax(self) -> int:
+        """
+        | Tax amount of the shipping cost.
+
+        Type: int
+        """
+        return self.__shipping_cost_tax
+
+    @shipping_cost_tax.setter
+    def shipping_cost_tax(self, value: int):
+        self.__shipping_cost_tax = value
+
+    @property
     def type(self) -> str:
         """
         | Indicates the merchandise delivery timeframe. Possible values:
@@ -124,6 +152,10 @@ class Shipping(DataObject):
             dictionary['firstUsageDate'] = self.first_usage_date
         if self.is_first_usage is not None:
             dictionary['isFirstUsage'] = self.is_first_usage
+        if self.shipping_cost is not None:
+            dictionary['shippingCost'] = self.shipping_cost
+        if self.shipping_cost_tax is not None:
+            dictionary['shippingCostTax'] = self.shipping_cost_tax
         if self.type is not None:
             dictionary['type'] = self.type
         return dictionary
@@ -143,6 +175,10 @@ class Shipping(DataObject):
             self.first_usage_date = dictionary['firstUsageDate']
         if 'isFirstUsage' in dictionary:
             self.is_first_usage = dictionary['isFirstUsage']
+        if 'shippingCost' in dictionary:
+            self.shipping_cost = dictionary['shippingCost']
+        if 'shippingCostTax' in dictionary:
+            self.shipping_cost_tax = dictionary['shippingCostTax']
         if 'type' in dictionary:
             self.type = dictionary['type']
         return self

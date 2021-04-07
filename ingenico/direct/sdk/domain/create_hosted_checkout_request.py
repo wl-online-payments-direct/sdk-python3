@@ -7,6 +7,7 @@ from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.card_payment_method_specific_input_base import CardPaymentMethodSpecificInputBase
 from ingenico.direct.sdk.domain.fraud_fields import FraudFields
 from ingenico.direct.sdk.domain.hosted_checkout_specific_input import HostedCheckoutSpecificInput
+from ingenico.direct.sdk.domain.mobile_payment_method_hosted_checkout_specific_input import MobilePaymentMethodHostedCheckoutSpecificInput
 from ingenico.direct.sdk.domain.order import Order
 from ingenico.direct.sdk.domain.redirect_payment_method_specific_input import RedirectPaymentMethodSpecificInput
 
@@ -16,6 +17,7 @@ class CreateHostedCheckoutRequest(DataObject):
     __card_payment_method_specific_input = None
     __fraud_fields = None
     __hosted_checkout_specific_input = None
+    __mobile_payment_method_specific_input = None
     __order = None
     __redirect_payment_method_specific_input = None
 
@@ -59,6 +61,19 @@ class CreateHostedCheckoutRequest(DataObject):
         self.__hosted_checkout_specific_input = value
 
     @property
+    def mobile_payment_method_specific_input(self) -> MobilePaymentMethodHostedCheckoutSpecificInput:
+        """
+        | Object containing the specific input details for mobile payments
+
+        Type: :class:`ingenico.direct.sdk.domain.mobile_payment_method_hosted_checkout_specific_input.MobilePaymentMethodHostedCheckoutSpecificInput`
+        """
+        return self.__mobile_payment_method_specific_input
+
+    @mobile_payment_method_specific_input.setter
+    def mobile_payment_method_specific_input(self, value: MobilePaymentMethodHostedCheckoutSpecificInput):
+        self.__mobile_payment_method_specific_input = value
+
+    @property
     def order(self) -> Order:
         """
         | Order object containing order related data 
@@ -93,6 +108,8 @@ class CreateHostedCheckoutRequest(DataObject):
             dictionary['fraudFields'] = self.fraud_fields.to_dictionary()
         if self.hosted_checkout_specific_input is not None:
             dictionary['hostedCheckoutSpecificInput'] = self.hosted_checkout_specific_input.to_dictionary()
+        if self.mobile_payment_method_specific_input is not None:
+            dictionary['mobilePaymentMethodSpecificInput'] = self.mobile_payment_method_specific_input.to_dictionary()
         if self.order is not None:
             dictionary['order'] = self.order.to_dictionary()
         if self.redirect_payment_method_specific_input is not None:
@@ -116,6 +133,11 @@ class CreateHostedCheckoutRequest(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['hostedCheckoutSpecificInput']))
             value = HostedCheckoutSpecificInput()
             self.hosted_checkout_specific_input = value.from_dictionary(dictionary['hostedCheckoutSpecificInput'])
+        if 'mobilePaymentMethodSpecificInput' in dictionary:
+            if not isinstance(dictionary['mobilePaymentMethodSpecificInput'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['mobilePaymentMethodSpecificInput']))
+            value = MobilePaymentMethodHostedCheckoutSpecificInput()
+            self.mobile_payment_method_specific_input = value.from_dictionary(dictionary['mobilePaymentMethodSpecificInput'])
         if 'order' in dictionary:
             if not isinstance(dictionary['order'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['order']))

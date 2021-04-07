@@ -5,6 +5,7 @@
 #
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.card_recurrence_details import CardRecurrenceDetails
+from ingenico.direct.sdk.domain.payment_product130_specific_input import PaymentProduct130SpecificInput
 from ingenico.direct.sdk.domain.payment_product5100_specific_input import PaymentProduct5100SpecificInput
 from ingenico.direct.sdk.domain.three_d_secure_base import ThreeDSecureBase
 
@@ -16,6 +17,7 @@ class CardPaymentMethodSpecificInputBase(DataObject):
 
     __authorization_mode = None
     __initial_scheme_transaction_id = None
+    __payment_product130_specific_input = None
     __payment_product5100_specific_input = None
     __payment_product_id = None
     __recurring = None
@@ -56,6 +58,19 @@ class CardPaymentMethodSpecificInputBase(DataObject):
     @initial_scheme_transaction_id.setter
     def initial_scheme_transaction_id(self, value: str):
         self.__initial_scheme_transaction_id = value
+
+    @property
+    def payment_product130_specific_input(self) -> PaymentProduct130SpecificInput:
+        """
+        | Object containing specific input required for CB payments
+
+        Type: :class:`ingenico.direct.sdk.domain.payment_product130_specific_input.PaymentProduct130SpecificInput`
+        """
+        return self.__payment_product130_specific_input
+
+    @payment_product130_specific_input.setter
+    def payment_product130_specific_input(self, value: PaymentProduct130SpecificInput):
+        self.__payment_product130_specific_input = value
 
     @property
     def payment_product5100_specific_input(self) -> PaymentProduct5100SpecificInput:
@@ -193,6 +208,8 @@ class CardPaymentMethodSpecificInputBase(DataObject):
             dictionary['authorizationMode'] = self.authorization_mode
         if self.initial_scheme_transaction_id is not None:
             dictionary['initialSchemeTransactionId'] = self.initial_scheme_transaction_id
+        if self.payment_product130_specific_input is not None:
+            dictionary['paymentProduct130SpecificInput'] = self.payment_product130_specific_input.to_dictionary()
         if self.payment_product5100_specific_input is not None:
             dictionary['paymentProduct5100SpecificInput'] = self.payment_product5100_specific_input.to_dictionary()
         if self.payment_product_id is not None:
@@ -219,6 +236,11 @@ class CardPaymentMethodSpecificInputBase(DataObject):
             self.authorization_mode = dictionary['authorizationMode']
         if 'initialSchemeTransactionId' in dictionary:
             self.initial_scheme_transaction_id = dictionary['initialSchemeTransactionId']
+        if 'paymentProduct130SpecificInput' in dictionary:
+            if not isinstance(dictionary['paymentProduct130SpecificInput'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct130SpecificInput']))
+            value = PaymentProduct130SpecificInput()
+            self.payment_product130_specific_input = value.from_dictionary(dictionary['paymentProduct130SpecificInput'])
         if 'paymentProduct5100SpecificInput' in dictionary:
             if not isinstance(dictionary['paymentProduct5100SpecificInput'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct5100SpecificInput']))

@@ -6,6 +6,8 @@
 from typing import List
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.account_on_file import AccountOnFile
+from ingenico.direct.sdk.domain.payment_product302_specific_data import PaymentProduct302SpecificData
+from ingenico.direct.sdk.domain.payment_product320_specific_data import PaymentProduct320SpecificData
 from ingenico.direct.sdk.domain.payment_product_display_hints import PaymentProductDisplayHints
 from ingenico.direct.sdk.domain.payment_product_field import PaymentProductField
 
@@ -22,6 +24,8 @@ class PaymentProduct(DataObject):
     __fields = None
     __id = None
     __payment_method = None
+    __payment_product302_specific_data = None
+    __payment_product320_specific_data = None
     __payment_product_group = None
     __uses_redirection_to3rd_party = None
 
@@ -121,6 +125,28 @@ class PaymentProduct(DataObject):
         self.__payment_method = value
 
     @property
+    def payment_product302_specific_data(self) -> PaymentProduct302SpecificData:
+        """
+        Type: :class:`ingenico.direct.sdk.domain.payment_product302_specific_data.PaymentProduct302SpecificData`
+        """
+        return self.__payment_product302_specific_data
+
+    @payment_product302_specific_data.setter
+    def payment_product302_specific_data(self, value: PaymentProduct302SpecificData):
+        self.__payment_product302_specific_data = value
+
+    @property
+    def payment_product320_specific_data(self) -> PaymentProduct320SpecificData:
+        """
+        Type: :class:`ingenico.direct.sdk.domain.payment_product320_specific_data.PaymentProduct320SpecificData`
+        """
+        return self.__payment_product320_specific_data
+
+    @payment_product320_specific_data.setter
+    def payment_product320_specific_data(self, value: PaymentProduct320SpecificData):
+        self.__payment_product320_specific_data = value
+
+    @property
     def payment_product_group(self) -> str:
         """
         | The payment product group that has this payment product, if there is any. Not populated otherwise. Currently only one payment product group is supported:
@@ -171,6 +197,10 @@ class PaymentProduct(DataObject):
             dictionary['id'] = self.id
         if self.payment_method is not None:
             dictionary['paymentMethod'] = self.payment_method
+        if self.payment_product302_specific_data is not None:
+            dictionary['paymentProduct302SpecificData'] = self.payment_product302_specific_data.to_dictionary()
+        if self.payment_product320_specific_data is not None:
+            dictionary['paymentProduct320SpecificData'] = self.payment_product320_specific_data.to_dictionary()
         if self.payment_product_group is not None:
             dictionary['paymentProductGroup'] = self.payment_product_group
         if self.uses_redirection_to3rd_party is not None:
@@ -206,6 +236,16 @@ class PaymentProduct(DataObject):
             self.id = dictionary['id']
         if 'paymentMethod' in dictionary:
             self.payment_method = dictionary['paymentMethod']
+        if 'paymentProduct302SpecificData' in dictionary:
+            if not isinstance(dictionary['paymentProduct302SpecificData'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct302SpecificData']))
+            value = PaymentProduct302SpecificData()
+            self.payment_product302_specific_data = value.from_dictionary(dictionary['paymentProduct302SpecificData'])
+        if 'paymentProduct320SpecificData' in dictionary:
+            if not isinstance(dictionary['paymentProduct320SpecificData'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct320SpecificData']))
+            value = PaymentProduct320SpecificData()
+            self.payment_product320_specific_data = value.from_dictionary(dictionary['paymentProduct320SpecificData'])
         if 'paymentProductGroup' in dictionary:
             self.payment_product_group = dictionary['paymentProductGroup']
         if 'usesRedirectionTo3rdParty' in dictionary:

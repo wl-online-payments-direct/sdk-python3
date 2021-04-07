@@ -31,6 +31,7 @@ class GetHostedCheckoutResponse(DataObject):
         | This is the status of the hosted checkout. Possible values are:
         | * IN_PROGRESS - The checkout is still in progress and has not finished yet
         | * PAYMENT_CREATED - A payment has been created
+        | * CANCELLED_BY_CONSUMER - The HostedCheckout session have been cancelled by the customer
 
         Type: str
         """

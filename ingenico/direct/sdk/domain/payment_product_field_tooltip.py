@@ -17,6 +17,7 @@ class PaymentProductFieldTooltip(DataObject):
     @property
     def image(self) -> str:
         """
+        | Deprecated: This field is not used by any payment product
         | Relative URL that can be used to retrieve an image for the tooltip image.
 
         Type: str

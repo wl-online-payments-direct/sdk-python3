@@ -25,6 +25,7 @@ class ShoppingCart(DataObject):
     @property
     def amount_breakdown(self) -> List[AmountBreakdown]:
         """
+        | Deprecated: Use order.shipping.shippingCost for shipping cost. Other amounts are not used.
         | Determines how the total amount is split into amount types
 
         Type: list[:class:`ingenico.direct.sdk.domain.amount_breakdown.AmountBreakdown`]

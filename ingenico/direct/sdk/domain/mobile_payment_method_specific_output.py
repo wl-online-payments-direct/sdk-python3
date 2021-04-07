@@ -50,7 +50,7 @@ class MobilePaymentMethodSpecificOutput(DataObject):
     @property
     def network(self) -> str:
         """
-        | The network that was used for the refund
+        | Deprecated: This field is not used by any payment product
 
         Type: str
         """

@@ -18,6 +18,7 @@ class TokenEWallet(DataObject):
     @property
     def alias(self) -> str:
         """
+        | Deprecated: This field is not used by any payment product
         | An alias for the token. This can be used to visually represent the token.
 
         Type: str

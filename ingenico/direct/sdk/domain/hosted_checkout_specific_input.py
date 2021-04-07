@@ -4,6 +4,7 @@
 # https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
+from ingenico.direct.sdk.domain.card_payment_method_specific_input_for_hosted_checkout import CardPaymentMethodSpecificInputForHostedCheckout
 from ingenico.direct.sdk.domain.payment_product_filters_hosted_checkout import PaymentProductFiltersHostedCheckout
 
 
@@ -12,6 +13,7 @@ class HostedCheckoutSpecificInput(DataObject):
     | Object containing hosted checkout specific data
     """
 
+    __card_payment_method_specific_input = None
     __is_recurring = None
     __locale = None
     __payment_product_filters = None
@@ -19,6 +21,19 @@ class HostedCheckoutSpecificInput(DataObject):
     __show_result_page = None
     __tokens = None
     __variant = None
+
+    @property
+    def card_payment_method_specific_input(self) -> CardPaymentMethodSpecificInputForHostedCheckout:
+        """
+        | Object containing card payment specific data for hosted checkout
+
+        Type: :class:`ingenico.direct.sdk.domain.card_payment_method_specific_input_for_hosted_checkout.CardPaymentMethodSpecificInputForHostedCheckout`
+        """
+        return self.__card_payment_method_specific_input
+
+    @card_payment_method_specific_input.setter
+    def card_payment_method_specific_input(self, value: CardPaymentMethodSpecificInputForHostedCheckout):
+        self.__card_payment_method_specific_input = value
 
     @property
     def is_recurring(self) -> bool:
@@ -118,6 +133,8 @@ class HostedCheckoutSpecificInput(DataObject):
 
     def to_dictionary(self):
         dictionary = super(HostedCheckoutSpecificInput, self).to_dictionary()
+        if self.card_payment_method_specific_input is not None:
+            dictionary['cardPaymentMethodSpecificInput'] = self.card_payment_method_specific_input.to_dictionary()
         if self.is_recurring is not None:
             dictionary['isRecurring'] = self.is_recurring
         if self.locale is not None:
@@ -136,6 +153,11 @@ class HostedCheckoutSpecificInput(DataObject):
 
     def from_dictionary(self, dictionary):
         super(HostedCheckoutSpecificInput, self).from_dictionary(dictionary)
+        if 'cardPaymentMethodSpecificInput' in dictionary:
+            if not isinstance(dictionary['cardPaymentMethodSpecificInput'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['cardPaymentMethodSpecificInput']))
+            value = CardPaymentMethodSpecificInputForHostedCheckout()
+            self.card_payment_method_specific_input = value.from_dictionary(dictionary['cardPaymentMethodSpecificInput'])
         if 'isRecurring' in dictionary:
             self.is_recurring = dictionary['isRecurring']
         if 'locale' in dictionary:

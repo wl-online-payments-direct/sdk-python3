@@ -18,9 +18,12 @@ class ThreeDSecure(DataObject):
     __challenge_indicator = None
     __exemption_request = None
     __external_cardholder_authentication_data = None
+    __merchant_fraud_rate = None
     __prior_three_d_secure_data = None
     __redirection_data = None
+    __secure_corporate_payment = None
     __skip_authentication = None
+    __skip_soft_decline = None
 
     @property
     def challenge_canvas_size(self) -> str:
@@ -94,6 +97,19 @@ class ThreeDSecure(DataObject):
         self.__external_cardholder_authentication_data = value
 
     @property
+    def merchant_fraud_rate(self) -> int:
+        """
+        | Merchant fraud rate in the EEA (all EEA card fraud divided by all EEA card volumes) calculated as per PSD2 RTS Mastercard will not calculate or validate the merchant fraud score
+
+        Type: int
+        """
+        return self.__merchant_fraud_rate
+
+    @merchant_fraud_rate.setter
+    def merchant_fraud_rate(self, value: int):
+        self.__merchant_fraud_rate = value
+
+    @property
     def prior_three_d_secure_data(self) -> ThreeDSecureData:
         """
         | Object containing data regarding the customer authentication that occurred prior to the current transaction
@@ -120,6 +136,21 @@ class ThreeDSecure(DataObject):
         self.__redirection_data = value
 
     @property
+    def secure_corporate_payment(self) -> bool:
+        """
+        | Indicates dedicated payment processes and procedures were used, potential secure corporate payment exemption applies Logically this field should only be set to yes if the 
+        | acquirer exemption field is blank. A merchant cannot claim both acquirer exemption and  secure payment. However, the DS will not validate 
+        | the conditions in the extension. DS will pass data as presented.
+
+        Type: bool
+        """
+        return self.__secure_corporate_payment
+
+    @secure_corporate_payment.setter
+    def secure_corporate_payment(self, value: bool):
+        self.__secure_corporate_payment = value
+
+    @property
     def skip_authentication(self) -> bool:
         """
         | * true = 3D Secure authentication will be skipped for this transaction. This setting should be used when isRecurring is set to true and recurringPaymentSequenceIndicator is set to "recurring"
@@ -135,6 +166,22 @@ class ThreeDSecure(DataObject):
     def skip_authentication(self, value: bool):
         self.__skip_authentication = value
 
+    @property
+    def skip_soft_decline(self) -> bool:
+        """
+        | * true = Soft Decline retry mechanism will be skipped for this transaction. The transaction will result in "Authorization Declined" status. This setting should be used when skipAuthentication is set to true and the merchant does not want to use Soft Decline retry mechanism.
+        | * false = Soft Decline retry mechanism will not be skipped for this transaction.
+        
+        | Note: skipSoftDecline defaults to false if empty. This is only possible if your account in our system is setup for 3D Secure authentication and if your configuration in our system allows you to override it per transaction.
+
+        Type: bool
+        """
+        return self.__skip_soft_decline
+
+    @skip_soft_decline.setter
+    def skip_soft_decline(self, value: bool):
+        self.__skip_soft_decline = value
+
     def to_dictionary(self):
         dictionary = super(ThreeDSecure, self).to_dictionary()
         if self.challenge_canvas_size is not None:
@@ -145,12 +192,18 @@ class ThreeDSecure(DataObject):
             dictionary['exemptionRequest'] = self.exemption_request
         if self.external_cardholder_authentication_data is not None:
             dictionary['externalCardholderAuthenticationData'] = self.external_cardholder_authentication_data.to_dictionary()
+        if self.merchant_fraud_rate is not None:
+            dictionary['merchantFraudRate'] = self.merchant_fraud_rate
         if self.prior_three_d_secure_data is not None:
             dictionary['priorThreeDSecureData'] = self.prior_three_d_secure_data.to_dictionary()
         if self.redirection_data is not None:
             dictionary['redirectionData'] = self.redirection_data.to_dictionary()
+        if self.secure_corporate_payment is not None:
+            dictionary['secureCorporatePayment'] = self.secure_corporate_payment
         if self.skip_authentication is not None:
             dictionary['skipAuthentication'] = self.skip_authentication
+        if self.skip_soft_decline is not None:
+            dictionary['skipSoftDecline'] = self.skip_soft_decline
         return dictionary
 
     def from_dictionary(self, dictionary):
@@ -166,6 +219,8 @@ class ThreeDSecure(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['externalCardholderAuthenticationData']))
             value = ExternalCardholderAuthenticationData()
             self.external_cardholder_authentication_data = value.from_dictionary(dictionary['externalCardholderAuthenticationData'])
+        if 'merchantFraudRate' in dictionary:
+            self.merchant_fraud_rate = dictionary['merchantFraudRate']
         if 'priorThreeDSecureData' in dictionary:
             if not isinstance(dictionary['priorThreeDSecureData'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['priorThreeDSecureData']))
@@ -176,6 +231,10 @@ class ThreeDSecure(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['redirectionData']))
             value = RedirectionData()
             self.redirection_data = value.from_dictionary(dictionary['redirectionData'])
+        if 'secureCorporatePayment' in dictionary:
+            self.secure_corporate_payment = dictionary['secureCorporatePayment']
         if 'skipAuthentication' in dictionary:
             self.skip_authentication = dictionary['skipAuthentication']
+        if 'skipSoftDecline' in dictionary:
+            self.skip_soft_decline = dictionary['skipSoftDecline']
         return self

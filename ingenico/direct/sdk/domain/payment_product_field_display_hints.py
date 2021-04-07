@@ -80,6 +80,7 @@ class PaymentProductFieldDisplayHints(DataObject):
     @property
     def link(self) -> str:
         """
+        | Deprecated: This field is not used by any payment product
         | Link that should be used to replace the '{link}' variable in the label.
 
         Type: str

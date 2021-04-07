@@ -37,6 +37,8 @@ class PaymentProductFieldFormElement(DataObject):
     @property
     def value_mapping(self) -> List[ValueMappingElement]:
         """
+        | Deprecated: This field is not used by any payment product
+
         Type: list[:class:`ingenico.direct.sdk.domain.value_mapping_element.ValueMappingElement`]
         """
         return self.__value_mapping

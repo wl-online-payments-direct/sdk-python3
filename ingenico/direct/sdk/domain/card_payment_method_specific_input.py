@@ -6,6 +6,7 @@
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.card import Card
 from ingenico.direct.sdk.domain.card_recurrence_details import CardRecurrenceDetails
+from ingenico.direct.sdk.domain.payment_product130_specific_input import PaymentProduct130SpecificInput
 from ingenico.direct.sdk.domain.three_d_secure import ThreeDSecure
 
 
@@ -18,11 +19,11 @@ class CardPaymentMethodSpecificInput(DataObject):
     __card = None
     __initial_scheme_transaction_id = None
     __is_recurring = None
+    __payment_product130_specific_input = None
     __payment_product_id = None
     __recurring = None
     __return_url = None
     __skip_authentication = None
-    __skip_soft_decline = None
     __three_d_secure = None
     __token = None
     __tokenize = None
@@ -90,6 +91,19 @@ class CardPaymentMethodSpecificInput(DataObject):
         self.__is_recurring = value
 
     @property
+    def payment_product130_specific_input(self) -> PaymentProduct130SpecificInput:
+        """
+        | Object containing specific input required for CB payments
+
+        Type: :class:`ingenico.direct.sdk.domain.payment_product130_specific_input.PaymentProduct130SpecificInput`
+        """
+        return self.__payment_product130_specific_input
+
+    @payment_product130_specific_input.setter
+    def payment_product130_specific_input(self, value: PaymentProduct130SpecificInput):
+        self.__payment_product130_specific_input = value
+
+    @property
     def payment_product_id(self) -> int:
         """
         | Payment product identifier - Please see [payment products](https://support.direct.ingenico.com/documentation/api/reference/index.html#tag/Products) for a full overview of possible values.
@@ -133,10 +147,11 @@ class CardPaymentMethodSpecificInput(DataObject):
     @property
     def skip_authentication(self) -> bool:
         """
-        | * true = 3D Secure authentication will be skipped for this transaction. This setting should be used when isRecurring is set to true and recurringPaymentSequenceIndicator is set to recurring.
-        | * false = 3D Secure authentication will not be skipped for this transaction.
+        | Deprecated: Use threeDSecure.skipAuthentication instead.
+        |  * true = 3D Secure authentication will be skipped for this transaction. This setting should be used when isRecurring is set to true and recurringPaymentSequenceIndicator is set to recurring.
+        |  * false = 3D Secure authentication will not be skipped for this transaction.
         
-        |  Note: This is only possible if your account in our system is setup for 3D Secure authentication and if your configuration in our system allows you to override it per transaction.
+        |   Note: This is only possible if your account in our system is setup for 3D Secure authentication and if your configuration in our system allows you to override it per transaction.
 
         Type: bool
         """
@@ -145,22 +160,6 @@ class CardPaymentMethodSpecificInput(DataObject):
     @skip_authentication.setter
     def skip_authentication(self, value: bool):
         self.__skip_authentication = value
-
-    @property
-    def skip_soft_decline(self) -> bool:
-        """
-        | * true = Soft Decline retry mechanism will be skipped for this transaction. The transaction will result in "Authorization Declined" status. This setting should be used when skipAuthentication is set to true and the merchant does not want to use Soft Decline retry mechanism.
-        | * false = Soft Decline retry mechanism will not be skipped for this transaction.
-        
-        |  Note: skipSoftDecline defaults to false if empty. This is only possible if your account in our system is setup for 3D Secure authentication and if your configuration in our system allows you to override it per transaction.
-
-        Type: bool
-        """
-        return self.__skip_soft_decline
-
-    @skip_soft_decline.setter
-    def skip_soft_decline(self, value: bool):
-        self.__skip_soft_decline = value
 
     @property
     def three_d_secure(self) -> ThreeDSecure:
@@ -263,6 +262,8 @@ class CardPaymentMethodSpecificInput(DataObject):
             dictionary['initialSchemeTransactionId'] = self.initial_scheme_transaction_id
         if self.is_recurring is not None:
             dictionary['isRecurring'] = self.is_recurring
+        if self.payment_product130_specific_input is not None:
+            dictionary['paymentProduct130SpecificInput'] = self.payment_product130_specific_input.to_dictionary()
         if self.payment_product_id is not None:
             dictionary['paymentProductId'] = self.payment_product_id
         if self.recurring is not None:
@@ -271,8 +272,6 @@ class CardPaymentMethodSpecificInput(DataObject):
             dictionary['returnUrl'] = self.return_url
         if self.skip_authentication is not None:
             dictionary['skipAuthentication'] = self.skip_authentication
-        if self.skip_soft_decline is not None:
-            dictionary['skipSoftDecline'] = self.skip_soft_decline
         if self.three_d_secure is not None:
             dictionary['threeDSecure'] = self.three_d_secure.to_dictionary()
         if self.token is not None:
@@ -300,6 +299,11 @@ class CardPaymentMethodSpecificInput(DataObject):
             self.initial_scheme_transaction_id = dictionary['initialSchemeTransactionId']
         if 'isRecurring' in dictionary:
             self.is_recurring = dictionary['isRecurring']
+        if 'paymentProduct130SpecificInput' in dictionary:
+            if not isinstance(dictionary['paymentProduct130SpecificInput'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['paymentProduct130SpecificInput']))
+            value = PaymentProduct130SpecificInput()
+            self.payment_product130_specific_input = value.from_dictionary(dictionary['paymentProduct130SpecificInput'])
         if 'paymentProductId' in dictionary:
             self.payment_product_id = dictionary['paymentProductId']
         if 'recurring' in dictionary:
@@ -311,8 +315,6 @@ class CardPaymentMethodSpecificInput(DataObject):
             self.return_url = dictionary['returnUrl']
         if 'skipAuthentication' in dictionary:
             self.skip_authentication = dictionary['skipAuthentication']
-        if 'skipSoftDecline' in dictionary:
-            self.skip_soft_decline = dictionary['skipSoftDecline']
         if 'threeDSecure' in dictionary:
             if not isinstance(dictionary['threeDSecure'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['threeDSecure']))

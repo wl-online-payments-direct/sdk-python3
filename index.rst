@@ -93,6 +93,13 @@ API Reference
     :special-members:
     :exclude-members: __dict__,__weakref__,__module__,__get__
 
+.. automodule:: ingenico.direct.sdk.declined_payout_exception
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
 .. automodule:: ingenico.direct.sdk.declined_refund_exception
     :members:
     :show-inheritance:
@@ -430,6 +437,13 @@ API Reference
     :exclude-members: __dict__,__weakref__,__module__,__get__
 
 .. automodule:: ingenico.direct.sdk.domain.card_payment_method_specific_input_base
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
+.. automodule:: ingenico.direct.sdk.domain.card_payment_method_specific_input_for_hosted_checkout
     :members:
     :show-inheritance:
     :undoc-members:
@@ -779,6 +793,13 @@ API Reference
     :special-members:
     :exclude-members: __dict__,__weakref__,__module__,__get__
 
+.. automodule:: ingenico.direct.sdk.domain.mobile_payment_method_hosted_checkout_specific_input
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
 .. automodule:: ingenico.direct.sdk.domain.mobile_payment_method_specific_input
     :members:
     :show-inheritance:
@@ -864,6 +885,34 @@ API Reference
     :exclude-members: __dict__,__weakref__,__module__,__get__
 
 .. automodule:: ingenico.direct.sdk.domain.payment_product
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
+.. automodule:: ingenico.direct.sdk.domain.payment_product130_specific_input
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
+.. automodule:: ingenico.direct.sdk.domain.payment_product130_specific_three_d_secure
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
+.. automodule:: ingenico.direct.sdk.domain.payment_product302_specific_data
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
+.. automodule:: ingenico.direct.sdk.domain.payment_product320_specific_data
     :members:
     :show-inheritance:
     :undoc-members:

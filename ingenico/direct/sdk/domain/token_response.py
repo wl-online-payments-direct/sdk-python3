@@ -15,6 +15,7 @@ class TokenResponse(DataObject):
     __e_wallet = None
     __external_token_linked = None
     __id = None
+    __is_temporary = None
     __payment_product_id = None
 
     @property
@@ -68,6 +69,19 @@ class TokenResponse(DataObject):
         self.__id = value
 
     @property
+    def is_temporary(self) -> bool:
+        """
+        | Temporary tokens have a lifespan of two hours and can only be used once.
+
+        Type: bool
+        """
+        return self.__is_temporary
+
+    @is_temporary.setter
+    def is_temporary(self, value: bool):
+        self.__is_temporary = value
+
+    @property
     def payment_product_id(self) -> int:
         """
         | Payment product identifier - Please see [payment products](https://support.direct.ingenico.com/documentation/api/reference/index.html#tag/Products) for a full overview of possible values.
@@ -90,6 +104,8 @@ class TokenResponse(DataObject):
             dictionary['externalTokenLinked'] = self.external_token_linked.to_dictionary()
         if self.id is not None:
             dictionary['id'] = self.id
+        if self.is_temporary is not None:
+            dictionary['isTemporary'] = self.is_temporary
         if self.payment_product_id is not None:
             dictionary['paymentProductId'] = self.payment_product_id
         return dictionary
@@ -113,6 +129,8 @@ class TokenResponse(DataObject):
             self.external_token_linked = value.from_dictionary(dictionary['externalTokenLinked'])
         if 'id' in dictionary:
             self.id = dictionary['id']
+        if 'isTemporary' in dictionary:
+            self.is_temporary = dictionary['isTemporary']
         if 'paymentProductId' in dictionary:
             self.payment_product_id = dictionary['paymentProductId']
         return self

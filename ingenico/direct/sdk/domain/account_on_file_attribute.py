@@ -32,6 +32,7 @@ class AccountOnFileAttribute(DataObject):
     @property
     def must_write_reason(self) -> str:
         """
+        | Deprecated: This field is not used by any payment product
         | The reason why the status is MUST_WRITE. Currently only "IN_THE_PAST" is possible as value (for expiry date), but this can be extended with new values in the future.
 
         Type: str

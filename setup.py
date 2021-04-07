@@ -21,7 +21,7 @@ def test_collector():
 
 setup(
     name="direct-sdk-python3",
-    version="1.3.1",
+    version="1.4.0",
     author="Ingenico dev team",
     author_email="60233882+ingenico-dev-team@users.noreply.github.com",
     description="SDK to communicate with the Ingenico ePayments platform using the Ingenico Direct Server API",

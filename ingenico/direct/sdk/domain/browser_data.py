@@ -13,6 +13,7 @@ class BrowserData(DataObject):
 
     __color_depth = None
     __java_enabled = None
+    __java_script_enabled = None
     __screen_height = None
     __screen_width = None
 
@@ -55,6 +56,20 @@ class BrowserData(DataObject):
         self.__java_enabled = value
 
     @property
+    def java_script_enabled(self) -> bool:
+        """
+        | * true = JavaScript is enabled in the browser.
+        | * false = JavaScript is not enabled in the browser. In this case the following parameters are not mandatory anymore: colorDepth, javaEnabled, screenHeight, screenWidth, timezoneOffsetUtcMinutes.
+
+        Type: bool
+        """
+        return self.__java_script_enabled
+
+    @java_script_enabled.setter
+    def java_script_enabled(self, value: bool):
+        self.__java_script_enabled = value
+
+    @property
     def screen_height(self) -> str:
         """
         | Height of the screen in pixels. Value is returned from the screen.height property.
@@ -94,6 +109,8 @@ class BrowserData(DataObject):
             dictionary['colorDepth'] = self.color_depth
         if self.java_enabled is not None:
             dictionary['javaEnabled'] = self.java_enabled
+        if self.java_script_enabled is not None:
+            dictionary['javaScriptEnabled'] = self.java_script_enabled
         if self.screen_height is not None:
             dictionary['screenHeight'] = self.screen_height
         if self.screen_width is not None:
@@ -106,6 +123,8 @@ class BrowserData(DataObject):
             self.color_depth = dictionary['colorDepth']
         if 'javaEnabled' in dictionary:
             self.java_enabled = dictionary['javaEnabled']
+        if 'javaScriptEnabled' in dictionary:
+            self.java_script_enabled = dictionary['javaScriptEnabled']
         if 'screenHeight' in dictionary:
             self.screen_height = dictionary['screenHeight']
         if 'screenWidth' in dictionary:

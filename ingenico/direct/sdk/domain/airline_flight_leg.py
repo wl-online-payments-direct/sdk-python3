@@ -25,6 +25,7 @@ class AirlineFlightLeg(DataObject):
     __fare_basis = None
     __fee = None
     __flight_number = None
+    __leg_fare = None
     __number = None
     __origin_airport = None
     __passenger_class = None
@@ -35,6 +36,7 @@ class AirlineFlightLeg(DataObject):
     def airline_class(self) -> str:
         """
         | Reservation Booking Designator
+        | This field is used by the following payment products: cards
 
         Type: str
         """
@@ -48,6 +50,7 @@ class AirlineFlightLeg(DataObject):
     def arrival_airport(self) -> str:
         """
         | Arrival airport/city code
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -62,6 +65,7 @@ class AirlineFlightLeg(DataObject):
         """
         | The arrival time in the local time zone
         | Format: HH:MM
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -75,6 +79,7 @@ class AirlineFlightLeg(DataObject):
     def carrier_code(self) -> str:
         """
         | IATA carrier code
+        | This field is used by the following payment products: cards, 840
 
         Type: str
         """
@@ -88,6 +93,7 @@ class AirlineFlightLeg(DataObject):
     def conjunction_ticket(self) -> str:
         """
         | Identifying number of a ticket issued to a passenger in conjunction with this ticket and that constitutes a single contract of carriage
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -101,6 +107,7 @@ class AirlineFlightLeg(DataObject):
     def coupon_number(self) -> str:
         """
         | The coupon number associated with this leg of the trip. A ticket can contain several legs of travel, and each leg of travel requires a separate coupon
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -115,6 +122,7 @@ class AirlineFlightLeg(DataObject):
         """
         | Date of the leg
         | Format: YYYYMMDD
+        | This field is used by the following payment products: cards, 840
 
         Type: str
         """
@@ -129,6 +137,7 @@ class AirlineFlightLeg(DataObject):
         """
         | The departure time in the local time at the departure airport
         | Format: HH:MM
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -142,6 +151,7 @@ class AirlineFlightLeg(DataObject):
     def endorsement_or_restriction(self) -> str:
         """
         | An endorsement can be an agency-added notation or a mandatory government required notation, such as value-added tax. A restriction is a limitation based on the type of fare, such as a ticket with a 3-day minimum stay
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -155,6 +165,7 @@ class AirlineFlightLeg(DataObject):
     def exchange_ticket(self) -> str:
         """
         | New ticket number that is issued when a ticket is exchanged
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -167,6 +178,7 @@ class AirlineFlightLeg(DataObject):
     @property
     def fare(self) -> str:
         """
+        | Deprecated: Use legFare instead.
         | Fare of this leg
 
         Type: str
@@ -181,6 +193,7 @@ class AirlineFlightLeg(DataObject):
     def fare_basis(self) -> str:
         """
         | Fare Basis/Ticket Designator
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -194,6 +207,7 @@ class AirlineFlightLeg(DataObject):
     def fee(self) -> int:
         """
         | Fee for this leg of the trip
+        | This field is used by the following payment products: 840
 
         Type: int
         """
@@ -208,6 +222,7 @@ class AirlineFlightLeg(DataObject):
         """
         | The flight number assigned by the airline carrier with no leading spaces
         | Should be a numeric string
+        | This field is used by the following payment products: cards, 840
 
         Type: str
         """
@@ -218,8 +233,23 @@ class AirlineFlightLeg(DataObject):
         self.__flight_number = value
 
     @property
+    def leg_fare(self) -> int:
+        """
+        | Fee for this leg of the trip
+        | This field is used by the following payment products: 840
+
+        Type: int
+        """
+        return self.__leg_fare
+
+    @leg_fare.setter
+    def leg_fare(self, value: int):
+        self.__leg_fare = value
+
+    @property
     def number(self) -> int:
         """
+        | Deprecated: This field is not used by any payment product
         | Sequence number of the flight leg
 
         Type: int
@@ -234,6 +264,7 @@ class AirlineFlightLeg(DataObject):
     def origin_airport(self) -> str:
         """
         | Origin airport/city code
+        | This field is used by the following payment products: cards, 840
 
         Type: str
         """
@@ -247,6 +278,7 @@ class AirlineFlightLeg(DataObject):
     def passenger_class(self) -> str:
         """
         | PassengerClass if this leg
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -262,6 +294,7 @@ class AirlineFlightLeg(DataObject):
         | Possible values are:
         |  * permitted = Stopover permitted
         |  * non-permitted = Stopover not permitted
+        | This field is used by the following payment products: cards, 840
 
         Type: str
         """
@@ -275,6 +308,7 @@ class AirlineFlightLeg(DataObject):
     def taxes(self) -> int:
         """
         | Taxes for this leg of the trip
+        | This field is used by the following payment products: 840
 
         Type: int
         """
@@ -314,6 +348,8 @@ class AirlineFlightLeg(DataObject):
             dictionary['fee'] = self.fee
         if self.flight_number is not None:
             dictionary['flightNumber'] = self.flight_number
+        if self.leg_fare is not None:
+            dictionary['legFare'] = self.leg_fare
         if self.number is not None:
             dictionary['number'] = self.number
         if self.origin_airport is not None:
@@ -356,6 +392,8 @@ class AirlineFlightLeg(DataObject):
             self.fee = dictionary['fee']
         if 'flightNumber' in dictionary:
             self.flight_number = dictionary['flightNumber']
+        if 'legFare' in dictionary:
+            self.leg_fare = dictionary['legFare']
         if 'number' in dictionary:
             self.number = dictionary['number']
         if 'originAirport' in dictionary:

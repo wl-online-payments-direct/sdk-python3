@@ -16,7 +16,8 @@ class AirlinePassenger(DataObject):
     @property
     def first_name(self) -> str:
         """
-        | First name of the passenger (this property is used for fraud screening on the Ogone Payment Platform)
+        | First name of the passenger
+        | This field is used by the following payment products: cards, 840
 
         Type: str
         """
@@ -29,7 +30,8 @@ class AirlinePassenger(DataObject):
     @property
     def surname(self) -> str:
         """
-        | Surname of the passenger (this property is used for fraud screening on the Ogone Payment Platform)
+        | Surname of the passenger
+        | This field is used by the following payment products: cards, 840
 
         Type: str
         """
@@ -42,7 +44,8 @@ class AirlinePassenger(DataObject):
     @property
     def surname_prefix(self) -> str:
         """
-        | Surname prefix of the passenger (this property is used for fraud screening on the Ogone Payment Platform)
+        | Surname prefix or middle name of the passenger
+        | This field is used by the following payment products: 840
 
         Type: str
         """
@@ -55,6 +58,7 @@ class AirlinePassenger(DataObject):
     @property
     def title(self) -> str:
         """
+        | Deprecated: This field is not used by any payment product
         | Title of the passenger (this property is used for fraud screening on the Ogone Payment Platform)
 
         Type: str
