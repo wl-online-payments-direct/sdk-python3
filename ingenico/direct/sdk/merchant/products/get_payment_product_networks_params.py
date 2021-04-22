@@ -22,6 +22,8 @@ class GetPaymentProductNetworksParams(ParamRequest):
     @property
     def country_code(self):
         """
+        | ISO 3166-1 alpha-2 country code
+
         Type: str
         """
         return self.__country_code
@@ -33,6 +35,8 @@ class GetPaymentProductNetworksParams(ParamRequest):
     @property
     def currency_code(self):
         """
+        | Three-letter ISO currency code representing the currency for the amount
+
         Type: str
         """
         return self.__currency_code
@@ -44,6 +48,8 @@ class GetPaymentProductNetworksParams(ParamRequest):
     @property
     def amount(self):
         """
+        | Amount in cents and always having 2 decimals
+
         Type: int
         """
         return self.__amount
@@ -55,6 +61,10 @@ class GetPaymentProductNetworksParams(ParamRequest):
     @property
     def is_recurring(self):
         """
+        | This allows you to filter networks based on their support for recurring or not
+        | * true
+        | * false
+
         Type: bool
         """
         return self.__is_recurring

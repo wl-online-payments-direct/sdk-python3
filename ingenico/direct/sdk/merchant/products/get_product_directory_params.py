@@ -20,6 +20,8 @@ class GetProductDirectoryParams(ParamRequest):
     @property
     def country_code(self):
         """
+        | ISO 3166-1 alpha-2 country code
+
         Type: str
         """
         return self.__country_code
@@ -31,6 +33,8 @@ class GetProductDirectoryParams(ParamRequest):
     @property
     def currency_code(self):
         """
+        | Three-letter ISO currency code representing the currency of the transaction
+
         Type: str
         """
         return self.__currency_code

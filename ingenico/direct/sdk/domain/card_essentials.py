@@ -11,8 +11,22 @@ class CardEssentials(DataObject):
     | Object containing card details
     """
 
+    __bin = None
     __card_number = None
     __expiry_date = None
+
+    @property
+    def bin(self) -> str:
+        """
+        | The first digits of the credit card number from left to right with a minimum of 6 digits.
+
+        Type: str
+        """
+        return self.__bin
+
+    @bin.setter
+    def bin(self, value: str):
+        self.__bin = value
 
     @property
     def card_number(self) -> str:
@@ -43,6 +57,8 @@ class CardEssentials(DataObject):
 
     def to_dictionary(self):
         dictionary = super(CardEssentials, self).to_dictionary()
+        if self.bin is not None:
+            dictionary['bin'] = self.bin
         if self.card_number is not None:
             dictionary['cardNumber'] = self.card_number
         if self.expiry_date is not None:
@@ -51,6 +67,8 @@ class CardEssentials(DataObject):
 
     def from_dictionary(self, dictionary):
         super(CardEssentials, self).from_dictionary(dictionary)
+        if 'bin' in dictionary:
+            self.bin = dictionary['bin']
         if 'cardNumber' in dictionary:
             self.card_number = dictionary['cardNumber']
         if 'expiryDate' in dictionary:

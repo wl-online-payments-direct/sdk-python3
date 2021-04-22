@@ -24,6 +24,8 @@ class GetPaymentProductParams(ParamRequest):
     @property
     def country_code(self):
         """
+        | ISO 3166-1 alpha-2 country code of the transaction
+
         Type: str
         """
         return self.__country_code
@@ -35,6 +37,8 @@ class GetPaymentProductParams(ParamRequest):
     @property
     def currency_code(self):
         """
+        | Three-letter ISO currency code representing the currency for the amount
+
         Type: str
         """
         return self.__currency_code
@@ -46,6 +50,8 @@ class GetPaymentProductParams(ParamRequest):
     @property
     def locale(self):
         """
+        | Locale used in the GUI towards the consumer.
+
         Type: str
         """
         return self.__locale
@@ -57,6 +63,8 @@ class GetPaymentProductParams(ParamRequest):
     @property
     def amount(self):
         """
+        | Whole amount in cents (not containing any decimals)
+
         Type: int
         """
         return self.__amount
@@ -68,6 +76,10 @@ class GetPaymentProductParams(ParamRequest):
     @property
     def is_recurring(self):
         """
+        | This allows you to filter payment products based on their support for recurring payments.
+        | * true - return only payment products that support recurring payments,
+        | * false - return all payment products that support one-time transactions. Payment products that support recurring products are usually also part of this list.
+
         Type: bool
         """
         return self.__is_recurring
@@ -79,6 +91,14 @@ class GetPaymentProductParams(ParamRequest):
     @property
     def hide(self):
         """
+        | Allows you to hide elements from the response, reducing the amount of data that needs to be returned to your client. Possible options are:
+        | * fields - Don't return any data on fields of the payment product
+        | * accountsOnFile - Don't return any accounts on file data
+        | * translations - Don't return any label texts associated with the payment products
+        | * productsWithoutFields - Don't return products that require any additional data to be captured
+        | * productsWithoutInstructions - Don't return products that show instructions
+        | * productsWithRedirects - Don't return products that require a redirect to a 3rd party. Note that products that involve potential redirects related to 3D Secure authentication are not hidden
+
         Type: list[str]
         """
         return self.__hide
