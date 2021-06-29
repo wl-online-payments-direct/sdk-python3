@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>ingenico.direct.sdk.domain.hosted_checkout_specific_input &#8212; direct-sdk-python3 1.5.0 documentation</title>
+    <title>ingenico.direct.sdk.domain.hosted_checkout_specific_input &#8212; direct-sdk-python3 1.6.0 documentation</title>
     <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
@@ -37,7 +37,6 @@
 <span class="c1"># https://support.direct.ingenico.com/documentation/api/reference/</span>
 <span class="c1">#</span>
 <span class="kn">from</span> <span class="nn">ingenico.direct.sdk.data_object</span> <span class="kn">import</span> <span class="n">DataObject</span>
-<span class="kn">from</span> <span class="nn">ingenico.direct.sdk.domain.card_payment_method_specific_input_for_hosted_checkout</span> <span class="kn">import</span> <span class="n">CardPaymentMethodSpecificInputForHostedCheckout</span>
 <span class="kn">from</span> <span class="nn">ingenico.direct.sdk.domain.payment_product_filters_hosted_checkout</span> <span class="kn">import</span> <span class="n">PaymentProductFiltersHostedCheckout</span>
 
 
@@ -46,27 +45,14 @@
 <span class="sd">    | Object containing hosted checkout specific data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">__card_payment_method_specific_input</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__is_recurring</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__locale</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__payment_product_filters</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__return_url</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">__session_timeout</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__show_result_page</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__tokens</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__variant</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">card_payment_method_specific_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CardPaymentMethodSpecificInputForHostedCheckout</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        | Object containing card payment specific data for hosted checkout</span>
-
-<span class="sd">        Type: :class:`ingenico.direct.sdk.domain.card_payment_method_specific_input_for_hosted_checkout.CardPaymentMethodSpecificInputForHostedCheckout`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__card_payment_method_specific_input</span>
-
-    <span class="nd">@card_payment_method_specific_input</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">card_payment_method_specific_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">CardPaymentMethodSpecificInputForHostedCheckout</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__card_payment_method_specific_input</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">is_recurring</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -125,6 +111,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__return_url</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">session_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        | The number of minutes after which the session will expire. By default, the value is set to 180 minutes.</span>
+
+<span class="sd">        Type: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__session_timeout</span>
+
+    <span class="nd">@session_timeout</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">session_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session_timeout</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">show_result_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        | * true - Default - Hosted Checkout will show a result page to the customer when applicable.</span>
@@ -166,8 +165,6 @@
 
 <div class="viewcode-block" id="HostedCheckoutSpecificInput.to_dictionary"><a class="viewcode-back" href="../../../../../index.html#ingenico.direct.sdk.domain.hosted_checkout_specific_input.HostedCheckoutSpecificInput.to_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">to_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">dictionary</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">HostedCheckoutSpecificInput</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">card_payment_method_specific_input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;cardPaymentMethodSpecificInput&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">card_payment_method_specific_input</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_recurring</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;isRecurring&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_recurring</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">locale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -176,6 +173,8 @@
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;paymentProductFilters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">payment_product_filters</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_url</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;returnUrl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_url</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;sessionTimeout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_timeout</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_result_page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;showResultPage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_result_page</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -186,11 +185,6 @@
 
 <div class="viewcode-block" id="HostedCheckoutSpecificInput.from_dictionary"><a class="viewcode-back" href="../../../../../index.html#ingenico.direct.sdk.domain.hosted_checkout_specific_input.HostedCheckoutSpecificInput.from_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">from_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">HostedCheckoutSpecificInput</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s1">&#39;cardPaymentMethodSpecificInput&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;cardPaymentMethodSpecificInput&#39;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;value </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is not a dictionary&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;cardPaymentMethodSpecificInput&#39;</span><span class="p">]))</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">CardPaymentMethodSpecificInputForHostedCheckout</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">card_payment_method_specific_input</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;cardPaymentMethodSpecificInput&#39;</span><span class="p">])</span>
         <span class="k">if</span> <span class="s1">&#39;isRecurring&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">is_recurring</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;isRecurring&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="s1">&#39;locale&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
@@ -202,6 +196,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">payment_product_filters</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;paymentProductFilters&#39;</span><span class="p">])</span>
         <span class="k">if</span> <span class="s1">&#39;returnUrl&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">return_url</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;returnUrl&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;sessionTimeout&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session_timeout</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;sessionTimeout&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="s1">&#39;showResultPage&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">show_result_page</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;showResultPage&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="s1">&#39;tokens&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
