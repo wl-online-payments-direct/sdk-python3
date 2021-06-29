@@ -4,7 +4,6 @@
 # https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
-from ingenico.direct.sdk.domain.card_payment_method_specific_input_for_hosted_checkout import CardPaymentMethodSpecificInputForHostedCheckout
 from ingenico.direct.sdk.domain.payment_product_filters_hosted_checkout import PaymentProductFiltersHostedCheckout
 
 
@@ -13,27 +12,14 @@ class HostedCheckoutSpecificInput(DataObject):
     | Object containing hosted checkout specific data
     """
 
-    __card_payment_method_specific_input = None
     __is_recurring = None
     __locale = None
     __payment_product_filters = None
     __return_url = None
+    __session_timeout = None
     __show_result_page = None
     __tokens = None
     __variant = None
-
-    @property
-    def card_payment_method_specific_input(self) -> CardPaymentMethodSpecificInputForHostedCheckout:
-        """
-        | Object containing card payment specific data for hosted checkout
-
-        Type: :class:`ingenico.direct.sdk.domain.card_payment_method_specific_input_for_hosted_checkout.CardPaymentMethodSpecificInputForHostedCheckout`
-        """
-        return self.__card_payment_method_specific_input
-
-    @card_payment_method_specific_input.setter
-    def card_payment_method_specific_input(self, value: CardPaymentMethodSpecificInputForHostedCheckout):
-        self.__card_payment_method_specific_input = value
 
     @property
     def is_recurring(self) -> bool:
@@ -92,6 +78,19 @@ class HostedCheckoutSpecificInput(DataObject):
         self.__return_url = value
 
     @property
+    def session_timeout(self) -> int:
+        """
+        | The number of minutes after which the session will expire. By default, the value is set to 180 minutes.
+
+        Type: int
+        """
+        return self.__session_timeout
+
+    @session_timeout.setter
+    def session_timeout(self, value: int):
+        self.__session_timeout = value
+
+    @property
     def show_result_page(self) -> bool:
         """
         | * true - Default - Hosted Checkout will show a result page to the customer when applicable.
@@ -133,8 +132,6 @@ class HostedCheckoutSpecificInput(DataObject):
 
     def to_dictionary(self):
         dictionary = super(HostedCheckoutSpecificInput, self).to_dictionary()
-        if self.card_payment_method_specific_input is not None:
-            dictionary['cardPaymentMethodSpecificInput'] = self.card_payment_method_specific_input.to_dictionary()
         if self.is_recurring is not None:
             dictionary['isRecurring'] = self.is_recurring
         if self.locale is not None:
@@ -143,6 +140,8 @@ class HostedCheckoutSpecificInput(DataObject):
             dictionary['paymentProductFilters'] = self.payment_product_filters.to_dictionary()
         if self.return_url is not None:
             dictionary['returnUrl'] = self.return_url
+        if self.session_timeout is not None:
+            dictionary['sessionTimeout'] = self.session_timeout
         if self.show_result_page is not None:
             dictionary['showResultPage'] = self.show_result_page
         if self.tokens is not None:
@@ -153,11 +152,6 @@ class HostedCheckoutSpecificInput(DataObject):
 
     def from_dictionary(self, dictionary):
         super(HostedCheckoutSpecificInput, self).from_dictionary(dictionary)
-        if 'cardPaymentMethodSpecificInput' in dictionary:
-            if not isinstance(dictionary['cardPaymentMethodSpecificInput'], dict):
-                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['cardPaymentMethodSpecificInput']))
-            value = CardPaymentMethodSpecificInputForHostedCheckout()
-            self.card_payment_method_specific_input = value.from_dictionary(dictionary['cardPaymentMethodSpecificInput'])
         if 'isRecurring' in dictionary:
             self.is_recurring = dictionary['isRecurring']
         if 'locale' in dictionary:
@@ -169,6 +163,8 @@ class HostedCheckoutSpecificInput(DataObject):
             self.payment_product_filters = value.from_dictionary(dictionary['paymentProductFilters'])
         if 'returnUrl' in dictionary:
             self.return_url = dictionary['returnUrl']
+        if 'sessionTimeout' in dictionary:
+            self.session_timeout = dictionary['sessionTimeout']
         if 'showResultPage' in dictionary:
             self.show_result_page = dictionary['showResultPage']
         if 'tokens' in dictionary:
