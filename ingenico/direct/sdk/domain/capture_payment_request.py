@@ -4,12 +4,14 @@
 # https://support.direct.ingenico.com/documentation/api/reference/
 #
 from ingenico.direct.sdk.data_object import DataObject
+from ingenico.direct.sdk.domain.payment_references import PaymentReferences
 
 
 class CapturePaymentRequest(DataObject):
 
     __amount = None
     __is_final = None
+    __references = None
 
     @property
     def amount(self) -> int:
@@ -39,12 +41,27 @@ class CapturePaymentRequest(DataObject):
     def is_final(self, value: bool):
         self.__is_final = value
 
+    @property
+    def references(self) -> PaymentReferences:
+        """
+        | Object that holds all reference properties that are linked to this transaction
+
+        Type: :class:`ingenico.direct.sdk.domain.payment_references.PaymentReferences`
+        """
+        return self.__references
+
+    @references.setter
+    def references(self, value: PaymentReferences):
+        self.__references = value
+
     def to_dictionary(self):
         dictionary = super(CapturePaymentRequest, self).to_dictionary()
         if self.amount is not None:
             dictionary['amount'] = self.amount
         if self.is_final is not None:
             dictionary['isFinal'] = self.is_final
+        if self.references is not None:
+            dictionary['references'] = self.references.to_dictionary()
         return dictionary
 
     def from_dictionary(self, dictionary):
@@ -53,4 +70,9 @@ class CapturePaymentRequest(DataObject):
             self.amount = dictionary['amount']
         if 'isFinal' in dictionary:
             self.is_final = dictionary['isFinal']
+        if 'references' in dictionary:
+            if not isinstance(dictionary['references'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['references']))
+            value = PaymentReferences()
+            self.references = value.from_dictionary(dictionary['references'])
         return self

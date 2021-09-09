@@ -3,6 +3,7 @@
 # This class was auto-generated from the API references found at
 # https://support.direct.ingenico.com/documentation/api/reference/
 #
+from typing import List
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.account_on_file import AccountOnFile
 from ingenico.direct.sdk.domain.payment_product_display_hints import PaymentProductDisplayHints
@@ -12,6 +13,7 @@ class PaymentProductGroup(DataObject):
 
     __account_on_file = None
     __display_hints = None
+    __display_hints_list = None
     __id = None
 
     @property
@@ -39,6 +41,19 @@ class PaymentProductGroup(DataObject):
         self.__display_hints = value
 
     @property
+    def display_hints_list(self) -> List[PaymentProductDisplayHints]:
+        """
+        | List of display hints
+
+        Type: list[:class:`ingenico.direct.sdk.domain.payment_product_display_hints.PaymentProductDisplayHints`]
+        """
+        return self.__display_hints_list
+
+    @display_hints_list.setter
+    def display_hints_list(self, value: List[PaymentProductDisplayHints]):
+        self.__display_hints_list = value
+
+    @property
     def id(self) -> str:
         """
         | The ID of the payment product group in our system
@@ -57,6 +72,11 @@ class PaymentProductGroup(DataObject):
             dictionary['accountOnFile'] = self.account_on_file.to_dictionary()
         if self.display_hints is not None:
             dictionary['displayHints'] = self.display_hints.to_dictionary()
+        if self.display_hints_list is not None:
+            dictionary['displayHintsList'] = []
+            for element in self.display_hints_list:
+                if element is not None:
+                    dictionary['displayHintsList'].append(element.to_dictionary())
         if self.id is not None:
             dictionary['id'] = self.id
         return dictionary
@@ -73,6 +93,13 @@ class PaymentProductGroup(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['displayHints']))
             value = PaymentProductDisplayHints()
             self.display_hints = value.from_dictionary(dictionary['displayHints'])
+        if 'displayHintsList' in dictionary:
+            if not isinstance(dictionary['displayHintsList'], list):
+                raise TypeError('value \'{}\' is not a list'.format(dictionary['displayHintsList']))
+            self.display_hints_list = []
+            for element in dictionary['displayHintsList']:
+                value = PaymentProductDisplayHints()
+                self.display_hints_list.append(value.from_dictionary(element))
         if 'id' in dictionary:
             self.id = dictionary['id']
         return self

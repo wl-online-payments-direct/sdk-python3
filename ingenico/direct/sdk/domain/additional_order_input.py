@@ -6,6 +6,7 @@
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.airline_data import AirlineData
 from ingenico.direct.sdk.domain.loan_recipient import LoanRecipient
+from ingenico.direct.sdk.domain.lodging_data import LodgingData
 from ingenico.direct.sdk.domain.order_type_information import OrderTypeInformation
 
 
@@ -16,6 +17,7 @@ class AdditionalOrderInput(DataObject):
 
     __airline_data = None
     __loan_recipient = None
+    __lodging_data = None
     __type_information = None
 
     @property
@@ -45,6 +47,19 @@ class AdditionalOrderInput(DataObject):
         self.__loan_recipient = value
 
     @property
+    def lodging_data(self) -> LodgingData:
+        """
+        | Object that holds lodging specific data
+
+        Type: :class:`ingenico.direct.sdk.domain.lodging_data.LodgingData`
+        """
+        return self.__lodging_data
+
+    @lodging_data.setter
+    def lodging_data(self, value: LodgingData):
+        self.__lodging_data = value
+
+    @property
     def type_information(self) -> OrderTypeInformation:
         """
         | Object that holds the purchase and usage type indicators
@@ -63,6 +78,8 @@ class AdditionalOrderInput(DataObject):
             dictionary['airlineData'] = self.airline_data.to_dictionary()
         if self.loan_recipient is not None:
             dictionary['loanRecipient'] = self.loan_recipient.to_dictionary()
+        if self.lodging_data is not None:
+            dictionary['lodgingData'] = self.lodging_data.to_dictionary()
         if self.type_information is not None:
             dictionary['typeInformation'] = self.type_information.to_dictionary()
         return dictionary
@@ -79,6 +96,11 @@ class AdditionalOrderInput(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['loanRecipient']))
             value = LoanRecipient()
             self.loan_recipient = value.from_dictionary(dictionary['loanRecipient'])
+        if 'lodgingData' in dictionary:
+            if not isinstance(dictionary['lodgingData'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['lodgingData']))
+            value = LodgingData()
+            self.lodging_data = value.from_dictionary(dictionary['lodgingData'])
         if 'typeInformation' in dictionary:
             if not isinstance(dictionary['typeInformation'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['typeInformation']))

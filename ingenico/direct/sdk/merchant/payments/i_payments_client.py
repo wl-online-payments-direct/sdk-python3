@@ -12,6 +12,7 @@ from ingenico.direct.sdk.domain.complete_payment_request import CompletePaymentR
 from ingenico.direct.sdk.domain.complete_payment_response import CompletePaymentResponse
 from ingenico.direct.sdk.domain.create_payment_request import CreatePaymentRequest
 from ingenico.direct.sdk.domain.create_payment_response import CreatePaymentResponse
+from ingenico.direct.sdk.domain.payment_details_response import PaymentDetailsResponse
 from ingenico.direct.sdk.domain.payment_response import PaymentResponse
 from ingenico.direct.sdk.domain.refund_request import RefundRequest
 from ingenico.direct.sdk.domain.refund_response import RefundResponse
@@ -159,6 +160,26 @@ class IPaymentsClient(ABC):
         :param payment_id: str
         :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
         :return: :class:`ingenico.direct.sdk.domain.captures_response.CapturesResponse`
+        :raise: ValidationException if the request was not correct and couldn't be processed (HTTP status code 400)
+        :raise: AuthorizationException if the request was not allowed (HTTP status code 403)
+        :raise: ReferenceException if an object was attempted to be referenced that doesn't exist or has been removed,
+                   or there was a conflict (HTTP status code 404, 409 or 410)
+        :raise: DirectException if something went wrong at the Ingenico ePayments platform,
+                   the Ingenico ePayments platform was unable to process a message from a downstream partner/acquirer,
+                   or the service that you're trying to reach is temporary unavailable (HTTP status code 500, 502 or 503)
+        :raise: ApiException if the Ingenico ePayments platform returned any other error
+        """
+
+    @abstractmethod
+    def get_payment_details(self, payment_id: str, context: CallContext = None) -> PaymentDetailsResponse:
+        """
+        Resource /v2/{merchantId}/payments/{paymentId}/details - Get payment details
+
+        See also https://support.direct.ingenico.com/documentation/api/reference#operation/GetPaymentDetailsApi
+
+        :param payment_id: str
+        :param context: :class:`ingenico.direct.sdk.call_context.CallContext`
+        :return: :class:`ingenico.direct.sdk.domain.payment_details_response.PaymentDetailsResponse`
         :raise: ValidationException if the request was not correct and couldn't be processed (HTTP status code 400)
         :raise: AuthorizationException if the request was not allowed (HTTP status code 403)
         :raise: ReferenceException if an object was attempted to be referenced that doesn't exist or has been removed,

@@ -793,6 +793,13 @@ API Reference
     :special-members:
     :exclude-members: __dict__,__weakref__,__module__,__get__
 
+.. automodule:: ingenico.direct.sdk.domain.lodging_data
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
 .. automodule:: ingenico.direct.sdk.domain.merchant_action
     :members:
     :show-inheritance:
@@ -829,6 +836,13 @@ API Reference
     :exclude-members: __dict__,__weakref__,__module__,__get__
 
 .. automodule:: ingenico.direct.sdk.domain.mobile_payment_product320_specific_input
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
+.. automodule:: ingenico.direct.sdk.domain.operation_output
     :members:
     :show-inheritance:
     :undoc-members:
@@ -885,6 +899,13 @@ API Reference
     :exclude-members: __dict__,__weakref__,__module__,__get__
 
 .. automodule:: ingenico.direct.sdk.domain.payment_creation_output
+    :members:
+    :show-inheritance:
+    :undoc-members:
+    :special-members:
+    :exclude-members: __dict__,__weakref__,__module__,__get__
+
+.. automodule:: ingenico.direct.sdk.domain.payment_details_response
     :members:
     :show-inheritance:
     :undoc-members:
