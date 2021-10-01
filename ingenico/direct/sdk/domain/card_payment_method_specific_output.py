@@ -6,6 +6,7 @@
 from ingenico.direct.sdk.data_object import DataObject
 from ingenico.direct.sdk.domain.card_essentials import CardEssentials
 from ingenico.direct.sdk.domain.card_fraud_results import CardFraudResults
+from ingenico.direct.sdk.domain.external_token_linked import ExternalTokenLinked
 from ingenico.direct.sdk.domain.three_d_secure_results import ThreeDSecureResults
 
 
@@ -14,14 +15,29 @@ class CardPaymentMethodSpecificOutput(DataObject):
     | Object containing the card payment method details
     """
 
+    __authenticated_amount = None
     __authorisation_code = None
     __card = None
+    __external_token_linked = None
     __fraud_results = None
     __initial_scheme_transaction_id = None
     __payment_option = None
     __payment_product_id = None
     __three_d_secure_results = None
     __token = None
+
+    @property
+    def authenticated_amount(self) -> int:
+        """
+        | Allows amount to be authenticated to be different from amount authorized. (Amount in cents and always having 2 decimals)
+
+        Type: int
+        """
+        return self.__authenticated_amount
+
+    @authenticated_amount.setter
+    def authenticated_amount(self, value: int):
+        self.__authenticated_amount = value
 
     @property
     def authorisation_code(self) -> str:
@@ -48,6 +64,17 @@ class CardPaymentMethodSpecificOutput(DataObject):
     @card.setter
     def card(self, value: CardEssentials):
         self.__card = value
+
+    @property
+    def external_token_linked(self) -> ExternalTokenLinked:
+        """
+        Type: :class:`ingenico.direct.sdk.domain.external_token_linked.ExternalTokenLinked`
+        """
+        return self.__external_token_linked
+
+    @external_token_linked.setter
+    def external_token_linked(self, value: ExternalTokenLinked):
+        self.__external_token_linked = value
 
     @property
     def fraud_results(self) -> CardFraudResults:
@@ -129,10 +156,14 @@ class CardPaymentMethodSpecificOutput(DataObject):
 
     def to_dictionary(self):
         dictionary = super(CardPaymentMethodSpecificOutput, self).to_dictionary()
+        if self.authenticated_amount is not None:
+            dictionary['authenticatedAmount'] = self.authenticated_amount
         if self.authorisation_code is not None:
             dictionary['authorisationCode'] = self.authorisation_code
         if self.card is not None:
             dictionary['card'] = self.card.to_dictionary()
+        if self.external_token_linked is not None:
+            dictionary['externalTokenLinked'] = self.external_token_linked.to_dictionary()
         if self.fraud_results is not None:
             dictionary['fraudResults'] = self.fraud_results.to_dictionary()
         if self.initial_scheme_transaction_id is not None:
@@ -149,6 +180,8 @@ class CardPaymentMethodSpecificOutput(DataObject):
 
     def from_dictionary(self, dictionary):
         super(CardPaymentMethodSpecificOutput, self).from_dictionary(dictionary)
+        if 'authenticatedAmount' in dictionary:
+            self.authenticated_amount = dictionary['authenticatedAmount']
         if 'authorisationCode' in dictionary:
             self.authorisation_code = dictionary['authorisationCode']
         if 'card' in dictionary:
@@ -156,6 +189,11 @@ class CardPaymentMethodSpecificOutput(DataObject):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['card']))
             value = CardEssentials()
             self.card = value.from_dictionary(dictionary['card'])
+        if 'externalTokenLinked' in dictionary:
+            if not isinstance(dictionary['externalTokenLinked'], dict):
+                raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['externalTokenLinked']))
+            value = ExternalTokenLinked()
+            self.external_token_linked = value.from_dictionary(dictionary['externalTokenLinked'])
         if 'fraudResults' in dictionary:
             if not isinstance(dictionary['fraudResults'], dict):
                 raise TypeError('value \'{}\' is not a dictionary'.format(dictionary['fraudResults']))

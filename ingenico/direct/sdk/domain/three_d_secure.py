@@ -14,6 +14,7 @@ class ThreeDSecure(DataObject):
     | Object containing specific data regarding 3-D Secure
     """
 
+    __authentication_amount = None
     __challenge_canvas_size = None
     __challenge_indicator = None
     __exemption_request = None
@@ -24,6 +25,19 @@ class ThreeDSecure(DataObject):
     __secure_corporate_payment = None
     __skip_authentication = None
     __skip_soft_decline = None
+
+    @property
+    def authentication_amount(self) -> int:
+        """
+        | Allows amount to be authenticated to be different from amount authorized. (Amount in cents and always having 2 decimals)
+
+        Type: int
+        """
+        return self.__authentication_amount
+
+    @authentication_amount.setter
+    def authentication_amount(self, value: int):
+        self.__authentication_amount = value
 
     @property
     def challenge_canvas_size(self) -> str:
@@ -184,6 +198,8 @@ class ThreeDSecure(DataObject):
 
     def to_dictionary(self):
         dictionary = super(ThreeDSecure, self).to_dictionary()
+        if self.authentication_amount is not None:
+            dictionary['authenticationAmount'] = self.authentication_amount
         if self.challenge_canvas_size is not None:
             dictionary['challengeCanvasSize'] = self.challenge_canvas_size
         if self.challenge_indicator is not None:
@@ -208,6 +224,8 @@ class ThreeDSecure(DataObject):
 
     def from_dictionary(self, dictionary):
         super(ThreeDSecure, self).from_dictionary(dictionary)
+        if 'authenticationAmount' in dictionary:
+            self.authentication_amount = dictionary['authenticationAmount']
         if 'challengeCanvasSize' in dictionary:
             self.challenge_canvas_size = dictionary['challengeCanvasSize']
         if 'challengeIndicator' in dictionary:
