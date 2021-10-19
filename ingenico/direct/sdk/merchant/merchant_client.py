@@ -27,53 +27,13 @@ class MerchantClient(ApiResource, IMerchantClient):
         """
         super(MerchantClient, self).__init__(parent, path_context)
 
-    def products(self) -> ProductsClient:
+    def hosted_checkout(self) -> HostedCheckoutClient:
         """
-        Resource /v2/{merchantId}/products
+        Resource /v2/{merchantId}/hostedcheckouts
 
-        :return: :class:`ingenico.direct.sdk.merchant.products.i_products_client.IProductsClient`
+        :return: :class:`ingenico.direct.sdk.merchant.hostedcheckout.i_hosted_checkout_client.IHostedCheckoutClient`
         """
-        return ProductsClient(self, None)
-
-    def sessions(self) -> SessionsClient:
-        """
-        Resource /v2/{merchantId}/sessions
-
-        :return: :class:`ingenico.direct.sdk.merchant.sessions.i_sessions_client.ISessionsClient`
-        """
-        return SessionsClient(self, None)
-
-    def payouts(self) -> PayoutsClient:
-        """
-        Resource /v2/{merchantId}/payouts
-
-        :return: :class:`ingenico.direct.sdk.merchant.payouts.i_payouts_client.IPayoutsClient`
-        """
-        return PayoutsClient(self, None)
-
-    def payments(self) -> PaymentsClient:
-        """
-        Resource /v2/{merchantId}/payments
-
-        :return: :class:`ingenico.direct.sdk.merchant.payments.i_payments_client.IPaymentsClient`
-        """
-        return PaymentsClient(self, None)
-
-    def services(self) -> ServicesClient:
-        """
-        Resource /v2/{merchantId}/services
-
-        :return: :class:`ingenico.direct.sdk.merchant.services.i_services_client.IServicesClient`
-        """
-        return ServicesClient(self, None)
-
-    def product_groups(self) -> ProductGroupsClient:
-        """
-        Resource /v2/{merchantId}/productgroups
-
-        :return: :class:`ingenico.direct.sdk.merchant.productgroups.i_product_groups_client.IProductGroupsClient`
-        """
-        return ProductGroupsClient(self, None)
+        return HostedCheckoutClient(self, None)
 
     def hosted_tokenization(self) -> HostedTokenizationClient:
         """
@@ -83,6 +43,54 @@ class MerchantClient(ApiResource, IMerchantClient):
         """
         return HostedTokenizationClient(self, None)
 
+    def payments(self) -> PaymentsClient:
+        """
+        Resource /v2/{merchantId}/payments
+
+        :return: :class:`ingenico.direct.sdk.merchant.payments.i_payments_client.IPaymentsClient`
+        """
+        return PaymentsClient(self, None)
+
+    def payouts(self) -> PayoutsClient:
+        """
+        Resource /v2/{merchantId}/payouts
+
+        :return: :class:`ingenico.direct.sdk.merchant.payouts.i_payouts_client.IPayoutsClient`
+        """
+        return PayoutsClient(self, None)
+
+    def product_groups(self) -> ProductGroupsClient:
+        """
+        Resource /v2/{merchantId}/productgroups
+
+        :return: :class:`ingenico.direct.sdk.merchant.productgroups.i_product_groups_client.IProductGroupsClient`
+        """
+        return ProductGroupsClient(self, None)
+
+    def products(self) -> ProductsClient:
+        """
+        Resource /v2/{merchantId}/products
+
+        :return: :class:`ingenico.direct.sdk.merchant.products.i_products_client.IProductsClient`
+        """
+        return ProductsClient(self, None)
+
+    def services(self) -> ServicesClient:
+        """
+        Resource /v2/{merchantId}/services
+
+        :return: :class:`ingenico.direct.sdk.merchant.services.i_services_client.IServicesClient`
+        """
+        return ServicesClient(self, None)
+
+    def sessions(self) -> SessionsClient:
+        """
+        Resource /v2/{merchantId}/sessions
+
+        :return: :class:`ingenico.direct.sdk.merchant.sessions.i_sessions_client.ISessionsClient`
+        """
+        return SessionsClient(self, None)
+
     def tokens(self) -> TokensClient:
         """
         Resource /v2/{merchantId}/tokens
@@ -90,11 +98,3 @@ class MerchantClient(ApiResource, IMerchantClient):
         :return: :class:`ingenico.direct.sdk.merchant.tokens.i_tokens_client.ITokensClient`
         """
         return TokensClient(self, None)
-
-    def hosted_checkout(self) -> HostedCheckoutClient:
-        """
-        Resource /v2/{merchantId}/hostedcheckouts
-
-        :return: :class:`ingenico.direct.sdk.merchant.hostedcheckout.i_hosted_checkout_client.IHostedCheckoutClient`
-        """
-        return HostedCheckoutClient(self, None)

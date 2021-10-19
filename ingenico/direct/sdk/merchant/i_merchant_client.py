@@ -20,51 +20,11 @@ class IMerchantClient(ABC):
     """
 
     @abstractmethod
-    def products(self) -> ProductsClient:
+    def hosted_checkout(self) -> HostedCheckoutClient:
         """
-        Resource /v2/{merchantId}/products
+        Resource /v2/{merchantId}/hostedcheckouts
 
-        :return: :class:`ingenico.direct.sdk.merchant.products.i_products_client.IProductsClient`
-        """
-
-    @abstractmethod
-    def sessions(self) -> SessionsClient:
-        """
-        Resource /v2/{merchantId}/sessions
-
-        :return: :class:`ingenico.direct.sdk.merchant.sessions.i_sessions_client.ISessionsClient`
-        """
-
-    @abstractmethod
-    def payouts(self) -> PayoutsClient:
-        """
-        Resource /v2/{merchantId}/payouts
-
-        :return: :class:`ingenico.direct.sdk.merchant.payouts.i_payouts_client.IPayoutsClient`
-        """
-
-    @abstractmethod
-    def payments(self) -> PaymentsClient:
-        """
-        Resource /v2/{merchantId}/payments
-
-        :return: :class:`ingenico.direct.sdk.merchant.payments.i_payments_client.IPaymentsClient`
-        """
-
-    @abstractmethod
-    def services(self) -> ServicesClient:
-        """
-        Resource /v2/{merchantId}/services
-
-        :return: :class:`ingenico.direct.sdk.merchant.services.i_services_client.IServicesClient`
-        """
-
-    @abstractmethod
-    def product_groups(self) -> ProductGroupsClient:
-        """
-        Resource /v2/{merchantId}/productgroups
-
-        :return: :class:`ingenico.direct.sdk.merchant.productgroups.i_product_groups_client.IProductGroupsClient`
+        :return: :class:`ingenico.direct.sdk.merchant.hostedcheckout.i_hosted_checkout_client.IHostedCheckoutClient`
         """
 
     @abstractmethod
@@ -76,17 +36,57 @@ class IMerchantClient(ABC):
         """
 
     @abstractmethod
+    def payments(self) -> PaymentsClient:
+        """
+        Resource /v2/{merchantId}/payments
+
+        :return: :class:`ingenico.direct.sdk.merchant.payments.i_payments_client.IPaymentsClient`
+        """
+
+    @abstractmethod
+    def payouts(self) -> PayoutsClient:
+        """
+        Resource /v2/{merchantId}/payouts
+
+        :return: :class:`ingenico.direct.sdk.merchant.payouts.i_payouts_client.IPayoutsClient`
+        """
+
+    @abstractmethod
+    def product_groups(self) -> ProductGroupsClient:
+        """
+        Resource /v2/{merchantId}/productgroups
+
+        :return: :class:`ingenico.direct.sdk.merchant.productgroups.i_product_groups_client.IProductGroupsClient`
+        """
+
+    @abstractmethod
+    def products(self) -> ProductsClient:
+        """
+        Resource /v2/{merchantId}/products
+
+        :return: :class:`ingenico.direct.sdk.merchant.products.i_products_client.IProductsClient`
+        """
+
+    @abstractmethod
+    def services(self) -> ServicesClient:
+        """
+        Resource /v2/{merchantId}/services
+
+        :return: :class:`ingenico.direct.sdk.merchant.services.i_services_client.IServicesClient`
+        """
+
+    @abstractmethod
+    def sessions(self) -> SessionsClient:
+        """
+        Resource /v2/{merchantId}/sessions
+
+        :return: :class:`ingenico.direct.sdk.merchant.sessions.i_sessions_client.ISessionsClient`
+        """
+
+    @abstractmethod
     def tokens(self) -> TokensClient:
         """
         Resource /v2/{merchantId}/tokens
 
         :return: :class:`ingenico.direct.sdk.merchant.tokens.i_tokens_client.ITokensClient`
-        """
-
-    @abstractmethod
-    def hosted_checkout(self) -> HostedCheckoutClient:
-        """
-        Resource /v2/{merchantId}/hostedcheckouts
-
-        :return: :class:`ingenico.direct.sdk.merchant.hostedcheckout.i_hosted_checkout_client.IHostedCheckoutClient`
         """
