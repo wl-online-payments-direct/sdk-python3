@@ -4,16 +4,16 @@ import unittest
 import uuid
 
 import tests.file_utils as file_utils
-from ingenico.direct.sdk.call_context import CallContext
-from ingenico.direct.sdk.declined_payment_exception import DeclinedPaymentException
-from ingenico.direct.sdk.domain.address import Address
-from ingenico.direct.sdk.domain.amount_of_money import AmountOfMoney
-from ingenico.direct.sdk.domain.card import Card
-from ingenico.direct.sdk.domain.card_payment_method_specific_input import CardPaymentMethodSpecificInput
-from ingenico.direct.sdk.domain.create_payment_request import CreatePaymentRequest
-from ingenico.direct.sdk.domain.customer import Customer
-from ingenico.direct.sdk.domain.order import Order
-from ingenico.direct.sdk.idempotence_exception import IdempotenceException
+from onlinepayments.sdk.call_context import CallContext
+from onlinepayments.sdk.declined_payment_exception import DeclinedPaymentException
+from onlinepayments.sdk.domain.address import Address
+from onlinepayments.sdk.domain.amount_of_money import AmountOfMoney
+from onlinepayments.sdk.domain.card import Card
+from onlinepayments.sdk.domain.card_payment_method_specific_input import CardPaymentMethodSpecificInput
+from onlinepayments.sdk.domain.create_payment_request import CreatePaymentRequest
+from onlinepayments.sdk.domain.customer import Customer
+from onlinepayments.sdk.domain.order import Order
+from onlinepayments.sdk.idempotence_exception import IdempotenceException
 from tests.unit.server_mock_utils import create_client, create_server_listening
 
 

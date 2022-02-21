@@ -3,12 +3,12 @@ import unittest
 import warnings
 from urllib.parse import urlparse
 
-from ingenico.direct.sdk.defaultimpl.authorization_type import AuthorizationType
-from ingenico.direct.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
-from ingenico.direct.sdk.defaultimpl.default_connection import DefaultConnection
-from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
-from ingenico.direct.sdk.factory import Factory
-from ingenico.direct.sdk.meta_data_provider import MetaDataProvider
+from onlinepayments.sdk.defaultimpl.authorization_type import AuthorizationType
+from onlinepayments.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
+from onlinepayments.sdk.defaultimpl.default_connection import DefaultConnection
+from onlinepayments.sdk.defaultimpl.default_marshaller import DefaultMarshaller
+from onlinepayments.sdk.factory import Factory
+from onlinepayments.sdk.meta_data_provider import MetaDataProvider
 from tests.unit.test_default_connection import DefaultConnectionTest
 
 PROPERTIES_URI = os.path.abspath(os.path.join(__file__, os.pardir, "../resources/configuration.ini"))
@@ -22,7 +22,7 @@ class FactoryTest(unittest.TestCase):
     def test_create_configuration(self):
         """Tests that the factory is correctly able to create a communicator configuration"""
         configuration = Factory.create_configuration(PROPERTIES_URI, API_KEY_ID, SECRET_API_KEY)
-        self.assertEqual(urlparse("https://payment.preprod.direct.ingenico.com"), configuration.api_endpoint)
+        self.assertEqual(urlparse("https://fill_me_in"), configuration.api_endpoint)
         self.assertEqual(AuthorizationType.get_authorization("v1HMAC"), configuration.authorization_type)
         self.assertEqual(-1, configuration.connect_timeout)
         self.assertEqual(-1, configuration.socket_timeout)

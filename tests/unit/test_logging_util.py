@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from ingenico.direct.sdk.log.logging_util import LoggingUtil
+from onlinepayments.sdk.log.logging_util import LoggingUtil
 from tests import file_utils
 
 

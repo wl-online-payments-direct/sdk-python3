@@ -3,11 +3,11 @@ import unittest
 from datetime import timedelta
 from unittest.mock import MagicMock, Mock, patch
 
-from ingenico.direct.sdk.connection import Connection
-from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
-from ingenico.direct.sdk.factory import Factory
-from ingenico.direct.sdk.pooled_connection import PooledConnection
-from ingenico.direct.sdk.request_header import RequestHeader
+from onlinepayments.sdk.connection import Connection
+from onlinepayments.sdk.defaultimpl.default_marshaller import DefaultMarshaller
+from onlinepayments.sdk.factory import Factory
+from onlinepayments.sdk.pooled_connection import PooledConnection
+from onlinepayments.sdk.request_header import RequestHeader
 from tests.unit.test_factory import API_KEY_ID, PROPERTIES_URI, SECRET_API_KEY
 
 

@@ -1,4 +1,4 @@
-from ingenico.direct.sdk.request_param import RequestParam
+from onlinepayments.sdk.request_param import RequestParam
 
 
 class ComparableParam(RequestParam):

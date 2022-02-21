@@ -1,8 +1,8 @@
 import unittest
 
-from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
-from ingenico.direct.sdk.webhooks.in_memory_secret_key_store import InMemorySecretKeyStore
-from ingenico.direct.sdk.webhooks.web_hooks import Webhooks
+from onlinepayments.sdk.defaultimpl.default_marshaller import DefaultMarshaller
+from onlinepayments.sdk.webhooks.in_memory_secret_key_store import InMemorySecretKeyStore
+from onlinepayments.sdk.webhooks.web_hooks import Webhooks
 
 
 class WebhooksTest(unittest.TestCase):

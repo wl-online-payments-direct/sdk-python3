@@ -1,12 +1,13 @@
 import unittest
 
-from ingenico.direct.sdk.merchant.productgroups.get_product_groups_params import GetProductGroupsParams
+from onlinepayments.sdk.merchant.productgroups.get_product_groups_params import GetProductGroupsParams
 from tests.integration import init_utils
 from tests.integration.init_utils import MERCHANT_ID
 
 
 class PaymentProductGroupsTest(unittest.TestCase):
     """Test if product groups function"""
+
     def test_payment_product_groups(self):
         """Test if product groups function"""
         params = GetProductGroupsParams()

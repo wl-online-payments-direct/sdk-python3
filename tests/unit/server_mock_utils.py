@@ -4,19 +4,19 @@ import socketserver
 import time
 from http.server import BaseHTTPRequestHandler
 
-from ingenico.direct.sdk.communicator import Communicator
-from ingenico.direct.sdk.defaultimpl.authorization_type import AuthorizationType
-from ingenico.direct.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
-from ingenico.direct.sdk.defaultimpl.default_connection import DefaultConnection
-from ingenico.direct.sdk.endpoint_configuration import EndpointConfiguration
-from ingenico.direct.sdk.factory import Factory
-from ingenico.direct.sdk.meta_data_provider import MetaDataProvider
+from onlinepayments.sdk.communicator import Communicator
+from onlinepayments.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
+from onlinepayments.sdk.defaultimpl.default_connection import DefaultConnection
+from onlinepayments.sdk.endpoint_configuration import EndpointConfiguration
+from onlinepayments.sdk.factory import Factory
+from onlinepayments.sdk.meta_data_provider import MetaDataProvider
 
 
 def create_handler(call_able):
     """Creates a handler that serves requests by calling the callable object
     with this handler as argument
     """
+
     class RequestHandler(BaseHTTPRequestHandler):
 
         def do_GET(self):
@@ -33,6 +33,7 @@ def create_handler(call_able):
         def do_DELETE(self):
             call_able(self)
             time.sleep(0.1)  # sleep to avoid dropping the client before it can read the response
+
     return RequestHandler
 
 
@@ -49,16 +50,17 @@ def create_server_listening(call_able):
     try:
         # frequent polling server for a faster server shutdown and faster tests
         _thread.start_new(server.serve_forever, (0.1,))
-        yield 'http://localhost:'+str(server.server_address[1])
+        yield 'http://localhost:' + str(server.server_address[1])
     finally:
         server.shutdown()
         server.server_close()
 
 
-def create_client(http_host, connect_timeout=0.500, socket_timeout=0.500, max_connections=EndpointConfiguration.DEFAULT_MAX_CONNECTIONS):
+def create_client(http_host, connect_timeout=0.500, socket_timeout=0.500,
+                  max_connections=EndpointConfiguration.DEFAULT_MAX_CONNECTIONS):
     connection = DefaultConnection(connect_timeout, socket_timeout, max_connections)
     authenticator = DefaultAuthenticator("apiKey", "secret")
-    meta_data_provider = MetaDataProvider("Ingenico")
+    meta_data_provider = MetaDataProvider("OnlinePayments")
     communicator = Communicator(
         api_endpoint=http_host,
         authenticator=authenticator,

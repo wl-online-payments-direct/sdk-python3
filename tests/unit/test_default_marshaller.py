@@ -1,10 +1,10 @@
 import unittest
 
-from ingenico.direct.sdk.data_object import DataObject
-from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
-from ingenico.direct.sdk.domain.token_card import TokenCard
-from ingenico.direct.sdk.domain.token_card_data import TokenCardData
-from ingenico.direct.sdk.domain.token_response import TokenResponse
+from onlinepayments.sdk.data_object import DataObject
+from onlinepayments.sdk.defaultimpl.default_marshaller import DefaultMarshaller
+from onlinepayments.sdk.domain.token_card import TokenCard
+from onlinepayments.sdk.domain.token_card_data import TokenCardData
+from onlinepayments.sdk.domain.token_response import TokenResponse
 
 
 class DefaultMarshallerTest(unittest.TestCase):

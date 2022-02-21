@@ -1,6 +1,6 @@
 import unittest
 
-from ingenico.direct.sdk.response_header import get_header, get_header_value
+from onlinepayments.sdk.response_header import get_header, get_header_value
 
 
 class ResponseHeaderTest(unittest.TestCase):

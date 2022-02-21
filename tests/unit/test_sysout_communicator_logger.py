@@ -3,7 +3,7 @@ import re
 import sys
 import unittest
 
-from ingenico.direct.sdk.log.sys_out_communicator_logger import SysOutCommunicatorLogger
+from onlinepayments.sdk.log.sys_out_communicator_logger import SysOutCommunicatorLogger
 
 
 class SysOutCommunicatorLoggerTest(unittest.TestCase):

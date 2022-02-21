@@ -1,12 +1,13 @@
 import unittest
 
-from ingenico.direct.sdk.merchant.products.get_payment_products_params import GetPaymentProductsParams
+from onlinepayments.sdk.merchant.products.get_payment_products_params import GetPaymentProductsParams
 from tests.integration import init_utils
 from tests.integration.init_utils import MERCHANT_ID
 
 
 class PaymentProductTest(unittest.TestCase):
     """Test if products functions"""
+
     def test_payment_products(self):
         """Test if get_payment_products functions"""
         params = GetPaymentProductsParams()

@@ -3,7 +3,7 @@ import timeit
 import unittest
 
 import tests.integration.init_utils as init_utils
-from ingenico.direct.sdk.factory import Factory
+from onlinepayments.sdk.factory import Factory
 from tests.integration.init_utils import MERCHANT_ID
 
 
@@ -13,7 +13,7 @@ class ConnectionPoolingTest(unittest.TestCase):
 
     def setUp(self):
         self.flag = threading.Event()  # flag to synchronise a start moment for the threads
-        self.result_list = []          # list to collect results from the threads
+        self.result_list = []  # list to collect results from the threads
         self.lock = threading.RLock()  # mutex lock for the threads to provide concurrent access to the result list
 
     def test_connection_pool_max_is_count(self):
@@ -36,7 +36,7 @@ class ConnectionPoolingTest(unittest.TestCase):
             # Create a number of runner threads that will execute send_request
             runner_threads = [
                 threading.Thread(target=self.send_request, args=(i, communicator)) for i in range(0, request_count)
-                ]
+            ]
             for thread in runner_threads:
                 thread.start()
             self.flag.set()

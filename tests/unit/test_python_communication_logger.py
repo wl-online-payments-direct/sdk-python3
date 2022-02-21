@@ -1,7 +1,7 @@
 import logging
 import unittest
 
-from ingenico.direct.sdk.log.python_communicator_logger import PythonCommunicatorLogger
+from onlinepayments.sdk.log.python_communicator_logger import PythonCommunicatorLogger
 
 
 class SDKCommunicatorLoggerTest(unittest.TestCase):

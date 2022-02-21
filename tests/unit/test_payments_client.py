@@ -2,28 +2,27 @@ import os
 import unittest
 from unittest.mock import MagicMock, patch
 
-from ingenico.direct.sdk.api_exception import ApiException
-from ingenico.direct.sdk.call_context import CallContext
-from ingenico.direct.sdk.communication_exception import CommunicationException
-from ingenico.direct.sdk.communicator import Communicator
-from ingenico.direct.sdk.connection import Connection
-from ingenico.direct.sdk.declined_payment_exception import DeclinedPaymentException
-from ingenico.direct.sdk.defaultimpl.authorization_type import AuthorizationType
-from ingenico.direct.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
-from ingenico.direct.sdk.domain.address import Address
-from ingenico.direct.sdk.domain.amount_of_money import AmountOfMoney
-from ingenico.direct.sdk.domain.card import Card
-from ingenico.direct.sdk.domain.card_payment_method_specific_input import CardPaymentMethodSpecificInput
-from ingenico.direct.sdk.domain.create_payment_request import CreatePaymentRequest
-from ingenico.direct.sdk.domain.customer import Customer
-from ingenico.direct.sdk.domain.order import Order
-from ingenico.direct.sdk.factory import Factory
-from ingenico.direct.sdk.idempotence_exception import IdempotenceException
-from ingenico.direct.sdk.meta_data_provider import MetaDataProvider
-from ingenico.direct.sdk.not_found_exception import NotFoundException
-from ingenico.direct.sdk.reference_exception import ReferenceException
-from ingenico.direct.sdk.response_exception import ResponseException
-from ingenico.direct.sdk.validation_exception import ValidationException
+from onlinepayments.sdk.api_exception import ApiException
+from onlinepayments.sdk.call_context import CallContext
+from onlinepayments.sdk.communication_exception import CommunicationException
+from onlinepayments.sdk.communicator import Communicator
+from onlinepayments.sdk.connection import Connection
+from onlinepayments.sdk.declined_payment_exception import DeclinedPaymentException
+from onlinepayments.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
+from onlinepayments.sdk.domain.address import Address
+from onlinepayments.sdk.domain.amount_of_money import AmountOfMoney
+from onlinepayments.sdk.domain.card import Card
+from onlinepayments.sdk.domain.card_payment_method_specific_input import CardPaymentMethodSpecificInput
+from onlinepayments.sdk.domain.create_payment_request import CreatePaymentRequest
+from onlinepayments.sdk.domain.customer import Customer
+from onlinepayments.sdk.domain.order import Order
+from onlinepayments.sdk.factory import Factory
+from onlinepayments.sdk.idempotence_exception import IdempotenceException
+from onlinepayments.sdk.meta_data_provider import MetaDataProvider
+from onlinepayments.sdk.not_found_exception import NotFoundException
+from onlinepayments.sdk.reference_exception import ReferenceException
+from onlinepayments.sdk.response_exception import ResponseException
+from onlinepayments.sdk.validation_exception import ValidationException
 from tests import file_utils
 
 
@@ -36,7 +35,7 @@ class PaymentsClientTest(unittest.TestCase):
         self.communicator = Communicator(
             api_endpoint="http://localhost",
             authenticator=DefaultAuthenticator("admin", "admin"),
-            meta_data_provider=MetaDataProvider("Ingenico"),
+            meta_data_provider=MetaDataProvider("OnlinePayments"),
             connection=self.mock_connection)
 
     def test_create_success(self):
@@ -49,7 +48,9 @@ class PaymentsClientTest(unittest.TestCase):
             def generate_body():
                 for start in range(0, len(response_body), 1024):
                     yield response_body[start: start + 1024].encode('utf-8')
+
             return 201, None, generate_body()
+
         self.mock_connection.post.side_effect = receive_post
 
         response = client.merchant("merchantId").payments().create_payment(request_body)
@@ -67,7 +68,9 @@ class PaymentsClientTest(unittest.TestCase):
             def generate_response():
                 for start in range(0, len(response_body), 1024):
                     yield response_body[start: start + 1024].encode('utf-8')
+
             return 400, None, generate_response()
+
         self.mock_connection.post.side_effect = receive_post
 
         with self.assertRaises(DeclinedPaymentException) as context:
@@ -89,7 +92,9 @@ class PaymentsClientTest(unittest.TestCase):
             def generate_response():
                 for start in range(0, len(response_body), 1024):
                     yield response_body[start: start + 1024].encode('utf-8')
+
             return 400, None, generate_response()
+
         self.mock_connection.post.side_effect = receive_post
 
         with self.assertRaises(ValidationException) as exception:
@@ -106,7 +111,9 @@ class PaymentsClientTest(unittest.TestCase):
             def generate_response():
                 for start in range(0, len(response_body), 1024):
                     yield response_body[start: start + 1024].encode('utf-8')
+
             return 401, None, generate_response()
+
         self.mock_connection.post.side_effect = receive_post
 
         with self.assertRaises(ApiException) as exception:
@@ -125,7 +132,9 @@ class PaymentsClientTest(unittest.TestCase):
             def generate_response():
                 for start in range(0, len(response_body), 1024):
                     yield response_body[start: start + 1024].encode('utf-8')
+
             return 409, None, generate_response()
+
         self.mock_connection.post.side_effect = receive_post
 
         with self.assertRaises(ReferenceException) as exception:
@@ -145,7 +154,9 @@ class PaymentsClientTest(unittest.TestCase):
             def generate_response():
                 for start in range(0, len(response_body), 1024):
                     yield response_body[start: start + 1024].encode('utf-8')
+
             return 409, None, generate_response()
+
         self.mock_connection.post.side_effect = receive_post
 
         with self.assertRaises(IdempotenceException) as exception:
@@ -164,7 +175,9 @@ class PaymentsClientTest(unittest.TestCase):
             def generate_response():
                 for start in range(0, len(response_body), 1024):
                     yield response_body[start: start + 1024].encode('utf-8')
+
             return 404, {"content-type": "text/html"}, generate_response()
+
         self.mock_connection.post.side_effect = receive_post
 
         with self.assertRaises(NotFoundException) as exception:
@@ -184,7 +197,9 @@ class PaymentsClientTest(unittest.TestCase):
             def generate_response():
                 for start in range(0, len(response_body), 1024):
                     yield response_body[start: start + 1024].encode('utf-8')
+
             return 405, {"content-type": "text/html"}, generate_response()
+
         self.mock_connection.post.side_effect = receive_post
 
         with self.assertRaises(CommunicationException) as exception:

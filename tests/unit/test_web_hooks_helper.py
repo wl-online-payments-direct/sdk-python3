@@ -4,15 +4,15 @@ import uuid
 
 from mockito import *
 
-from ingenico.direct.sdk.defaultimpl.default_marshaller import DefaultMarshaller
-from ingenico.direct.sdk.domain.web_hooks_event import WebhooksEvent
-from ingenico.direct.sdk.marshaller import Marshaller
-from ingenico.direct.sdk.request_header import RequestHeader
-from ingenico.direct.sdk.webhooks.api_version_mismatch_exception import ApiVersionMismatchException
-from ingenico.direct.sdk.webhooks.in_memory_secret_key_store import InMemorySecretKeyStore
-from ingenico.direct.sdk.webhooks.secret_key_not_available_exception import SecretKeyNotAvailableException
-from ingenico.direct.sdk.webhooks.signature_validation_exception import SignatureValidationException
-from ingenico.direct.sdk.webhooks.web_hooks_helper import WebhooksHelper
+from onlinepayments.sdk.defaultimpl.default_marshaller import DefaultMarshaller
+from onlinepayments.sdk.domain.web_hooks_event import WebhooksEvent
+from onlinepayments.sdk.marshaller import Marshaller
+from onlinepayments.sdk.request_header import RequestHeader
+from onlinepayments.sdk.webhooks.api_version_mismatch_exception import ApiVersionMismatchException
+from onlinepayments.sdk.webhooks.in_memory_secret_key_store import InMemorySecretKeyStore
+from onlinepayments.sdk.webhooks.secret_key_not_available_exception import SecretKeyNotAvailableException
+from onlinepayments.sdk.webhooks.signature_validation_exception import SignatureValidationException
+from onlinepayments.sdk.webhooks.web_hooks_helper import WebhooksHelper
 from tests import file_utils
 
 

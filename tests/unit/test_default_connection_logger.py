@@ -6,20 +6,20 @@ import unittest
 from requests.exceptions import Timeout
 
 import tests.file_utils as file_utils
-from ingenico.direct.sdk.communication_exception import CommunicationException
-from ingenico.direct.sdk.declined_payment_exception import DeclinedPaymentException
-from ingenico.direct.sdk.direct_exception import DirectException
-from ingenico.direct.sdk.domain.address import Address
-from ingenico.direct.sdk.domain.amount_of_money import AmountOfMoney
-from ingenico.direct.sdk.domain.card import Card
-from ingenico.direct.sdk.domain.card_payment_method_specific_input import CardPaymentMethodSpecificInput
-from ingenico.direct.sdk.domain.create_payment_request import CreatePaymentRequest
-from ingenico.direct.sdk.domain.customer import Customer
-from ingenico.direct.sdk.domain.order import Order
-from ingenico.direct.sdk.log.communicator_logger import CommunicatorLogger
-from ingenico.direct.sdk.merchant.products.get_payment_product_params import GetPaymentProductParams
-from ingenico.direct.sdk.not_found_exception import NotFoundException
-from ingenico.direct.sdk.validation_exception import ValidationException
+from onlinepayments.sdk.communication_exception import CommunicationException
+from onlinepayments.sdk.declined_payment_exception import DeclinedPaymentException
+from onlinepayments.sdk.domain.address import Address
+from onlinepayments.sdk.domain.amount_of_money import AmountOfMoney
+from onlinepayments.sdk.domain.card import Card
+from onlinepayments.sdk.domain.card_payment_method_specific_input import CardPaymentMethodSpecificInput
+from onlinepayments.sdk.domain.create_payment_request import CreatePaymentRequest
+from onlinepayments.sdk.domain.customer import Customer
+from onlinepayments.sdk.domain.order import Order
+from onlinepayments.sdk.log.communicator_logger import CommunicatorLogger
+from onlinepayments.sdk.merchant.products.get_payment_product_params import GetPaymentProductParams
+from onlinepayments.sdk.not_found_exception import NotFoundException
+from onlinepayments.sdk.payment_platform_exception import PaymentPlatformException
+from onlinepayments.sdk.validation_exception import ValidationException
 from tests.unit.server_mock_utils import create_client, create_server_listening
 
 
@@ -118,7 +118,7 @@ class DefaultConnectionLoggerTest(unittest.TestCase):
         self.assertIsNotNone(response)
         self.assertIsNotNone(response.payment)
         self.assertIsNotNone(response.payment.id)
-        surname = response.payment.payment_output.redirect_payment_method_specific_output.\
+        surname = response.payment.payment_output.redirect_payment_method_specific_output. \
             payment_product840_specific_output.customer_account.surname
         self.assertEqual(surname, u"Schr\xf6der")
         self.assertEqual(test_path, self.request_path,
@@ -202,7 +202,7 @@ class DefaultConnectionLoggerTest(unittest.TestCase):
         with create_server_listening(handler) as address:  # start server to listen to request
             with create_client(address) as client:  # create client under test
                 client.enable_logging(logger)
-                with self.assertRaises(DirectException):
+                with self.assertRaises(PaymentPlatformException):
                     client.merchant("1").services().test_connection()
 
         self.assertEqual(test_path, self.request_path, 'Request has arrived at the wrong path')
@@ -347,7 +347,7 @@ class DefaultConnectionLoggerTest(unittest.TestCase):
         self.assertIsInstance(error_entry[1], Timeout,
                               "logger should have logged a timeout error, logged {} instead".format(error_entry[1]))
 
-# Verification methods
+    # Verification methods
 
     def assertLogsRequestAndResponse(self, logger, request_resource_prefix, response_resource_prefix=None):
         """Assert that the logs of the logger contain both request and response and no errors,
@@ -520,7 +520,8 @@ class TestLogger(CommunicatorLogger):
 
 
 # reads a file names file_name stored under resources/default_implementation
-def read_resource(file_name): return file_utils.read_file(os.path.join("default_implementation", file_name), encoding="UTF-8")
+def read_resource(file_name): return file_utils.read_file(os.path.join("default_implementation", file_name),
+                                                          encoding="UTF-8")
 
 
 # ------------------------------------ REGEX SOURCES ------------------------------------
@@ -587,7 +588,6 @@ def createPayment_failure_invalidCardNumber_response(response, test):
 
 
 def createPayment_failure_rejected_request(request, test):
-
     test.assertEqual(request.method, "POST")
     test.assertEqual(request.uri, '/v2/1/payments')
 

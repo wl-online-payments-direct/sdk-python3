@@ -1,11 +1,11 @@
 import unittest
 import warnings
 
-from ingenico.direct.sdk.communicator_configuration import CommunicatorConfiguration
-from ingenico.direct.sdk.defaultimpl.default_connection import DefaultConnection
-from ingenico.direct.sdk.log.response_log_message import ResponseLogMessage
-from ingenico.direct.sdk.log.sys_out_communicator_logger import SysOutCommunicatorLogger
-from ingenico.direct.sdk.proxy_configuration import ProxyConfiguration
+from onlinepayments.sdk.communicator_configuration import CommunicatorConfiguration
+from onlinepayments.sdk.defaultimpl.default_connection import DefaultConnection
+from onlinepayments.sdk.log.response_log_message import ResponseLogMessage
+from onlinepayments.sdk.log.sys_out_communicator_logger import SysOutCommunicatorLogger
+from onlinepayments.sdk.proxy_configuration import ProxyConfiguration
 
 CONNECT_TIMEOUT = 10
 SOCKET_TIMEOUT = 20

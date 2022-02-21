@@ -1,6 +1,6 @@
 import unittest
 
-from ingenico.direct.sdk.merchant.products.get_product_directory_params import GetProductDirectoryParams
+from onlinepayments.sdk.merchant.products.get_product_directory_params import GetProductDirectoryParams
 from tests.unit.comparable_param import ComparableParam
 
 

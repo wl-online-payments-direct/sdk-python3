@@ -13,25 +13,25 @@ def read(fname):
 
 
 def test_collector():
-    """Function to collect tests cases to run for the 'pip direct-sdk-python3 tests' command"""
+    """Function to collect tests cases to run for the 'pip onlinepayments-sdk-python3 tests' command"""
     from tests import run_unit_tests
     loader = unittest.TestLoader()
     return loader.discover(start_dir=run_unit_tests.__file__)
 
 
 setup(
-    name="direct-sdk-python3",
-    version="1.10.0",
-    author="Ingenico dev team",
-    author_email="60233882+ingenico-dev-team@users.noreply.github.com",
-    description="SDK to communicate with the Ingenico ePayments platform using the Ingenico Direct Server API",
+    name="onlinepayments-sdk-python3",
+    version="3.0.0",
+    author="Worldline Direct support team",
+    author_email="82139942+worldline-direct-support-team@users.noreply.github.com",
+    description="SDK to communicate with the Online Payments platform using the Online Payments  Server API",
     license="MIT",
     platforms="python 3.5",
-    keywords="Ingenico ePayments Direct SDK",
-    url="https://github.com/Ingenico/direct-sdk-python3",
+    keywords="Online Payments SDK",
+    url="https://github.com/wl-online-payments-direct/sdk-python3",
     packages=find_namespace_packages(
         exclude=["*.tests", "*.tests.*", "tests.*", "tests"],  # Exclude tests
-        include="ingenico.*"),  # finds all source packages, recursively
+        include="onlinepayments.*"),  # finds all source packages, recursively
     # list non-code files used by the SDK
     package_data={".": ["MANIFEST.in", "README.md", "setup.py", "LICENSE.txt"]},
     # installs all files listed in the MANIFEST.in into the installation (currently does not seem to happen either way)

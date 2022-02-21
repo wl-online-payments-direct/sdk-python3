@@ -1,9 +1,9 @@
 import unittest
 import urllib.parse
 
-from ingenico.direct.sdk.defaultimpl.authorization_type import AuthorizationType
-from ingenico.direct.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
-from ingenico.direct.sdk.request_header import RequestHeader
+from onlinepayments.sdk.defaultimpl.authorization_type import AuthorizationType
+from onlinepayments.sdk.defaultimpl.default_authenticator import DefaultAuthenticator
+from onlinepayments.sdk.request_header import RequestHeader
 
 
 class DefaultAuthenticatorTest(unittest.TestCase):
@@ -24,7 +24,7 @@ class DefaultAuthenticatorTest(unittest.TestCase):
         authenticator = DefaultAuthenticator("apiKeyId", "secretApiKey", AuthorizationType.V1HMAC)
         http_headers = [RequestHeader("X-GCS-ServerMetaInfo",
                                       "{\"platformIdentifier\":\"Windows 10/10.0.18362 Python/3.8.5 (CPython; MSC v.1916 32 bit (Intel))\","
-                                      "\"sdkIdentifier\":\"DirectPython3ServerSDK/v1.0.0\"}"),
+                                      "\"sdkIdentifier\":\"OnlinePaymentsPython3ServerSDK/v1.0.0\"}"),
                         RequestHeader("Content-Type", "application/json"),
                         RequestHeader("X-GCS-ClientMetaInfo", "{\"aap\",\"noot\"}"),
                         RequestHeader("User-Agent", "Apache-HttpClient/4.3.4 (java 1.5)"),
@@ -33,7 +33,7 @@ class DefaultAuthenticatorTest(unittest.TestCase):
                          "application/json\n"
         expected_end = "x-gcs-clientmetainfo:{\"aap\",\"noot\"}\n" \
                        "x-gcs-servermetainfo:{\"platformIdentifier\":\"Windows 10/10.0.18362 Python/3.8.5 (CPython; MSC v.1916 32 bit (Intel))\"," \
-                       "\"sdkIdentifier\":\"DirectPython3ServerSDK/v1.0.0\"}\n" \
+                       "\"sdkIdentifier\":\"OnlinePaymentsPython3ServerSDK/v1.0.0\"}\n" \
                        "/v2/1/products%20bla?aap=noot&mies=geen%20noot\n"
 
         url = urllib.parse.urlparse("http://localhost:8080/v2/1/products%20bla?aap=noot&mies=geen%20noot")
