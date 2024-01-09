@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>onlinepayments.sdk.defaultimpl.default_connection &#8212; onlinepayments-sdk-python3 4.16.0 documentation</title>
+    <title>onlinepayments.sdk.defaultimpl.default_connection &#8212; onlinepayments-sdk-python3 4.18.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -39,6 +39,7 @@
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">requests.adapters</span> <span class="kn">import</span> <span class="n">HTTPAdapter</span>
 <span class="kn">from</span> <span class="nn">requests.exceptions</span> <span class="kn">import</span> <span class="n">RequestException</span><span class="p">,</span> <span class="n">Timeout</span>
+<span class="kn">from</span> <span class="nn">requests_toolbelt</span> <span class="kn">import</span> <span class="n">MultipartEncoder</span>
 
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.communication_exception</span> <span class="kn">import</span> <span class="n">CommunicationException</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.endpoint_configuration</span> <span class="kn">import</span> <span class="n">EndpointConfiguration</span>
@@ -46,6 +47,7 @@
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.log.response_log_message</span> <span class="kn">import</span> <span class="n">ResponseLogMessage</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.pooled_connection</span> <span class="kn">import</span> <span class="n">PooledConnection</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.proxy_configuration</span> <span class="kn">import</span> <span class="n">ProxyConfiguration</span>
+<span class="kn">from</span> <span class="nn">onlinepayments.sdk.multipart_form_data_object</span> <span class="kn">import</span> <span class="n">MultipartFormDataObject</span>
 
 <span class="n">CHARSET</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span>
 
@@ -125,6 +127,8 @@
 <span class="sd">         representing the request headers</span>
 <span class="sd">        :param body: the request body</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">MultipartFormDataObject</span><span class="p">):</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__to_multipart_encoder</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">request_headers</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DefaultConnection.put"><a class="viewcode-back" href="../../../../index.html#onlinepayments.sdk.defaultimpl.default_connection.DefaultConnection.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">request_headers</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
@@ -136,6 +140,17 @@
 <span class="sd">        :param body: the request body</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">request_headers</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span></div>
+    
+    <span class="k">def</span> <span class="nf">__to_multipart_encoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multipart</span><span class="p">):</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">multipart</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">uploadable_file</span> <span class="ow">in</span> <span class="n">multipart</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">uploadable_file</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span> <span class="n">uploadable_file</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">uploadable_file</span><span class="o">.</span><span class="n">content_type</span><span class="p">)</span>
+        <span class="n">encoder</span> <span class="o">=</span> <span class="n">MultipartEncoder</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span> <span class="n">boundary</span><span class="o">=</span><span class="n">multipart</span><span class="o">.</span><span class="n">boundary</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">encoder</span><span class="o">.</span><span class="n">content_type</span> <span class="o">!=</span> <span class="n">multipart</span><span class="o">.</span><span class="n">content_type</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;MultipartEncoder did not create the expected content type&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">encoder</span>
 
     <span class="k">class</span> <span class="nc">_ToResult</span><span class="p">:</span>
         <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
@@ -165,6 +180,12 @@
         <span class="k">if</span> <span class="n">headers</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">param</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">}</span>
 
+        <span class="c1"># generate random uuid for traceability</span>
+        <span class="n">_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+
+        <span class="c1"># set X-Request-Id for better traceability</span>
+        <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-Request-Id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_id</span><span class="p">;</span>
+
         <span class="c1"># send request with all parameters not declared in session and with</span>
         <span class="c1"># callback for logging response</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
@@ -172,7 +193,6 @@
         <span class="n">prepped_request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__requests_session</span><span class="o">.</span><span class="n">prepare_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="c1"># add timestamp to request for later reference</span>
         <span class="n">prepped_request</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="n">_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
         <span class="c1"># store random id in request so it can be matched with its response</span>
         <span class="c1"># in logging</span>
         <span class="n">prepped_request</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">_id</span>

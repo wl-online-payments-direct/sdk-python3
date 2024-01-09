@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Online Payments Python SDK &#8212; onlinepayments-sdk-python3 4.16.0 documentation</title>
+    <title>Online Payments Python SDK &#8212; onlinepayments-sdk-python3 4.18.0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -1129,6 +1129,60 @@ an automatically generated header X-GCS-ServerMetaInfo.</p>
 
 </dd></dl>
 
+<span class="target" id="module-onlinepayments.sdk.multipart_form_data_object"></span><dl class="py class">
+<dt id="onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.multipart_form_data_object.</span></code><code class="sig-name descname"><span class="pre">MultipartFormDataObject</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/multipart_form_data_object.html#MultipartFormDataObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A representation of a multipart/form-data object.</p>
+<dl class="py method">
+<dt id="onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.add_file">
+<code class="sig-name descname"><span class="pre">add_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uploadable_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/multipart_form_data_object.html#MultipartFormDataObject.add_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.add_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.add_value">
+<code class="sig-name descname"><span class="pre">add_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/multipart_form_data_object.html#MultipartFormDataObject.add_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.add_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.boundary">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">boundary</span></code><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.boundary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.content_type">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">content_type</span></code><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.content_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.files">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">files</span></code><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.values">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">values</span></code><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_object.MultipartFormDataObject.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-onlinepayments.sdk.multipart_form_data_request"></span><dl class="py class">
+<dt id="onlinepayments.sdk.multipart_form_data_request.MultipartFormDataRequest">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.multipart_form_data_request.</span></code><code class="sig-name descname"><span class="pre">MultipartFormDataRequest</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/multipart_form_data_request.html#MultipartFormDataRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_request.MultipartFormDataRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A representation of a multipart/form-data request.</p>
+<dl class="py method">
+<dt id="onlinepayments.sdk.multipart_form_data_request.MultipartFormDataRequest.to_multipart_form_data_object">
+<code class="sig-name descname"><span class="pre">to_multipart_form_data_object</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/multipart_form_data_request.html#MultipartFormDataRequest.to_multipart_form_data_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.multipart_form_data_request.MultipartFormDataRequest.to_multipart_form_data_object" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ingenico.connect.sdk.MultipartFormDataObject</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <span class="target" id="module-onlinepayments.sdk.not_found_exception"></span><dl class="py exception">
 <dt id="onlinepayments.sdk.not_found_exception.NotFoundException">
 <em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.not_found_exception.</span></code><code class="sig-name descname"><span class="pre">NotFoundException</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/not_found_exception.html#NotFoundException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.not_found_exception.NotFoundException" title="Permalink to this definition">¶</a></dt>
@@ -1407,6 +1461,55 @@ Never None.</p>
 <dd class="field-odd"><p>The value of the header with the given name, or None if there was no such header.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<span class="target" id="module-onlinepayments.sdk.uploadable_file"></span><dl class="py class">
+<dt id="onlinepayments.sdk.uploadable_file.UploadableFile">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.uploadable_file.</span></code><code class="sig-name descname"><span class="pre">UploadableFile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/uploadable_file.html#UploadableFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.uploadable_file.UploadableFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A file that can be uploaded.</p>
+<p>The allowed forms of content are defined by the Connection implementation.
+The default implementation supports strings, file descriptors and io.BytesIO objects.</p>
+<dl class="py method">
+<dt id="onlinepayments.sdk.uploadable_file.UploadableFile.content">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">content</span></code><a class="headerlink" href="#onlinepayments.sdk.uploadable_file.UploadableFile.content" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The file’s content.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.uploadable_file.UploadableFile.content_length">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">content_length</span></code><a class="headerlink" href="#onlinepayments.sdk.uploadable_file.UploadableFile.content_length" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The file’s content length, or -1 if not known.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.uploadable_file.UploadableFile.content_type">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">content_type</span></code><a class="headerlink" href="#onlinepayments.sdk.uploadable_file.UploadableFile.content_type" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The file’s content type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.uploadable_file.UploadableFile.file_name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">file_name</span></code><a class="headerlink" href="#onlinepayments.sdk.uploadable_file.UploadableFile.file_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The name of the file.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <span class="target" id="module-onlinepayments.sdk.validation_exception"></span><dl class="py exception">
@@ -1847,6 +1950,15 @@ representing the request headers</p></li>
 <div class="line">Information about the acquirer used to process the transaction</div>
 </div>
 <dl class="py method">
+<dt id="onlinepayments.sdk.domain.acquirer_information.AcquirerInformation.acquirer_selection_information">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">acquirer_selection_information</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_information.AcquirerInformation.acquirer_selection_information" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Information about the acquirer selection</div>
+</div>
+<p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation" title="onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="onlinepayments.sdk.domain.acquirer_information.AcquirerInformation.from_dictionary">
 <code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/acquirer_information.html#AcquirerInformation.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_information.AcquirerInformation.from_dictionary" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1863,6 +1975,52 @@ representing the request headers</p></li>
 <dl class="py method">
 <dt id="onlinepayments.sdk.domain.acquirer_information.AcquirerInformation.to_dictionary">
 <code class="sig-name descname"><span class="pre">to_dictionary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/acquirer_information.html#AcquirerInformation.to_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_information.AcquirerInformation.to_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-onlinepayments.sdk.domain.acquirer_selection_information"></span><dl class="py class">
+<dt id="onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.domain.acquirer_selection_information.</span></code><code class="sig-name descname"><span class="pre">AcquirerSelectionInformation</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/domain/acquirer_selection_information.html#AcquirerSelectionInformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#onlinepayments.sdk.data_object.DataObject" title="onlinepayments.sdk.data_object.DataObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.data_object.DataObject</span></code></a></p>
+<div class="line-block">
+<div class="line">Information about the acquirer selection</div>
+</div>
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.fallback_level">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">fallback_level</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.fallback_level" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Specifies whether a fallback occurred from the primary choice of the acquirer selection service.</div>
+</div>
+<p>Type: int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.from_dictionary">
+<code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/acquirer_selection_information.html#AcquirerSelectionInformation.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.from_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.result">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">result</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.result" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Result of the acquirer selection operation</div>
+</div>
+<p>Type: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.rule_name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">rule_name</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.rule_name" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Name of the rule used to select the acquirer</div>
+</div>
+<p>Type: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.to_dictionary">
+<code class="sig-name descname"><span class="pre">to_dictionary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/acquirer_selection_information.html#AcquirerSelectionInformation.to_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.acquirer_selection_information.AcquirerSelectionInformation.to_dictionary" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -3759,8 +3917,8 @@ representing the request headers</p></li>
 <dt id="onlinepayments.sdk.domain.card_payment_method_specific_input.CardPaymentMethodSpecificInput.is_recurring">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">is_recurring</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.card_payment_method_specific_input.CardPaymentMethodSpecificInput.is_recurring" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">* true - Only payment products that support recurring payments will be shown. Any transactions created will also be tagged as being a first of a recurring sequence.</div>
-<div class="line">* false - Only payment products that support one-off payments will be shown.</div>
+<div class="line">* true - Indicates that the transactions is part of a scheduled recurring sequence. In addition, recurringPaymentSequenceIndicator indicates if the transaction is the first or subsequent in a recurring sequence. </div>
+<div class="line">* false - Indicates that the transaction is not part of a scheduled recurring sequence.</div>
 <div class="line">The default value for this property is false.</div>
 </div>
 <p>Type: bool</p>
@@ -4649,7 +4807,7 @@ representing the request headers</p></li>
 <dt id="onlinepayments.sdk.domain.contact_details.ContactDetails.fax_number">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">fax_number</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.contact_details.ContactDetails.fax_number" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">Fax number of the customer</div>
+<div class="line">International version of the fax number of the customer including the leading + (i.e. +16127779311)</div>
 </div>
 <p>Type: str</p>
 </dd></dl>
@@ -4672,7 +4830,7 @@ representing the request headers</p></li>
 <dt id="onlinepayments.sdk.domain.contact_details.ContactDetails.phone_number">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">phone_number</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.contact_details.ContactDetails.phone_number" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">Phone number of the customer</div>
+<div class="line">International version of the phone number of the customer including the leading + (i.e. +16127779311)</div>
 </div>
 <p>Type: str</p>
 </dd></dl>
@@ -4858,6 +5016,12 @@ representing the request headers</p></li>
 <div class="line">If this parameter is false or missing, you should ask the user yourself and provide their answer when submitting the Tokenizer in your JavaScript code. To pass this choice set the submitTokenization function’s parameter storePermanently to false, if you choose not to store the token for subsequent payments, or to true otherwise.</div>
 </div>
 <p>Type: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.create_hosted_tokenization_request.CreateHostedTokenizationRequest.credit_card_specific_input">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">credit_card_specific_input</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.create_hosted_tokenization_request.CreateHostedTokenizationRequest.credit_card_specific_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization" title="onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization</span></code></a></p>
 </dd></dl>
 
 <dl class="py method">
@@ -5256,9 +5420,9 @@ representing the request headers</p></li>
 <dt id="onlinepayments.sdk.domain.create_payment_link_request.CreatePaymentLinkRequest.payment_link_order">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">payment_link_order</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.create_payment_link_request.CreatePaymentLinkRequest.payment_link_order" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">An object containing the details of the related payment.</div>
+<div class="line">An object containing the details of the related payment input.</div>
 </div>
-<p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder" title="onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder</span></code></a></p>
+<p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput" title="onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput</span></code></a></p>
 </dd></dl>
 
 <dl class="py method">
@@ -5600,6 +5764,62 @@ representing the request headers</p></li>
 </div>
 <p>Type: str</p>
 </dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization"></span><dl class="py class">
+<dt id="onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.</span></code><code class="sig-name descname"><span class="pre">CreditCardSpecificInputHostedTokenization</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/domain/credit_card_specific_input_hosted_tokenization.html#CreditCardSpecificInputHostedTokenization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#onlinepayments.sdk.data_object.DataObject" title="onlinepayments.sdk.data_object.DataObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.data_object.DataObject</span></code></a></p>
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization.from_dictionary">
+<code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/credit_card_specific_input_hosted_tokenization.html#CreditCardSpecificInputHostedTokenization.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization.from_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization.to_dictionary">
+<code class="sig-name descname"><span class="pre">to_dictionary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/credit_card_specific_input_hosted_tokenization.html#CreditCardSpecificInputHostedTokenization.to_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization.to_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization.validation_rules">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">validation_rules</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization.validation_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization" title="onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization"></span><dl class="py class">
+<dt id="onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.</span></code><code class="sig-name descname"><span class="pre">CreditCardValidationRulesHostedTokenization</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/domain/credit_card_validation_rules_hosted_tokenization.html#CreditCardValidationRulesHostedTokenization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#onlinepayments.sdk.data_object.DataObject" title="onlinepayments.sdk.data_object.DataObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.data_object.DataObject</span></code></a></p>
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization.cvv_mandatory_for_existing_token">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">cvv_mandatory_for_existing_token</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization.cvv_mandatory_for_existing_token" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Determines whether the Card Verification Value must be provided for existing tokens. This option overrides the payment method configuration for the session.</div>
+</div>
+<p>Type: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization.cvv_mandatory_for_new_token">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">cvv_mandatory_for_new_token</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization.cvv_mandatory_for_new_token" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Determines whether the Card Verification Value must be provided for new tokens. This option overrides the payment method configuration for the session.</div>
+</div>
+<p>Type: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization.from_dictionary">
+<code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/credit_card_validation_rules_hosted_tokenization.html#CreditCardValidationRulesHostedTokenization.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization.from_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization.to_dictionary">
+<code class="sig-name descname"><span class="pre">to_dictionary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/credit_card_validation_rules_hosted_tokenization.html#CreditCardValidationRulesHostedTokenization.to_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.credit_card_validation_rules_hosted_tokenization.CreditCardValidationRulesHostedTokenization.to_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -6619,6 +6839,43 @@ representing the request headers</p></li>
 
 </dd></dl>
 
+<span class="target" id="module-onlinepayments.sdk.domain.discount"></span><dl class="py class">
+<dt id="onlinepayments.sdk.domain.discount.Discount">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.domain.discount.</span></code><code class="sig-name descname"><span class="pre">Discount</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/domain/discount.html#Discount"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.discount.Discount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#onlinepayments.sdk.data_object.DataObject" title="onlinepayments.sdk.data_object.DataObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.data_object.DataObject</span></code></a></p>
+<div class="line-block">
+<div class="line">Object to apply a discount to the total basket by adding a discount line.</div>
+</div>
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.discount.Discount.amount">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">amount</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.discount.Discount.amount" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Amount in the smallest currency unit, i.e.:</div>
+</div>
+<div class="line-block">
+<div class="line">* EUR is a 2-decimals currency, the value 1234 will result in EUR 12.34</div>
+</div>
+<div class="line-block">
+<div class="line">* KWD is a 3-decimals currency, the value 1234 will result in KWD 1.234</div>
+</div>
+<div class="line-block">
+<div class="line">* JPY is a zero-decimal currency, the value 1234 will result in JPY 1234</div>
+</div>
+<p>Type: int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.discount.Discount.from_dictionary">
+<code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/discount.html#Discount.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.discount.Discount.from_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.discount.Discount.to_dictionary">
+<code class="sig-name descname"><span class="pre">to_dictionary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/discount.html#Discount.to_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.discount.Discount.to_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <span class="target" id="module-onlinepayments.sdk.domain.empty_validator"></span><dl class="py class">
 <dt id="onlinepayments.sdk.domain.empty_validator.EmptyValidator">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.domain.empty_validator.</span></code><code class="sig-name descname"><span class="pre">EmptyValidator</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/domain/empty_validator.html#EmptyValidator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.empty_validator.EmptyValidator" title="Permalink to this definition">¶</a></dt>
@@ -7121,7 +7378,7 @@ representing the request headers</p></li>
 <dt id="onlinepayments.sdk.domain.get_iin_details_request.GetIINDetailsRequest.bin">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">bin</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.get_iin_details_request.GetIINDetailsRequest.bin" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">The first digits of the credit card number from left to right with a minimum of 6 digits. Providing additional digits can result in more co-brands being returned.</div>
+<div class="line">The first digits of the credit card number from left to right with a minimum of 6 digits. Providing additional digits (up to 19) can result in more co-brands being returned.</div>
 </div>
 <p>Type: str</p>
 </dd></dl>
@@ -8679,6 +8936,15 @@ representing the request headers</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt id="onlinepayments.sdk.domain.order.Order.discount">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">discount</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.order.Order.discount" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Object to apply a discount to the total basket by adding a discount line.</div>
+</div>
+<p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.discount.Discount" title="onlinepayments.sdk.domain.discount.Discount"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.discount.Discount</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="onlinepayments.sdk.domain.order.Order.from_dictionary">
 <code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/order.html#Order.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.order.Order.from_dictionary" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -9276,7 +9542,7 @@ representing the request headers</p></li>
 <dt id="onlinepayments.sdk.domain.payment_link_event.PaymentLinkEvent.date_time">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">date_time</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_event.PaymentLinkEvent.date_time" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">The date and time the change occurred.</div>
+<div class="line">The date and time the change occurred. The date will contain the UTC offset.</div>
 </div>
 <p>Type: str</p>
 </dd></dl>
@@ -9311,16 +9577,16 @@ representing the request headers</p></li>
 
 </dd></dl>
 
-<span class="target" id="module-onlinepayments.sdk.domain.payment_link_order"></span><dl class="py class">
-<dt id="onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.domain.payment_link_order.</span></code><code class="sig-name descname"><span class="pre">PaymentLinkOrder</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order.html#PaymentLinkOrder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-onlinepayments.sdk.domain.payment_link_order_input"></span><dl class="py class">
+<dt id="onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.domain.payment_link_order_input.</span></code><code class="sig-name descname"><span class="pre">PaymentLinkOrderInput</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order_input.html#PaymentLinkOrderInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#onlinepayments.sdk.data_object.DataObject" title="onlinepayments.sdk.data_object.DataObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.data_object.DataObject</span></code></a></p>
 <div class="line-block">
-<div class="line">An object containing the details of the related payment.</div>
+<div class="line">An object containing the details of the related payment input.</div>
 </div>
 <dl class="py method">
-<dt id="onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder.amount">
-<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">amount</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder.amount" title="Permalink to this definition">¶</a></dt>
+<dt id="onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput.amount">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">amount</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput.amount" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
 <div class="line">Object containing amount and ISO currency code attributes</div>
 </div>
@@ -9328,13 +9594,13 @@ representing the request headers</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder.from_dictionary">
-<code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order.html#PaymentLinkOrder.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder.from_dictionary" title="Permalink to this definition">¶</a></dt>
+<dt id="onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput.from_dictionary">
+<code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order_input.html#PaymentLinkOrderInput.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput.from_dictionary" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder.merchant_reference">
-<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">merchant_reference</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder.merchant_reference" title="Permalink to this definition">¶</a></dt>
+<dt id="onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput.merchant_reference">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">merchant_reference</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput.merchant_reference" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
 <div class="line">Your unique reference of the transaction that is also returned in our report files. This is almost always used for your reconciliation of our report files.</div>
 <div class="line">It is highly recommended to provide a single MerchantReference per unique order on your side</div>
@@ -9343,8 +9609,46 @@ representing the request headers</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder.to_dictionary">
-<code class="sig-name descname"><span class="pre">to_dictionary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order.html#PaymentLinkOrder.to_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder.to_dictionary" title="Permalink to this definition">¶</a></dt>
+<dt id="onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput.to_dictionary">
+<code class="sig-name descname"><span class="pre">to_dictionary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order_input.html#PaymentLinkOrderInput.to_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_input.PaymentLinkOrderInput.to_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-onlinepayments.sdk.domain.payment_link_order_output"></span><dl class="py class">
+<dt id="onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">onlinepayments.sdk.domain.payment_link_order_output.</span></code><code class="sig-name descname"><span class="pre">PaymentLinkOrderOutput</span></code><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order_output.html#PaymentLinkOrderOutput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#onlinepayments.sdk.data_object.DataObject" title="onlinepayments.sdk.data_object.DataObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.data_object.DataObject</span></code></a></p>
+<div class="line-block">
+<div class="line">An object containing the details of the related payment output.</div>
+</div>
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput.amount">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">amount</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput.amount" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Object containing amount and ISO currency code attributes</div>
+</div>
+<p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.amount_of_money.AmountOfMoney" title="onlinepayments.sdk.domain.amount_of_money.AmountOfMoney"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.amount_of_money.AmountOfMoney</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput.from_dictionary">
+<code class="sig-name descname"><span class="pre">from_dictionary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order_output.html#PaymentLinkOrderOutput.from_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput.from_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput.merchant_reference">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">merchant_reference</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput.merchant_reference" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Your unique reference of the transaction that is also returned in our report files. This is almost always used for your reconciliation of our report files.</div>
+<div class="line">It is highly recommended to provide a single MerchantReference per unique order on your side</div>
+</div>
+<p>Type: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput.to_dictionary">
+<code class="sig-name descname"><span class="pre">to_dictionary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/onlinepayments/sdk/domain/payment_link_order_output.html#PaymentLinkOrderOutput.to_dictionary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput.to_dictionary" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -9360,7 +9664,7 @@ representing the request headers</p></li>
 <dt id="onlinepayments.sdk.domain.payment_link_response.PaymentLinkResponse.expiration_date">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">expiration_date</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_response.PaymentLinkResponse.expiration_date" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">The date after which the payment link will not be usable to complete the payment. The date sent must contain the UTC offset.</div>
+<div class="line">The date after which the payment link will not be usable to complete the payment. The date will contain the UTC offset.</div>
 </div>
 <p>Type: str</p>
 </dd></dl>
@@ -9398,9 +9702,9 @@ representing the request headers</p></li>
 <dt id="onlinepayments.sdk.domain.payment_link_response.PaymentLinkResponse.payment_link_order">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">payment_link_order</span></code><a class="headerlink" href="#onlinepayments.sdk.domain.payment_link_response.PaymentLinkResponse.payment_link_order" title="Permalink to this definition">¶</a></dt>
 <dd><div class="line-block">
-<div class="line">An object containing the details of the related payment.</div>
+<div class="line">An object containing the details of the related payment output.</div>
 </div>
-<p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder" title="onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder</span></code></a></p>
+<p>Type: <a class="reference internal" href="#onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput" title="onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput"><code class="xref py py-class docutils literal notranslate"><span class="pre">onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput</span></code></a></p>
 </dd></dl>
 
 <dl class="py method">

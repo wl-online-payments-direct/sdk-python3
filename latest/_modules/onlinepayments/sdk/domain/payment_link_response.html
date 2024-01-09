@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>onlinepayments.sdk.domain.payment_link_response &#8212; onlinepayments-sdk-python3 4.16.0 documentation</title>
+    <title>onlinepayments.sdk.domain.payment_link_response &#8212; onlinepayments-sdk-python3 4.18.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -39,7 +39,7 @@
 
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.data_object</span> <span class="kn">import</span> <span class="n">DataObject</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.payment_link_event</span> <span class="kn">import</span> <span class="n">PaymentLinkEvent</span>
-<span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.payment_link_order</span> <span class="kn">import</span> <span class="n">PaymentLinkOrder</span>
+<span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.payment_link_order_output</span> <span class="kn">import</span> <span class="n">PaymentLinkOrderOutput</span>
 
 
 <div class="viewcode-block" id="PaymentLinkResponse"><a class="viewcode-back" href="../../../../index.html#onlinepayments.sdk.domain.payment_link_response.PaymentLinkResponse">[docs]</a><span class="k">class</span> <span class="nc">PaymentLinkResponse</span><span class="p">(</span><span class="n">DataObject</span><span class="p">):</span>
@@ -59,7 +59,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">expiration_date</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        | The date after which the payment link will not be usable to complete the payment. The date sent must contain the UTC offset.</span>
+<span class="sd">        | The date after which the payment link will not be usable to complete the payment. The date will contain the UTC offset.</span>
 
 <span class="sd">        Type: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -107,16 +107,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__payment_link_id</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">payment_link_order</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PaymentLinkOrder</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">payment_link_order</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PaymentLinkOrderOutput</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        | An object containing the details of the related payment.</span>
+<span class="sd">        | An object containing the details of the related payment output.</span>
 
-<span class="sd">        Type: :class:`onlinepayments.sdk.domain.payment_link_order.PaymentLinkOrder`</span>
+<span class="sd">        Type: :class:`onlinepayments.sdk.domain.payment_link_order_output.PaymentLinkOrderOutput`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__payment_link_order</span>
 
     <span class="nd">@payment_link_order</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">payment_link_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">PaymentLinkOrder</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">payment_link_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">PaymentLinkOrderOutput</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__payment_link_order</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
@@ -203,7 +203,7 @@
         <span class="k">if</span> <span class="s1">&#39;paymentLinkOrder&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;paymentLinkOrder&#39;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;value </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is not a dictionary&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;paymentLinkOrder&#39;</span><span class="p">]))</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">PaymentLinkOrder</span><span class="p">()</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">PaymentLinkOrderOutput</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">payment_link_order</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;paymentLinkOrder&#39;</span><span class="p">])</span>
         <span class="k">if</span> <span class="s1">&#39;recipientName&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">recipient_name</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;recipientName&#39;</span><span class="p">]</span>

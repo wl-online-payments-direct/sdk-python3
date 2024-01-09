@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>onlinepayments.sdk.domain.order &#8212; onlinepayments-sdk-python3 4.16.0 documentation</title>
+    <title>onlinepayments.sdk.domain.order &#8212; onlinepayments-sdk-python3 4.18.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -39,6 +39,7 @@
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.additional_order_input</span> <span class="kn">import</span> <span class="n">AdditionalOrderInput</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.amount_of_money</span> <span class="kn">import</span> <span class="n">AmountOfMoney</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.customer</span> <span class="kn">import</span> <span class="n">Customer</span>
+<span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.discount</span> <span class="kn">import</span> <span class="n">Discount</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.order_references</span> <span class="kn">import</span> <span class="n">OrderReferences</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.shipping</span> <span class="kn">import</span> <span class="n">Shipping</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.shopping_cart</span> <span class="kn">import</span> <span class="n">ShoppingCart</span>
@@ -54,6 +55,7 @@
     <span class="n">__additional_input</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__amount_of_money</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__customer</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">__discount</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__references</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__shipping</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__shopping_cart</span> <span class="o">=</span> <span class="kc">None</span>
@@ -97,6 +99,19 @@
     <span class="nd">@customer</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">customer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Customer</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__customer</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">discount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Discount</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        | Object to apply a discount to the total basket by adding a discount line.</span>
+
+<span class="sd">        Type: :class:`onlinepayments.sdk.domain.discount.Discount`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__discount</span>
+
+    <span class="nd">@discount</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Discount</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__discount</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">references</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrderReferences</span><span class="p">:</span>
@@ -158,6 +173,8 @@
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;amountOfMoney&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amount_of_money</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">customer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;customer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">customer</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">discount</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;discount&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">discount</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">references</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;references&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">references</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shipping</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -185,6 +202,11 @@
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;value </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is not a dictionary&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;customer&#39;</span><span class="p">]))</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">Customer</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">customer</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;customer&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;discount&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;discount&#39;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;value </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is not a dictionary&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;discount&#39;</span><span class="p">]))</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">Discount</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">discount</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;discount&#39;</span><span class="p">])</span>
         <span class="k">if</span> <span class="s1">&#39;references&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;references&#39;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;value </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is not a dictionary&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;references&#39;</span><span class="p">]))</span>

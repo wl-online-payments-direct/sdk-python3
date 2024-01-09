@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>onlinepayments.sdk.domain.create_hosted_tokenization_request &#8212; onlinepayments-sdk-python3 4.16.0 documentation</title>
+    <title>onlinepayments.sdk.domain.create_hosted_tokenization_request &#8212; onlinepayments-sdk-python3 4.18.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
@@ -36,11 +36,13 @@
 <span class="c1"># This class was auto-generated.</span>
 <span class="c1">#</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.data_object</span> <span class="kn">import</span> <span class="n">DataObject</span>
+<span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization</span> <span class="kn">import</span> <span class="n">CreditCardSpecificInputHostedTokenization</span>
 <span class="kn">from</span> <span class="nn">onlinepayments.sdk.domain.payment_product_filters_hosted_tokenization</span> <span class="kn">import</span> <span class="n">PaymentProductFiltersHostedTokenization</span>
 
 
 <div class="viewcode-block" id="CreateHostedTokenizationRequest"><a class="viewcode-back" href="../../../../index.html#onlinepayments.sdk.domain.create_hosted_tokenization_request.CreateHostedTokenizationRequest">[docs]</a><span class="k">class</span> <span class="nc">CreateHostedTokenizationRequest</span><span class="p">(</span><span class="n">DataObject</span><span class="p">):</span>
     <span class="n">__ask_consumer_consent</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">__credit_card_specific_input</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__locale</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__payment_product_filters</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">__tokens</span> <span class="o">=</span> <span class="kc">None</span>
@@ -59,6 +61,17 @@
     <span class="nd">@ask_consumer_consent</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">ask_consumer_consent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__ask_consumer_consent</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">credit_card_specific_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CreditCardSpecificInputHostedTokenization</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Type: :class:`onlinepayments.sdk.domain.credit_card_specific_input_hosted_tokenization.CreditCardSpecificInputHostedTokenization`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__credit_card_specific_input</span>
+
+    <span class="nd">@credit_card_specific_input</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">credit_card_specific_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">CreditCardSpecificInputHostedTokenization</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__credit_card_specific_input</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">locale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -116,6 +129,8 @@
         <span class="n">dictionary</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CreateHostedTokenizationRequest</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask_consumer_consent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;askConsumerConsent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ask_consumer_consent</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">credit_card_specific_input</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;creditCardSpecificInput&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">credit_card_specific_input</span><span class="o">.</span><span class="n">to_dictionary</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">locale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;locale&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">locale</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">payment_product_filters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -130,6 +145,11 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">CreateHostedTokenizationRequest</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
         <span class="k">if</span> <span class="s1">&#39;askConsumerConsent&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ask_consumer_consent</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;askConsumerConsent&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;creditCardSpecificInput&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;creditCardSpecificInput&#39;</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;value </span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is not a dictionary&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;creditCardSpecificInput&#39;</span><span class="p">]))</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">CreditCardSpecificInputHostedTokenization</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">credit_card_specific_input</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;creditCardSpecificInput&#39;</span><span class="p">])</span>
         <span class="k">if</span> <span class="s1">&#39;locale&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">locale</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;locale&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="s1">&#39;paymentProductFilters&#39;</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
