@@ -21,7 +21,7 @@ def test_collector():
 
 setup(
     name="onlinepayments-sdk-python3",
-    version="7.4.1",
+    version="8.0.0",
     author="Worldline Direct support team",
     author_email="82139942+worldline-direct-support-team@users.noreply.github.com",
     description="SDK to communicate with the Online Payments platform using the Online Payments Server API",
