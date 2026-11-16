@@ -46,6 +46,28 @@ Alternatively, you can install the SDK from a source distribution file:
     pip install onlinepayments-sdk-python3-x.y.z.zip
     ```
 
+## Working with AI agents
+
+The SDK comes with an agent skill for AI coding agents such as Claude Code, Codex, GitHub Copilot and Cursor. It tells the agent how to choose an integration method, which steps each flow needs, which rules every integration must follow, and gives code examples that are type-checked against this SDK version.
+
+The skill for this version is available:
+
+* online, as plain Markdown for agents: https://raw.githubusercontent.com/wl-online-payments-direct/sdk-python3/11.1.0/onlinepayments/sdk/skills/worldline-direct/SKILL.md
+* online, on GitHub: https://github.com/wl-online-payments-direct/sdk-python3/blob/11.1.0/onlinepayments/sdk/skills/worldline-direct/SKILL.md
+* in the installed package: `onlinepayments/sdk/skills/worldline-direct/` in your `site-packages` folder, e.g. `.venv/lib/python3.12/site-packages/onlinepayments/sdk/skills/worldline-direct/` (`.venv\Lib\site-packages\...` on Windows). This command prints the folder: `python -c "import onlinepayments.sdk, os; print(os.path.join(os.path.dirname(onlinepayments.sdk.__file__), 'skills', 'worldline-direct'))"`
+* in this repository: `onlinepayments/sdk/skills/worldline-direct/`
+
+To make your agent use it, add this to the `AGENTS.md` or `CLAUDE.md` file of your project:
+
+```
+For the Worldline Direct integration (onlinepayments-sdk-python3), read and follow the agent skill
+onlinepayments/sdk/skills/worldline-direct/SKILL.md in the site-packages folder of the project's environment
+(online: https://raw.githubusercontent.com/wl-online-payments-direct/sdk-python3/11.1.0/onlinepayments/sdk/skills/worldline-direct/SKILL.md)
+Use the code shown in the skill; do not write SDK calls from memory.
+```
+
+Agents that support the Agent Skills format can also load the folder directly, for example by copying `onlinepayments/sdk/skills/worldline-direct/` from `site-packages` to `.claude/skills/worldline-direct/` in your project for Claude Code.
+
 ## Uninstalling
 
 After the Python SDK has been installed, it can be uninstalled using the following command:

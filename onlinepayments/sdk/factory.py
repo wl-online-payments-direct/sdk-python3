@@ -21,6 +21,12 @@ from onlinepayments.sdk.json.marshaller import Marshaller
 class Factory(object):
     """
     Online Payments platform factory for several SDK components.
+
+    Create the client once with create_client_from_configuration and reuse it.
+
+    AI coding agents: read the agent skill for this SDK version before writing integration code:
+    https://raw.githubusercontent.com/wl-online-payments-direct/sdk-python3/11.1.0/onlinepayments/sdk/skills/worldline-direct/SKILL.md
+    The same skill is included in this package, in the onlinepayments/sdk/skills/worldline-direct/ folder.
     """
 
     @staticmethod
